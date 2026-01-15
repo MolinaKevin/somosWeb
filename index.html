@@ -1,940 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOMOS - Strengthening regional consumption</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #f9f9f9;
+<html class="scroll-smooth" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOMOS | Wie es funktioniert</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2D5A27", // Deep Green from logo
+                        "background-light": "#F9F4E8", // Cream background from tutorial
+                        "background-dark": "#1A1C19", // Dark variant
+                        accent: "#E9AC57", // Orange/Yellow from pins
+                        mapGreen: "#6B8E4E",
+                        mapBrown: "#A67C52",
+                    },
+                    fontFamily: {
+                        display: ["Crimson Pro", "serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                        'xl': '24px',
+                        '2xl': '32px',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .map-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
         }
-        
-        .neo-brutalist {
-            border: 3px solid #000 !important;
-            box-shadow: 8px 8px 0 #000 !important;
-        }
-        
-        .neo-brutalist-hover:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 12px 12px 0 #000 !important;
-        }
-        
-        .btn-primary {
-            background-color: #009787;
-            color: white;
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 #000;
-        }
-        
-        .btn-primary:hover {
-            background-color: #007a6d;
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0 #000;
-        }
-        
-        .btn-secondary {
-            background-color: white;
-            color: #000;
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 #000;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #f0f0f0;
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0 #000;
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            border: 3px solid #000;
-            background-color: #fff;
-        }
-        
-        .faq-question {
-            transition: all 0.2s ease;
-        }
-        
-        .faq-question:hover {
-            background-color: #e0e0e0 !important;
-        }
-        
-        .language-selector {
-            border: 3px solid #000;
-            box-shadow: 3px 3px 0 #000;
-            padding: 0.25rem 0.5rem;
-            margin-left: 1rem;
-            background-color: white;
-            font-weight: 500;
-        }
-        
-        .language-selector:focus {
-            outline: none;
-            box-shadow: 5px 5px 0 #000;
+        .step-number {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
         }
     </style>
 </head>
-<body class="bg-[#f9f9f9]">
-    <!-- Header/Navigation -->
-    <header class="bg-white sticky top-0 z-50 border-b-3 border-black">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 border-3 border-black">
-                    <img src="./logo.png" />
-                </div>
-                <span class="text-2xl font-bold">SOMOS</span>
-            </div>
-            <nav class="hidden md:flex space-x-6 items-center">
-                <a href="#how-it-works" class="text-black hover:text-[#009787] font-medium" data-i18n="nav.how">How it works</a>
-                <a href="#benefits" class="text-black hover:text-[#009787] font-medium" data-i18n="nav.benefits">Benefits</a>
-                <a href="#testimonials" class="text-black hover:text-[#009787] font-medium" data-i18n="nav.testimonials">Testimonials</a>
-                <a href="#contact" class="text-black hover:text-[#009787] font-medium" data-i18n="nav.contact">Contact</a>
-                <select id="language-selector" class="language-selector rounded-lg">
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="de">Deutsch</option>
-                </select>
-            </nav>
-            <div class="flex items-center space-x-3">
-                <a href="#" class="px-4 py-1.5 btn-secondary rounded-lg font-medium transition" data-i18n="nav.login">Login</a>
-                <a href="#" class="px-4 py-1.5 btn-primary rounded-lg font-medium transition" data-i18n="nav.register">Register</a>
-                <button class="md:hidden text-black">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-white neo-brutalist my-8 mx-4 md:mx-8">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" data-i18n="hero.title">Strengthen your community<br>with every purchase</h1>
-                <p class="text-xl mb-8" data-i18n="hero.subtitle">We connect consumers, local businesses and organizations in an economic cycle that benefits everyone.</p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#" class="px-6 py-3 btn-primary rounded-lg font-bold text-center" data-i18n="hero.download">Download the app</a>
-                    <a href="#how-it-works" class="px-6 py-3 btn-secondary rounded-lg font-bold text-center" data-i18n="hero.learn">Learn more</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative">
-                    <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-2xl border-3 border-black flex items-center justify-center">
-                        <img src="https://picsum.photos/300/500" alt="App preview" class="h-full rounded-lg">
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
+<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white">public</span>
+</div>
+<span class="font-display text-2xl font-bold tracking-tight text-primary dark:text-white">SOMOS</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-medium hover:text-primary transition-colors" href="#">Marktplatz</a>
+<a class="font-medium text-primary border-b-2 border-primary" href="#">Wie es funktioniert</a>
+<a class="font-medium hover:text-primary transition-colors" href="#">Für Partner</a>
+<a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#">App laden</a>
+</div>
+</div>
+</nav>
+<header class="relative pt-20 pb-12 px-6 overflow-hidden">
+<div class="max-w-4xl mx-auto text-center">
+<h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-6">
+                Wie funktioniert SOMOS?
+            </h1>
+<p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Entdecke lokale Schätze, unterstütze deine Gemeinschaft und profitiere bei jedem Einkauf. Ein regionaler Kreislauf für uns alle.
+            </p>
+</div>
+</header>
+<section class="py-20 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+<div class="order-2 lg:order-1">
+<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 01</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Regionale Akteur:innen entdecken</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        Nutze unsere interaktive Karte, um lokale Geschäfte, Cafés und Produzenten in deiner Nähe zu finden. Ob Bio-Hofladen oder nachhaltige Boutique – SOMOS verbindet dich mit den Menschen hinter den Produkten.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Echtzeit-Standorte lokaler Partner</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Filter nach Kategorien und Öffnungszeiten</span>
+</li>
+</ul>
+</div>
+<div class="order-1 lg:order-2 bg-white dark:bg-gray-800 p-4 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
+<div class="aspect-video relative rounded-2xl overflow-hidden bg-[#e6d9b8] map-bg border border-gray-200 dark:border-gray-600">
+<div class="absolute top-0 left-0 w-full h-full">
+<div class="absolute top-[10%] left-[20%] w-[30%] h-[40%] bg-mapBrown/40 rounded-full blur-xl rotate-12"></div>
+<div class="absolute bottom-[20%] right-[15%] w-[40%] h-[50%] bg-mapGreen/40 rounded-full blur-xl -rotate-12"></div>
+<div class="absolute top-1/2 left-0 w-full h-8 bg-[#f5ead3] -rotate-12 transform -translate-y-1/2"></div>
+<div class="absolute top-0 left-1/3 w-10 h-full bg-[#f5ead3] rotate-6"></div>
+</div>
+<div class="absolute top-[30%] left-[40%]">
+<div class="relative group cursor-pointer">
+<div class="w-12 h-12 bg-accent rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce">
+<span class="material-symbols-outlined text-white text-lg">store</span>
+</div>
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-900 px-3 py-1 rounded shadow text-xs whitespace-nowrap font-bold">Green Hope Center</div>
+</div>
+</div>
+<div class="absolute bottom-[25%] right-[25%]">
+<div class="w-10 h-10 bg-primary rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">restaurant</span>
+</div>
+</div>
+<div class="absolute top-[60%] left-[20%]">
+<div class="bg-accent p-2 rounded-2xl shadow-xl flex items-center gap-2 border-2 border-white">
+<div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-[10px] text-white font-bold">S</div>
+<span class="text-[10px] font-bold pr-1">SOMOS PIN</span>
+</div>
+</div>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white dark:bg-gray-900 rounded-full shadow-lg flex items-center justify-center text-gray-600">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="w-10 h-10 bg-white dark:bg-gray-900 rounded-full shadow-lg flex items-center justify-center text-gray-600">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+<div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex justify-center">
+<div class="relative w-full max-w-sm">
+<div class="absolute -inset-4 bg-primary/5 rounded-full blur-3xl"></div>
+<img alt="Local Market Stall" class="rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZXGzFDJ32ZTubn_kjCZBgqyFc_JonVfKw3A3REI95U3R18D-Sa8HHHkyrtEnXY07w2Vb2by6zczhpE54VHMqSMgvy-y8-nfxlz4BAhd80YGkS-xVN9rtEhZxZivOTIRvaa4swI4qukrL_27YFpsnqIZKfI1oRjzw31gbcAeFqhKxTFz-7ck6exO0JOMIKBoPDNCEvlEVpZs2lx1d10nFwi9dfjurtSlkTQBR7C9eIrta_mwADlUlxGapQ91MSkZG2fnre-wyd5c"/>
+<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-background-light dark:bg-gray-700 rounded-2xl p-4 shadow-xl border border-gray-200 dark:border-gray-600 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">payments</span>
+<span class="text-xs font-bold uppercase tracking-tighter">Lokaler Kauf</span>
+</div>
+</div>
+</div>
+<div>
+<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 02</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Einkauf im lokalen Geschäft</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        Kaufe wie gewohnt ein. An der Kasse identifizierst du dich einfach über deine SOMOS App oder deine physische SOMOS-Karte. Jede Transaktion stärkt das lokale Netzwerk.
+                    </p>
+<div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary italic text-primary dark:text-gray-300">
+                        "Ich liebe es, dass mein wöchentlicher Markteinkauf jetzt direkt einen sozialen Impact in meiner Stadt hat."
                     </div>
-                    <div class="absolute -bottom-4 -left-4 w-28 h-28 bg-[#009787] rounded-xl border-3 border-black shadow-neo flex items-center justify-center">
-                        <div class="text-center p-2 text-white">
-                            <span class="block text-2xl font-bold">+500</span>
-                            <span class="block text-xs" data-i18n="hero.businesses">Businesses</span>
-                        </div>
-                    </div>
-                    <div class="absolute -top-4 -right-4 w-28 h-28 bg-yellow-400 rounded-xl border-3 border-black shadow-neo flex items-center justify-center">
-                        <div class="text-center p-2">
-                            <span class="block text-2xl font-bold">+10k</span>
-                            <span class="block text-xs" data-i18n="hero.donations">Donations</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Logos Section -->
-    <section class="py-12 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4">
-            <p class="text-center text-gray-600 mb-8" data-i18n="logos.trust">They trust us</p>
-            <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-                <div class="w-20 h-20 bg-white rounded-lg border-3 border-black flex items-center justify-center">
-                    <span class="font-bold">Local 1</span>
-                </div>
-                <div class="w-20 h-20 bg-white rounded-lg border-3 border-black flex items-center justify-center">
-                    <span class="font-bold">Local 2</span>
-                </div>
-                <div class="w-20 h-20 bg-white rounded-lg border-3 border-black flex items-center justify-center">
-                    <span class="font-bold">NGO 1</span>
-                </div>
-                <div class="w-20 h-20 bg-white rounded-lg border-3 border-black flex items-center justify-center">
-                    <span class="font-bold">Local 3</span>
-                </div>
-                <div class="w-20 h-20 bg-white rounded-lg border-3 border-black flex items-center justify-center">
-                    <span class="font-bold">NGO 2</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it works Section -->
-    <section id="how-it-works" class="py-16 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="how.title">How does SOMOS work?</h2>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto" data-i18n="how.subtitle">A simple system that benefits consumers, businesses and organizations alike.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row mb-12">
-                <div class="md:w-1/3 p-6">
-                    <div class="feature-icon mx-auto border-black">
-                        <i class="fas fa-user text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-4" data-i18n="how.consumers">Consumers</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.consumers1">Earn points by shopping at participating businesses</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.consumers2">Redeem points for discounts and benefits</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.consumers3">See in real time how your purchases generate donations</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="md:w-1/3 p-6">
-                    <div class="feature-icon mx-auto border-black" style="background-color: #009787; color: white;">
-                        <i class="fas fa-store text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-4" data-i18n="how.businesses">Businesses</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.businesses1">Donate a small percentage of your sales</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.businesses2">Gain digital visibility on the platform</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.businesses3">Build customer loyalty with the points system</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="md:w-1/3 p-6">
-                    <div class="feature-icon mx-auto border-black">
-                        <i class="fas fa-hands-helping text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-4" data-i18n="how.organizations">Organizations</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.orgs1">Receive constant donations</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.orgs2">Increase your visibility in the community</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-[#009787] mt-1 mr-2"></i>
-                            <span data-i18n="how.orgs3">Act as communication channels</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <a href="#" class="inline-block px-8 py-3 btn-primary rounded-lg font-bold" data-i18n="how.join">I want to join</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Proposition Section -->
-    <section id="benefits" class="py-16 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="value.title">Our value proposition</h2>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto" data-i18n="value.subtitle">SOMOS creates an ecosystem where everyone wins</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-leaf text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.sustainable">Sustainable consumption</h3>
-                    <p class="text-gray-700" data-i18n="value.sustainable-desc">We promote local and responsible consumption, strengthening your community's economy.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-chart-line text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.digital">Digitalization</h3>
-                    <p class="text-gray-700" data-i18n="value.digital-desc">We help small businesses digitize and improve their marketing.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-heart text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.impact">Social impact</h3>
-                    <p class="text-gray-700" data-i18n="value.impact-desc">We generate direct social impact with donations to local organizations.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-hand-holding-usd text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.free">Free for users</h3>
-                    <p class="text-gray-700" data-i18n="value.free-desc">Consumers participate at no cost, just by shopping at their favorite stores.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-eye text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.transparency">Transparency</h3>
-                    <p class="text-gray-700" data-i18n="value.transparency-desc">The entire process is transparent, from purchases to final donations.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="w-12 h-12 bg-white text-[#009787] rounded-lg flex items-center justify-center mb-4 border-3 border-black">
-                        <i class="fas fa-users text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="value.community">Community</h3>
-                    <p class="text-gray-700" data-i18n="value.community-desc">We create real connections between all actors in the local economy.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="testimonials.title">What they say about us</h2>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto" data-i18n="testimonials.subtitle">Real stories from our community</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-[#009787] flex items-center justify-center text-white font-bold mr-4 border-3 border-black">M</div>
-                        <div>
-                            <h4 class="font-bold">Maria G.</h4>
-                            <p class="text-gray-500 text-sm" data-i18n="testimonials.consumer">Consumer</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700" data-i18n="testimonials.testimonial1">"I love seeing how my regular purchases generate donations. Now I prefer to shop at SOMOS businesses because I know I'm helping."</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-[#009787] flex items-center justify-center text-white font-bold mr-4 border-3 border-black">J</div>
-                        <div>
-                            <h4 class="font-bold">John P.</h4>
-                            <p class="text-gray-500 text-sm" data-i18n="testimonials.owner">Store owner</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700" data-i18n="testimonials.testimonial2">"Since joining SOMOS we've increased our sales by 20%. Customers value the social impact and return more frequently."</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg border-3 border-black">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-[#009787] flex items-center justify-center text-white font-bold mr-4 border-3 border-black">C</div>
-                        <div>
-                            <h4 class="font-bold">Charity V.</h4>
-                            <p class="text-gray-500 text-sm" data-i18n="testimonials.director">NGO Director</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700" data-i18n="testimonials.testimonial3">"The constant donations from SOMOS allow us to better plan our social programs. We've also gained visibility for our work."</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 bg-[#009787] text-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6" data-i18n="cta.title">Ready to join the change?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto" data-i18n="cta.subtitle">Download the app and start making an impact with your daily purchases.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="px-6 py-3 bg-white text-black font-bold rounded-lg border-3 border-black flex items-center justify-center">
-                    <i class="fab fa-apple text-xl mr-2"></i>
-                    <span data-i18n="cta.apple">App Store</span>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+<div class="order-2 lg:order-1">
+<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 03</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Transaktion bestätigen</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        Der Händler scannt deinen QR-Code oder gibt den Betrag in die Merchant-App ein. Du erhältst sofort eine Bestätigung auf dein Smartphone und siehst, wie viele Punkte du gesammelt hast.
+                    </p>
+<div class="flex gap-4">
+<div class="flex-1 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
+<span class="block text-2xl font-bold text-primary">0%</span>
+<span class="text-sm text-gray-500">Zusatzkosten</span>
+</div>
+<div class="flex-1 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
+<span class="block text-2xl font-bold text-primary">100%</span>
+<span class="text-sm text-gray-500">Transparent</span>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 flex justify-center">
+<div class="relative w-64 h-[500px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-800 shadow-2xl overflow-hidden">
+<div class="absolute top-0 w-full h-6 bg-gray-800 rounded-b-xl"></div>
+<div class="p-6 pt-12 flex flex-col h-full bg-background-light dark:bg-gray-900">
+<div class="w-12 h-12 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">check</span>
+</div>
+<h4 class="text-center font-bold text-xl mb-2 text-primary">Erfolgreich!</h4>
+<p class="text-center text-xs text-gray-500 mb-8">Zahlung bestätigt bei Green Hope Center</p>
+<div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm mb-4">
+<div class="flex justify-between text-xs mb-1">
+<span>Betrag</span>
+<span class="font-bold">45.00 €</span>
+</div>
+<div class="flex justify-between text-xs text-primary font-bold">
+<span>Punkte erhalten</span>
+<span>+ 0.67 P</span>
+</div>
+</div>
+<button class="mt-auto w-full bg-primary text-white py-3 rounded-xl font-bold text-sm">Schließen</button>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="bg-primary text-white p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-9xl">favorite</span>
+</div>
+<h3 class="font-display text-4xl font-bold mb-6">Punkte &amp; Wirkung</h3>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">Für dich</h4>
+<p class="text-white/80">Sammle Punkte bei jedem Einkauf und löse sie bei Partnern ein oder spende sie direkt.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">volunteer_activism</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">Für die Region</h4>
+<p class="text-white/80">Ein Teil jeder Transaktionsgebühr fließt direkt an lokale gemeinnützige Projekte.</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 04</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Wirkung entfalten</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        Dein Geld arbeitet für deine Gemeinschaft. Wir wandeln Handelsumsätze in soziale und ökologische Wirkung um – ganz ohne Mehraufwand für dich oder den Händler.
+                    </p>
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all" href="#">
+                        Mehr über Projekte erfahren <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 bg-white dark:bg-gray-900">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display text-5xl font-bold text-primary dark:text-white mb-6">Das Punktesystem</h2>
+<p class="text-xl text-gray-600 dark:text-gray-400">Transparenz ist unsere Basis. So teilt sich die 3% Gebühr auf:</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-gray-800 text-center flex flex-col items-center">
+<div class="w-24 h-24 rounded-full border-8 border-primary/20 flex items-center justify-center mb-6">
+<span class="text-3xl font-bold text-primary">50%</span>
+</div>
+<h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">Nutzer-Punkte</h4>
+<p class="text-gray-600 dark:text-gray-400">1.5% des Umsatzes gehen direkt als Cashback-Punkte zurück an dich.</p>
+</div>
+<div class="p-8 rounded-3xl border border-primary/30 bg-primary/5 text-center flex flex-col items-center shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-4 py-1 rounded-bl-xl uppercase">Impact</div>
+<div class="w-24 h-24 rounded-full border-8 border-accent flex items-center justify-center mb-6">
+<span class="text-3xl font-bold text-primary">10%</span>
+</div>
+<h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">Non-Profits</h4>
+<p class="text-gray-600 dark:text-gray-400">Direkte Förderung für lokale Vereine und soziale Organisationen deiner Wahl.</p>
+</div>
+<div class="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-gray-800 text-center flex flex-col items-center">
+<div class="w-24 h-24 rounded-full border-8 border-gray-300 flex items-center justify-center mb-6">
+<span class="text-3xl font-bold text-primary">40%</span>
+</div>
+<h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">SOMOS</h4>
+<p class="text-gray-600 dark:text-gray-400">Für den Betrieb der Plattform, Support und die Weiterentwicklung des Netzwerks.</p>
+</div>
+</div>
+<div class="mt-16 bg-gray-200 dark:bg-gray-800 h-12 rounded-full overflow-hidden flex shadow-inner">
+<div class="bg-primary h-full flex items-center justify-center text-white text-xs font-bold" style="width: 50%">Punkte (1.5%)</div>
+<div class="bg-accent h-full flex items-center justify-center text-white text-xs font-bold" style="width: 10%">Impact</div>
+<div class="bg-primary/40 h-full flex items-center justify-center text-primary text-xs font-bold" style="width: 40%">Platform</div>
+</div>
+<p class="text-center mt-6 text-sm text-gray-500 italic">Gesamtgebühr: 3.0% pro Transaktion für den Händler (Inkl. MwSt.)</p>
+</div>
+</section>
+<section class="py-24 px-6 bg-primary">
+<div class="max-w-4xl mx-auto text-center text-white">
+<h2 class="font-display text-5xl font-bold mb-8">Bereit für einen regionalen Wandel?</h2>
+<p class="text-xl mb-12 text-white/80">Lade die SOMOS App noch heute herunter und fange an, deine Umgebung positiv zu gestalten.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-colors flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">apple</span> App Store
                 </a>
-                <a href="#" class="px-6 py-3 bg-black text-white font-bold rounded-lg border-3 border-black flex items-center justify-center">
-                    <i class="fab fa-google-play text-xl mr-2"></i>
-                    <span data-i18n="cta.play">Play Store</span>
+<a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">play_store</span> Google Play
                 </a>
-            </div>
+</div>
+</div>
+</section>
+<footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">public</span>
+</div>
+<span class="font-display text-xl font-bold text-primary dark:text-white">SOMOS</span>
+</div>
+<p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6">
+                    Die Plattform für regionalen Handel und gemeinschaftliche Wirkung. Zusammen bauen wir eine Wirtschaft, die allen dient.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-gray-900 dark:text-white">Plattform</h5>
+<ul class="space-y-4 text-gray-600 dark:text-gray-400">
+<li><a class="hover:text-primary" href="#">Für Partner</a></li>
+<li><a class="hover:text-primary" href="#">Für Vereine</a></li>
+<li><a class="hover:text-primary" href="#">Impact Report</a></li>
+<li><a class="hover:text-primary" href="#">Punkte einlösen</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-gray-900 dark:text-white">Rechtliches</h5>
+<ul class="space-y-4 text-gray-600 dark:text-gray-400">
+<li><a class="hover:text-primary" href="#">Impressum</a></li>
+<li><a class="hover:text-primary" href="#">Datenschutz</a></li>
+<li><a class="hover:text-primary" href="#">AGB</a></li>
+<li><a class="hover:text-primary" href="#">Kontakt</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-500 text-sm">
+            © 2024 SOMOS Regional Platform. Alle Rechte vorbehalten.
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-[#009787] text-white p-8 border-3 border-black">
-                        <h2 class="text-3xl font-bold mb-6" data-i18n="contact.title">Contact us</h2>
-                        <p class="mb-8" data-i18n="contact.subtitle">Do you have questions about how SOMOS works? Do you want your business or organization to be part of it? Write to us.</p>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope mt-1 mr-4"></i>
-                                <span>contact@weare.com</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt mt-1 mr-4"></i>
-                                <span>+1 234 567 890</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
-                                <span data-i18n="contact.address">Local Street 123, City</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 p-8 border-t-3 md:border-t-0 md:border-l-3 border-black">
-                        <form>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2" data-i18n="contact.name">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border-3 border-black rounded-lg focus:outline-none">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2" data-i18n="contact.email">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border-3 border-black rounded-lg focus:outline-none">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="subject" class="block text-gray-700 font-medium mb-2" data-i18n="contact.subject">Subject</label>
-                                <select id="subject" class="w-full px-4 py-2 border-3 border-black rounded-lg focus:outline-none">
-                                    <option value="" data-i18n="contact.select">Select an option</option>
-                                    <option value="business" data-i18n="contact.business">I want my business to participate</option>
-                                    <option value="ngo" data-i18n="contact.ngo">I'm an interested NGO</option>
-                                    <option value="consumer" data-i18n="contact.consumer">Question as a consumer</option>
-                                    <option value="other" data-i18n="contact.other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-medium mb-2" data-i18n="contact.message">Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border-3 border-black rounded-lg focus:outline-none"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full py-3 btn-primary rounded-lg font-bold" data-i18n="contact.send">Send message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-16 bg-white neo-brutalist mx-4 md:mx-8 mb-8">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="faq.title">Frequently asked questions</h2>
-                <p class="text-xl text-gray-700" data-i18n="faq.subtitle">We answer your questions about SOMOS</p>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="border-3 border-black rounded-lg overflow-hidden">
-                    <button class="faq-question w-full px-6 py-4 text-left font-bold bg-white flex justify-between items-center">
-                        <span data-i18n="faq.q1">How do I earn points as a consumer?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer px-6 py-4 hidden border-t-3 border-black">
-                        <p class="text-gray-700" data-i18n="faq.a1">Simply make purchases at any of SOMOS's participating businesses. When paying, show your user code in the app and you will automatically accumulate points proportional to the value of your purchase.</p>
-                    </div>
-                </div>
-                
-                <div class="border-3 border-black rounded-lg overflow-hidden">
-                    <button class="faq-question w-full px-6 py-4 text-left font-bold bg-white flex justify-between items-center">
-                        <span data-i18n="faq.q2">What percentage do businesses donate?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer px-6 py-4 hidden border-t-3 border-black">
-                        <p class="text-gray-700" data-i18n="faq.a2">The percentage varies by business, but generally ranges between 1% and 5% of the value of each sale. This percentage is decided by each business when registering on the platform.</p>
-                    </div>
-                </div>
-                
-                <div class="border-3 border-black rounded-lg overflow-hidden">
-                    <button class="faq-question w-full px-6 py-4 text-left font-bold bg-white flex justify-between items-center">
-                        <span data-i18n="faq.q3">How are beneficiary organizations chosen?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer px-6 py-4 hidden border-t-3 border-black">
-                        <p class="text-gray-700" data-i18n="faq.a3">Organizations are carefully selected by our team, verifying their transparency, social impact and real needs. We also consider suggestions from the community and from the participating businesses themselves.</p>
-                    </div>
-                </div>
-                
-                <div class="border-3 border-black rounded-lg overflow-hidden">
-                    <button class="faq-question w-full px-6 py-4 text-left font-bold bg-white flex justify-between items-center">
-                        <span data-i18n="faq.q4">Is there any cost to consumers?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer px-6 py-4 hidden border-t-3 border-black">
-                        <p class="text-gray-700" data-i18n="faq.a4">Absolutely not! For consumers, SOMOS is completely free. Points are generated with your regular purchases at no additional cost to you.</p>
-                    </div>
-                </div>
-                
-                <div class="border-3 border-black rounded-lg overflow-hidden">
-                    <button class="faq-question w-full px-6 py-4 text-left font-bold bg-white flex justify-between items-center">
-                        <span data-i18n="faq.q5">How can I redeem my points?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer px-6 py-4 hidden border-t-3 border-black">
-                        <p class="text-gray-700" data-i18n="faq.a5">In the SOMOS app you'll find a catalog of benefits and discounts that you can redeem with your accumulated points. Simply select the benefit you want and show the generated code to the corresponding business.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-12 border-t-3 border-black">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-[#009787] flex items-center justify-center text-white font-bold text-lg mr-3 border-3 border-black">W</div>
-                        <span class="text-xl font-bold">SOMOS</span>
-                    </div>
-                    <p class="text-gray-400" data-i18n="footer.desc">Strengthening regional consumption and the local economy through a virtuous cycle that benefits everyone.</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4" data-i18n="footer.links">Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-i18n="footer.home">Home</a></li>
-                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition" data-i18n="footer.how">How it works</a></li>
-                        <li><a href="#benefits" class="text-gray-400 hover:text-white transition" data-i18n="footer.benefits">Benefits</a></li>
-                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition" data-i18n="footer.testimonials">Testimonials</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition" data-i18n="footer.contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4" data-i18n="footer.legal">Legal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-i18n="footer.terms">Terms and conditions</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-i18n="footer.privacy">Privacy policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-i18n="footer.cookies">Cookie policy</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4" data-i18n="footer.follow">Follow us</h4>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center hover:bg-[#009787] transition border-3 border-black">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center hover:bg-[#009787] transition border-3 border-black">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center hover:bg-[#009787] transition border-3 border-black">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center hover:bg-[#009787] transition border-3 border-black">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-400" data-i18n="footer.download">Download our app</p>
-                    <div class="flex space-x-2 mt-2">
-                        <a href="#" class="w-1/2 py-2 bg-black rounded-lg flex items-center justify-center border-3 border-white">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="text-xs" data-i18n="footer.apple">App Store</span>
-                        </a>
-                        <a href="#" class="w-1/2 py-2 bg-black rounded-lg flex items-center justify-center border-3 border-white">
-                            <i class="fab fa-google-play mr-2"></i>
-                            <span class="text-xs" data-i18n="footer.play">Play Store</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p data-i18n="footer.copyright">&copy; 2023 SOMOS. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Language translations
-        const translations = {
-            en: {
-                "nav.how": "How it works",
-                "nav.benefits": "Benefits",
-                "nav.testimonials": "Testimonials",
-                "nav.contact": "Contact",
-                "nav.login": "Login",
-                "nav.register": "Register",
-                "hero.title": "Strengthen your community<br>with every purchase",
-                "hero.subtitle": "We connect consumers, local businesses and organizations in an economic cycle that benefits everyone.",
-                "hero.download": "Download the app",
-                "hero.learn": "Learn more",
-                "hero.businesses": "Businesses",
-                "hero.donations": "Donations",
-                "logos.trust": "They trust us",
-                "how.title": "How does SOMOS work?",
-                "how.subtitle": "A simple system that benefits consumers, businesses and organizations alike.",
-                "how.consumers": "Consumers",
-                "how.consumers1": "Earn points by shopping at participating businesses",
-                "how.consumers2": "Redeem points for discounts and benefits",
-                "how.consumers3": "See in real time how your purchases generate donations",
-                "how.businesses": "Businesses",
-                "how.businesses1": "Donate a small percentage of your sales",
-                "how.businesses2": "Gain digital visibility on the platform",
-                "how.businesses3": "Build customer loyalty with the points system",
-                "how.organizations": "Organizations",
-                "how.orgs1": "Receive constant donations",
-                "how.orgs2": "Increase your visibility in the community",
-                "how.orgs3": "Act as communication channels",
-                "how.join": "I want to join",
-                "value.title": "Our value proposition",
-                "value.subtitle": "SOMOS creates an ecosystem where everyone wins",
-                "value.sustainable": "Sustainable consumption",
-                "value.sustainable-desc": "We promote local and responsible consumption, strengthening your community's economy.",
-                "value.digital": "Digitalization",
-                "value.digital-desc": "We help small businesses digitize and improve their marketing.",
-                "value.impact": "Social impact",
-                "value.impact-desc": "We generate direct social impact with donations to local organizations.",
-                "value.free": "Free for users",
-                "value.free-desc": "Consumers participate at no cost, just by shopping at their favorite stores.",
-                "value.transparency": "Transparency",
-                "value.transparency-desc": "The entire process is transparent, from purchases to final donations.",
-                "value.community": "Community",
-                "value.community-desc": "We create real connections between all actors in the local economy.",
-                "testimonials.title": "What they say about us",
-                "testimonials.subtitle": "Real stories from our community",
-                "testimonials.consumer": "Consumer",
-                "testimonials.testimonial1": "\"I love seeing how my regular purchases generate donations. Now I prefer to shop at SOMOS businesses because I know I'm helping.\"",
-                "testimonials.owner": "Store owner",
-                "testimonials.testimonial2": "\"Since joining SOMOS we've increased our sales by 20%. Customers value the social impact and return more frequently.\"",
-                "testimonials.director": "NGO Director",
-                "testimonials.testimonial3": "\"The constant donations from SOMOS allow us to better plan our social programs. We've also gained visibility for our work.\"",
-                "cta.title": "Ready to join the change?",
-                "cta.subtitle": "Download the app and start making an impact with your daily purchases.",
-                "cta.apple": "App Store",
-                "cta.play": "Play Store",
-                "contact.title": "Contact us",
-                "contact.subtitle": "Do you have questions about how SOMOS works? Do you want your business or organization to be part of it? Write to us.",
-                "contact.address": "Local Street 123, City",
-                "contact.name": "Name",
-                "contact.email": "Email",
-                "contact.subject": "Subject",
-                "contact.select": "Select an option",
-                "contact.business": "I want my business to participate",
-                "contact.ngo": "I'm an interested NGO",
-                "contact.consumer": "Question as a consumer",
-                "contact.other": "Other",
-                "contact.message": "Message",
-                "contact.send": "Send message",
-                "faq.title": "Frequently asked questions",
-                "faq.subtitle": "We answer your questions about SOMOS",
-                "faq.q1": "How do I earn points as a consumer?",
-                "faq.a1": "Simply make purchases at any of SOMOS's participating businesses. When paying, show your user code in the app and you will automatically accumulate points proportional to the value of your purchase.",
-                "faq.q2": "What percentage do businesses donate?",
-                "faq.a2": "The percentage varies by business, but generally ranges between 1% and 5% of the value of each sale. This percentage is decided by each business when registering on the platform.",
-                "faq.q3": "How are beneficiary organizations chosen?",
-                "faq.a3": "Organizations are carefully selected by our team, verifying their transparency, social impact and real needs. We also consider suggestions from the community and from the participating businesses themselves.",
-                "faq.q4": "Is there any cost to consumers?",
-                "faq.a4": "Absolutely not! For consumers, SOMOS is completely free. Points are generated with your regular purchases at no additional cost to you.",
-                "faq.q5": "How can I redeem my points?",
-                "faq.a5": "In the SOMOS app you'll find a catalog of benefits and discounts that you can redeem with your accumulated points. Simply select the benefit you want and show the generated code to the corresponding business.",
-                "footer.desc": "Strengthening regional consumption and the local economy through a virtuous cycle that benefits everyone.",
-                "footer.links": "Links",
-                "footer.home": "Home",
-                "footer.how": "How it works",
-                "footer.benefits": "Benefits",
-                "footer.testimonials": "Testimonials",
-                "footer.contact": "Contact",
-                "footer.legal": "Legal",
-                "footer.terms": "Terms and conditions",
-                "footer.privacy": "Privacy policy",
-                "footer.cookies": "Cookie policy",
-                "footer.follow": "Follow us",
-                "footer.download": "Download our app",
-                "footer.apple": "App Store",
-                "footer.play": "Play Store",
-                "footer.copyright": "© 2023 SOMOS. All rights reserved."
-            },
-            es: {
-                "nav.how": "Cómo funciona",
-                "nav.benefits": "Beneficios",
-                "nav.testimonials": "Testimonios",
-                "nav.contact": "Contacto",
-                "nav.login": "Iniciar sesión",
-                "nav.register": "Registrarse",
-                "hero.title": "Fortalece tu comunidad<br>con cada compra",
-                "hero.subtitle": "Conectamos consumidores, comercios locales y organizaciones en un ciclo económico que beneficia a todos.",
-                "hero.download": "Descarga la app",
-                "hero.learn": "Conoce más",
-                "hero.businesses": "Comercios",
-                "hero.donations": "Donaciones",
-                "logos.trust": "Confían en nosotros",
-                "how.title": "¿Cómo funciona SOMOS?",
-                "how.subtitle": "Un sistema simple que beneficia a consumidores, comercios y organizaciones por igual.",
-                "how.consumers": "Consumidores",
-                "how.consumers1": "Ganan puntos por comprar en comercios participantes",
-                "how.consumers2": "Canjean puntos por descuentos y beneficios",
-                "how.consumers3": "Ven en tiempo real cómo sus compras generan donaciones",
-                "how.businesses": "Comercios",
-                "how.businesses1": "Donan un pequeño porcentaje de sus ventas",
-                "how.businesses2": "Ganan visibilidad digital en la plataforma",
-                "how.businesses3": "Fidelizan clientes con el sistema de puntos",
-                "how.organizations": "Organizaciones",
-                "how.orgs1": "Reciben donaciones constantes",
-                "how.orgs2": "Aumentan su visibilidad en la comunidad",
-                "how.orgs3": "Actúan como canales de comunicación",
-                "how.join": "Quiero ser parte",
-                "value.title": "Nuestra propuesta de valor",
-                "value.subtitle": "SOMOS crea un ecosistema donde todos ganan",
-                "value.sustainable": "Consumo sostenible",
-                "value.sustainable-desc": "Promovemos el consumo local y responsable, fortaleciendo la economía de tu comunidad.",
-                "value.digital": "Digitalización",
-                "value.digital-desc": "Ayudamos a los pequeños comercios a digitalizarse y mejorar su marketing.",
-                "value.impact": "Impacto social",
-                "value.impact-desc": "Generamos un impacto social directo con donaciones a organizaciones locales.",
-                "value.free": "Gratis para usuarios",
-                "value.free-desc": "Los consumidores participan sin costo alguno, solo comprando en sus comercios favoritos.",
-                "value.transparency": "Transparencia",
-                "value.transparency-desc": "Todo el proceso es transparente, desde las compras hasta las donaciones finales.",
-                "value.community": "Comunidad",
-                "value.community-desc": "Creamos conexiones reales entre todos los actores de la economía local.",
-                "testimonials.title": "Lo que dicen de nosotros",
-                "testimonials.subtitle": "Historias reales de nuestra comunidad",
-                "testimonials.consumer": "Consumidora",
-                "testimonials.testimonial1": "\"Me encanta ver cómo mis compras habituales generan donaciones. Ahora prefiero comprar en los comercios de SOMOS porque sé que estoy ayudando.\"",
-                "testimonials.owner": "Dueño de tienda",
-                "testimonials.testimonial2": "\"Desde que nos unimos a SOMOS hemos aumentado nuestras ventas en un 20%. Los clientes valoran el impacto social y regresan más frecuentemente.\"",
-                "testimonials.director": "Directora de ONG",
-                "testimonials.testimonial3": "\"Las donaciones constantes de SOMOS nos permiten planificar mejor nuestros programas sociales. Además, hemos dado a conocer nuestro trabajo.\"",
-                "cta.title": "¿Listo para unirte al cambio?",
-                "cta.subtitle": "Descarga la app y comienza a generar impacto con tus compras diarias.",
-                "cta.apple": "App Store",
-                "cta.play": "Play Store",
-                "contact.title": "Contáctanos",
-                "contact.subtitle": "¿Tienes preguntas sobre cómo funciona SOMOS? ¿Quieres que tu comercio u organización sea parte? Escríbenos.",
-                "contact.address": "Calle Local 123, Ciudad",
-                "contact.name": "Nombre",
-                "contact.email": "Correo electrónico",
-                "contact.subject": "Asunto",
-                "contact.select": "Selecciona una opción",
-                "contact.business": "Quiero que mi comercio participe",
-                "contact.ngo": "Soy una ONG interesada",
-                "contact.consumer": "Consulta como consumidor",
-                "contact.other": "Otro",
-                "contact.message": "Mensaje",
-                "contact.send": "Enviar mensaje",
-                "faq.title": "Preguntas frecuentes",
-                "faq.subtitle": "Resolvemos tus dudas sobre SOMOS",
-                "faq.q1": "¿Cómo gano puntos como consumidor?",
-                "faq.a1": "Simplemente realiza compras en cualquiera de los comercios participantes de SOMOS. Al pagar, muestra tu código de usuario en la app y automáticamente acumularás puntos proporcionales al valor de tu compra.",
-                "faq.q2": "¿Qué porcentaje donan los comercios?",
-                "faq.a2": "El porcentaje varía según el comercio, pero generalmente oscila entre el 1% y el 5% del valor de cada venta. Este porcentaje es decidido por cada comercio al registrarse en la plataforma.",
-                "faq.q3": "¿Cómo eligen a las organizaciones beneficiarias?",
-                "faq.a3": "Las organizaciones son seleccionadas cuidadosamente por nuestro equipo, verificando su transparencia, impacto social y necesidades reales. También consideramos sugerencias de la comunidad y de los propios comercios participantes.",
-                "faq.q4": "¿Hay algún costo para los consumidores?",
-                "faq.a4": "¡Absolutamente no! Para los consumidores, SOMOS es completamente gratuito. Los puntos se generan con tus compras habituales sin ningún costo adicional para ti.",
-                "faq.q5": "¿Cómo puedo canjear mis puntos?",
-                "faq.a5": "En la app de SOMOS encontrarás un catálogo de beneficios y descuentos que puedes canjear con tus puntos acumulados. Simplemente selecciona el beneficio que quieras y muestra el código generado al comercio correspondiente.",
-                "footer.desc": "Fortaleciendo el consumo regional y la economía local a través de un ciclo virtuoso que beneficia a todos.",
-                "footer.links": "Enlaces",
-                "footer.home": "Inicio",
-                "footer.how": "Cómo funciona",
-                "footer.benefits": "Beneficios",
-                "footer.testimonials": "Testimonios",
-                "footer.contact": "Contacto",
-                "footer.legal": "Legal",
-                "footer.terms": "Términos y condiciones",
-                "footer.privacy": "Política de privacidad",
-                "footer.cookies": "Política de cookies",
-                "footer.follow": "Síguenos",
-                "footer.download": "Descarga nuestra app",
-                "footer.apple": "App Store",
-                "footer.play": "Play Store",
-                "footer.copyright": "© 2023 SOMOS. Todos los derechos reservados."
-            },
-            de: {
-                "nav.how": "Wie es funktioniert",
-                "nav.benefits": "Vorteile",
-                "nav.testimonials": "Erfahrungsberichte",
-                "nav.contact": "Kontakt",
-                "nav.login": "Anmelden",
-                "nav.register": "Registrieren",
-                "hero.title": "Stärken Sie Ihre Gemeinschaft<br>mit jedem Einkauf",
-                "hero.subtitle": "Wir verbinden Verbraucher, lokale Unternehmen und Organisationen in einem Wirtschaftskreislauf, der allen zugutekommt.",
-                "hero.download": "App herunterladen",
-                "hero.learn": "Mehr erfahren",
-                "hero.businesses": "Unternehmen",
-                "hero.donations": "Spenden",
-                "logos.trust": "Sie vertrauen uns",
-                "how.title": "Wie funktioniert SOMOS?",
-                "how.subtitle": "Ein einfaches System, das Verbrauchern, Unternehmen und Organisationen gleichermaßen zugutekommt.",
-                "how.consumers": "Verbraucher",
-                "how.consumers1": "Sammeln Sie Punkte beim Einkauf in teilnehmenden Geschäften",
-                "how.consumers2": "Lösen Sie Punkte für Rabatte und Vorteile ein",
-                "how.consumers3": "Sehen Sie in Echtzeit, wie Ihre Einkäufe Spenden generieren",
-                "how.businesses": "Unternehmen",
-                "how.businesses1": "Spenden Sie einen kleinen Prozentsatz Ihrer Verkäufe",
-                "how.businesses2": "Erhalten Sie digitale Sichtbarkeit auf der Plattform",
-                "how.businesses3": "Bindet Kunden mit dem Punkte-System",
-                "how.organizations": "Organisationen",
-                "how.orgs1": "Erhalten Sie regelmäßige Spenden",
-                "how.orgs2": "Erhöhen Sie Ihre Sichtbarkeit in der Gemeinschaft",
-                "how.orgs3": "Agieren Sie als Kommunikationskanäle",
-                "how.join": "Ich möchte teilnehmen",
-                "value.title": "Unser Wertversprechen",
-                "value.subtitle": "SOMOS schafft ein Ökosystem, in dem alle gewinnen",
-                "value.sustainable": "Nachhaltiger Konsum",
-                "value.sustainable-desc": "Wir fördern lokalen und verantwortungsvollen Konsum und stärken die Wirtschaft Ihrer Gemeinschaft.",
-                "value.digital": "Digitalisierung",
-                "value.digital-desc": "Wir helfen kleinen Unternehmen bei der Digitalisierung und Verbesserung ihres Marketings.",
-                "value.impact": "Soziale Wirkung",
-                "value.impact-desc": "Wir erzielen direkte soziale Auswirkungen mit Spenden an lokale Organisationen.",
-                "value.free": "Kostenlos für Nutzer",
-                "value.free-desc": "Verbraucher nehmen kostenlos teil, einfach durch Einkäufe in ihren Lieblingsgeschäften.",
-                "value.transparency": "Transparenz",
-                "value.transparency-desc": "Der gesamte Prozess ist transparent, vom Einkauf bis zur endgültigen Spende.",
-                "value.community": "Gemeinschaft",
-                "value.community-desc": "Wir schaffen echte Verbindungen zwischen allen Akteuren der lokalen Wirtschaft.",
-                "testimonials.title": "Was sie über uns sagen",
-                "testimonials.subtitle": "Echte Geschichten aus unserer Gemeinschaft",
-                "testimonials.consumer": "Verbraucher",
-                "testimonials.testimonial1": "\"Ich liebe es zu sehen, wie meine regelmäßigen Einkäufe Spenden generieren. Jetzt kaufe ich lieber bei SOMOS-Geschäften ein, weil ich weiß, dass ich helfe.\"",
-                "testimonials.owner": "Geschäftsinhaber",
-                "testimonials.testimonial2": "\"Seit wir SOMOS beigetreten sind, haben wir unsere Verkäufe um 20% gesteigert. Kunden schätzen die soziale Wirkung und kommen häufiger zurück.\"",
-                "testimonials.director": "NGO-Direktor",
-                "testimonials.testimonial3": "\"Die regelmäßigen Spenden von SOMOS ermöglichen es uns, unsere Sozialprogramme besser zu planen. Wir haben auch mehr Sichtbarkeit für unsere Arbeit erhalten.\"",
-                "cta.title": "Bereit für den Wandel?",
-                "cta.subtitle": "Laden Sie die App herunter und machen Sie mit Ihren täglichen Einkäufen einen Unterschied.",
-                "cta.apple": "App Store",
-                "cta.play": "Play Store",
-                "contact.title": "Kontaktieren Sie uns",
-                "contact.subtitle": "Haben Sie Fragen zur Funktionsweise von SOMOS? Möchten Sie, dass Ihr Unternehmen oder Ihre Organisation teilnimmt? Schreiben Sie uns.",
-                "contact.address": "Lokale Straße 123, Stadt",
-                "contact.name": "Name",
-                "contact.email": "E-Mail",
-                "contact.subject": "Betreff",
-                "contact.select": "Option auswählen",
-                "contact.business": "Ich möchte, dass mein Unternehmen teilnimmt",
-                "contact.ngo": "Ich bin eine interessierte NGO",
-                "contact.consumer": "Frage als Verbraucher",
-                "contact.other": "Andere",
-                "contact.message": "Nachricht",
-                "contact.send": "Nachricht senden",
-                "faq.title": "Häufig gestellte Fragen",
-                "faq.subtitle": "Wir beantworten Ihre Fragen zu SOMOS",
-                "faq.q1": "Wie verdiene ich Punkte als Verbraucher?",
-                "faq.a1": "Kaufen Sie einfach in einem der teilnehmenden Geschäfte von SOMOS ein. Zeigen Sie beim Bezahlen Ihren Benutzercode in der App und Sie sammeln automatisch Punkte, die dem Wert Ihres Einkaufs entsprechen.",
-                "faq.q2": "Wie viel Prozent spenden die Unternehmen?",
-                "faq.a2": "Der Prozentsatz variiert je nach Unternehmen, liegt aber in der Regel zwischen 1% und 5% des Wertes jedes Verkaufs. Dieser Prozentsatz wird von jedem Unternehmen bei der Registrierung auf der Plattform festgelegt.",
-                "faq.q3": "Wie werden die begünstigten Organisationen ausgewählt?",
-                "faq.a3": "Organisationen werden von unserem Team sorgfältig ausgewählt, wobei ihre Transparenz, soziale Wirkung und tatsächlichen Bedürfnisse überprüft werden. Wir berücksichtigen auch Vorschläge aus der Gemeinschaft und von den teilnehmenden Unternehmen selbst.",
-                "faq.q4": "Entstehen den Verbrauchern Kosten?",
-                "faq.a4": "Absolut nicht! Für Verbraucher ist SOMOS völlig kostenlos. Punkte werden mit Ihren regulären Einkäufen ohne zusätzliche Kosten für Sie generiert.",
-                "faq.q5": "Wie kann ich meine Punkte einlösen?",
-                "faq.a5": "In der SOMOS-App finden Sie einen Katalog mit Vorteilen und Rabatten, die Sie mit Ihren gesammelten Punkten einlösen können. Wählen Sie einfach den gewünschten Vorteil aus und zeigen Sie den generierten Code dem entsprechenden Unternehmen.",
-                "footer.desc": "Stärkung des regionalen Konsums und der lokalen Wirtschaft durch einen Kreislauf, der allen zugutekommt.",
-                "footer.links": "Links",
-                "footer.home": "Startseite",
-                "footer.how": "Wie es funktioniert",
-                "footer.benefits": "Vorteile",
-                "footer.testimonials": "Erfahrungsberichte",
-                "footer.contact": "Kontakt",
-                "footer.legal": "Rechtliches",
-                "footer.terms": "Allgemeine Geschäftsbedingungen",
-                "footer.privacy": "Datenschutzrichtlinie",
-                "footer.cookies": "Cookie-Richtlinie",
-                "footer.follow": "Folgen Sie uns",
-                "footer.download": "Laden Sie unsere App herunter",
-                "footer.apple": "App Store",
-                "footer.play": "Play Store",
-                "footer.copyright": "© 2023 SOMOS. Alle Rechte vorbehalten."
-            }
-        };
-
-        // Language switcher functionality
-        document.getElementById('language-selector').addEventListener('change', function() {
-            const lang = this.value;
-            updateLanguage(lang);
-        });
-
-        function updateLanguage(lang) {
-            // Update all elements with data-i18n attribute
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else if (element.tagName === 'OPTION') {
-                        element.textContent = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-            
-            // Update page title
-            if (lang === 'es') {
-                document.title = "SOMOS - Fortaleciendo el consumo regional";
-            } else if (lang === 'de') {
-                document.title = "SOMOS - Stärkung des regionalen Konsums";
-            } else {
-                document.title = "SOMOS - Strengthening regional consumption";
-            }
+</footer>
+<script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment to enable auto dark mode
+            // document.documentElement.classList.add('dark');
         }
-
-        // FAQ functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                
-                answer.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
-</body>
-</html>
+
+</body></html>
