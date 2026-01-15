@@ -5,18 +5,23 @@
 <title>SOMOS | Wie es funktioniert</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: "#2D5A27", // Deep Green from logo
-                        "background-light": "#F9F4E8", // Cream background from tutorial
-                        "background-dark": "#1A1C19", // Dark variant
-                        accent: "#E9AC57", // Orange/Yellow from pins
+                        primary: "#2D5A27",
+                        "background-light": "#F9F4E8",
+                        "background-alt": "#F2EFE4",
+                        "soft-sage": "#D8E2D1",
+                        "earthy-light": "#F5F0E6",
+                        "earthy-blob": "#E2E8D8",
+                        "green-blob": "#2D5A27",
+                        "background-dark": "#1A1C19",
+                        accent: "#E9AC57",
                         mapGreen: "#6B8E4E",
                         mapBrown: "#A67C52",
                     },
@@ -33,19 +38,50 @@
             },
         };
     </script>
-<style>
+<style type="text/tailwindcss">
         .map-bg {
             background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.05) 1px, transparent 0);
             background-size: 24px 24px;
         }
-        .step-number {
-            -webkit-text-stroke: 1px currentColor;
-            color: transparent;
+        .organic-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 1s ease-in-out;
+        }
+        .blob-1 { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+        .blob-2 { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; }
+        .blob-3 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .blob-4 { border-radius: 58% 42% 46% 54% / 41% 55% 45% 59%; }
+        .blob-v2 { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; }
+        .step-container {
+            position: relative;
+            z-index: 10;
+        }
+        .blob-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        .dark .blob-wrapper {
+            opacity: 0.05;
+        }
+        .blob-wrapper-solid {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 110%;
+            z-index: -1;
         }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
-<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
 <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 <div class="flex items-center gap-2">
 <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
@@ -61,19 +97,22 @@
 </div>
 </div>
 </nav>
-<header class="relative pt-20 pb-12 px-6 overflow-hidden">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-6">
-                Wie funktioniert SOMOS?
-            </h1>
+<header class="relative pt-48 pb-32 px-6 overflow-hidden">
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-8">
+            Wie funktioniert SOMOS?
+        </h1>
 <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Entdecke lokale Schätze, unterstütze deine Gemeinschaft und profitiere bei jedem Einkauf. Ein regionaler Kreislauf für uns alle.
-            </p>
+            Entdecke lokale Schätze, unterstütze deine Gemeinschaft und profitiere bei jedem Einkauf. Ein regionaler Kreislauf für uns alle.
+        </p>
 </div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-soft-sage/30 blob-v2 organic-blob blur-3xl -z-10"></div>
 </header>
-<section class="py-20 px-6">
-<div class="max-w-6xl mx-auto">
-<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+<main class="space-y-32 pb-32">
+<section class="px-6 relative">
+<div class="max-w-6xl mx-auto step-container">
+<div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+<div class="absolute inset-0 bg-earthy-blob/40 dark:bg-primary/5 blob-1 organic-blob -z-10"></div>
 <div class="order-2 lg:order-1">
 <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 01</span>
 <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Regionale Akteur:innen entdecken</h2>
@@ -92,19 +131,16 @@
 </ul>
 </div>
 <div class="order-1 lg:order-2 bg-white dark:bg-gray-800 p-4 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
-<div class="aspect-video relative rounded-2xl overflow-hidden bg-[#e6d9b8] map-bg border border-gray-200 dark:border-gray-600">
+<div class="aspect-video relative rounded-2xl overflow-hidden bg-[#e6d9b8] map-bg">
 <div class="absolute top-0 left-0 w-full h-full">
 <div class="absolute top-[10%] left-[20%] w-[30%] h-[40%] bg-mapBrown/40 rounded-full blur-xl rotate-12"></div>
 <div class="absolute bottom-[20%] right-[15%] w-[40%] h-[50%] bg-mapGreen/40 rounded-full blur-xl -rotate-12"></div>
-<div class="absolute top-1/2 left-0 w-full h-8 bg-[#f5ead3] -rotate-12 transform -translate-y-1/2"></div>
-<div class="absolute top-0 left-1/3 w-10 h-full bg-[#f5ead3] rotate-6"></div>
 </div>
 <div class="absolute top-[30%] left-[40%]">
 <div class="relative group cursor-pointer">
 <div class="w-12 h-12 bg-accent rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce">
 <span class="material-symbols-outlined text-white text-lg">store</span>
 </div>
-<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-900 px-3 py-1 rounded shadow text-xs whitespace-nowrap font-bold">Green Hope Center</div>
 </div>
 </div>
 <div class="absolute bottom-[25%] right-[25%]">
@@ -112,225 +148,206 @@
 <span class="material-symbols-outlined text-white text-sm">restaurant</span>
 </div>
 </div>
-<div class="absolute top-[60%] left-[20%]">
-<div class="bg-accent p-2 rounded-2xl shadow-xl flex items-center gap-2 border-2 border-white">
-<div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-[10px] text-white font-bold">S</div>
-<span class="text-[10px] font-bold pr-1">SOMOS PIN</span>
-</div>
-</div>
-<div class="absolute top-4 right-4 flex flex-col gap-2">
-<button class="w-10 h-10 bg-white dark:bg-gray-900 rounded-full shadow-lg flex items-center justify-center text-gray-600">
-<span class="material-symbols-outlined">search</span>
-</button>
-<button class="w-10 h-10 bg-white dark:bg-gray-900 rounded-full shadow-lg flex items-center justify-center text-gray-600">
-<span class="material-symbols-outlined">filter_list</span>
-</button>
 </div>
 </div>
 </div>
 </div>
-<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
-<div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex justify-center">
+</section>
+<section class="px-6 relative">
+<div class="max-w-6xl mx-auto step-container">
+<div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+<div class="absolute inset-0 bg-primary/90 blob-2 organic-blob -z-10 shadow-2xl"></div>
+<div class="flex justify-center">
 <div class="relative w-full max-w-sm">
-<div class="absolute -inset-4 bg-primary/5 rounded-full blur-3xl"></div>
-<img alt="Local Market Stall" class="rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZXGzFDJ32ZTubn_kjCZBgqyFc_JonVfKw3A3REI95U3R18D-Sa8HHHkyrtEnXY07w2Vb2by6zczhpE54VHMqSMgvy-y8-nfxlz4BAhd80YGkS-xVN9rtEhZxZivOTIRvaa4swI4qukrL_27YFpsnqIZKfI1oRjzw31gbcAeFqhKxTFz-7ck6exO0JOMIKBoPDNCEvlEVpZs2lx1d10nFwi9dfjurtSlkTQBR7C9eIrta_mwADlUlxGapQ91MSkZG2fnre-wyd5c"/>
-<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-background-light dark:bg-gray-700 rounded-2xl p-4 shadow-xl border border-gray-200 dark:border-gray-600 flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-2">payments</span>
-<span class="text-xs font-bold uppercase tracking-tighter">Lokaler Kauf</span>
+<img alt="Local Market Stall" class="rounded-2xl shadow-xl border-4 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZXGzFDJ32ZTubn_kjCZBgqyFc_JonVfKw3A3REI95U3R18D-Sa8HHHkyrtEnXY07w2Vb2by6zczhpE54VHMqSMgvy-y8-nfxlz4BAhd80YGkS-xVN9rtEhZxZivOTIRvaa4swI4qukrL_27YFpsnqIZKfI1oRjzw31gbcAeFqhKxTFz-7ck6exO0JOMIKBoPDNCEvlEVpZs2lx1d10nFwi9dfjurtSlkTQBR7C9eIrta_mwADlUlxGapQ91MSkZG2fnre-wyd5c"/>
 </div>
 </div>
-</div>
-<div>
-<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 02</span>
-<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Einkauf im lokalen Geschäft</h2>
-<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+<div class="text-white">
+<span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 02</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Einkauf im lokalen Geschäft</h2>
+<p class="text-lg text-white/90 mb-8 leading-relaxed">
                         Kaufe wie gewohnt ein. An der Kasse identifizierst du dich einfach über deine SOMOS App oder deine physische SOMOS-Karte. Jede Transaktion stärkt das lokale Netzwerk.
                     </p>
-<div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary italic text-primary dark:text-gray-300">
+<div class="bg-white/10 p-6 rounded-2xl border-l-4 border-white italic">
                         "Ich liebe es, dass mein wöchentlicher Markteinkauf jetzt direkt einen sozialen Impact in meiner Stadt hat."
                     </div>
 </div>
 </div>
-<div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+</div>
+</section>
+<section class="px-6 relative">
+<div class="max-w-6xl mx-auto step-container">
+<div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+<div class="absolute inset-0 bg-soft-sage/40 dark:bg-primary/5 blob-3 organic-blob -z-10"></div>
 <div class="order-2 lg:order-1">
 <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 03</span>
 <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Transaktion bestätigen</h2>
 <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
                         Der Händler scannt deinen QR-Code oder gibt den Betrag in die Merchant-App ein. Du erhältst sofort eine Bestätigung auf dein Smartphone und siehst, wie viele Punkte du gesammelt hast.
                     </p>
-<div class="flex gap-4">
-<div class="flex-1 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
-<span class="block text-2xl font-bold text-primary">0%</span>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
+<span class="block text-2xl font-bold text-primary dark:text-white">0%</span>
 <span class="text-sm text-gray-500">Zusatzkosten</span>
 </div>
-<div class="flex-1 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
-<span class="block text-2xl font-bold text-primary">100%</span>
+<div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
+<span class="block text-2xl font-bold text-primary dark:text-white">100%</span>
 <span class="text-sm text-gray-500">Transparent</span>
 </div>
 </div>
 </div>
 <div class="order-1 lg:order-2 flex justify-center">
-<div class="relative w-64 h-[500px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-800 shadow-2xl overflow-hidden">
+<div class="relative w-64 h-[480px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-800 shadow-2xl overflow-hidden">
 <div class="absolute top-0 w-full h-6 bg-gray-800 rounded-b-xl"></div>
 <div class="p-6 pt-12 flex flex-col h-full bg-background-light dark:bg-gray-900">
 <div class="w-12 h-12 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center">
 <span class="material-symbols-outlined text-white">check</span>
 </div>
 <h4 class="text-center font-bold text-xl mb-2 text-primary">Erfolgreich!</h4>
-<p class="text-center text-xs text-gray-500 mb-8">Zahlung bestätigt bei Green Hope Center</p>
-<div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm mb-4">
+<div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm mt-4">
 <div class="flex justify-between text-xs mb-1">
 <span>Betrag</span>
 <span class="font-bold">45.00 €</span>
 </div>
 <div class="flex justify-between text-xs text-primary font-bold">
-<span>Punkte erhalten</span>
+<span>Punkte</span>
 <span>+ 0.67 P</span>
 </div>
 </div>
-<button class="mt-auto w-full bg-primary text-white py-3 rounded-xl font-bold text-sm">Schließen</button>
 </div>
 </div>
 </div>
 </div>
-<div class="grid lg:grid-cols-2 gap-16 items-center">
-<div class="bg-primary text-white p-12 rounded-3xl shadow-2xl relative overflow-hidden">
-<div class="absolute top-0 right-0 p-8 opacity-10">
-<span class="material-symbols-outlined text-9xl">favorite</span>
 </div>
-<h3 class="font-display text-4xl font-bold mb-6">Punkte &amp; Wirkung</h3>
-<div class="space-y-8">
+</section>
+<section class="px-6 relative">
+<div class="max-w-6xl mx-auto step-container">
+<div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+<div class="absolute inset-0 bg-primary/90 blob-4 organic-blob -z-10 shadow-2xl"></div>
+<div class="bg-white/10 backdrop-blur-sm text-white p-10 rounded-3xl border border-white/20 shadow-xl">
+<h3 class="font-display text-3xl font-bold mb-8">Einfluss &amp; Wirkung</h3>
+<div class="space-y-6">
 <div class="flex gap-4">
-<div class="w-12 h-12 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined">person</span>
+<div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">person</span>
 </div>
 <div>
-<h4 class="font-bold text-lg">Für dich</h4>
-<p class="text-white/80">Sammle Punkte bei jedem Einkauf und löse sie bei Partnern ein oder spende sie direkt.</p>
+<h4 class="font-bold">Für dich</h4>
+<p class="text-white/70 text-sm">Sammle Punkte und löse sie ein.</p>
 </div>
 </div>
 <div class="flex gap-4">
-<div class="w-12 h-12 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined">volunteer_activism</span>
+<div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">volunteer_activism</span>
 </div>
 <div>
-<h4 class="font-bold text-lg">Für die Region</h4>
-<p class="text-white/80">Ein Teil jeder Transaktionsgebühr fließt direkt an lokale gemeinnützige Projekte.</p>
+<h4 class="font-bold">Für die Region</h4>
+<p class="text-white/70 text-sm">Geld fließt in lokale Projekte.</p>
 </div>
 </div>
 </div>
 </div>
-<div>
-<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 04</span>
-<h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Wirkung entfalten</h2>
-<p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                        Dein Geld arbeitet für deine Gemeinschaft. Wir wandeln Handelsumsätze in soziale und ökologische Wirkung um – ganz ohne Mehraufwand für dich oder den Händler.
+<div class="text-white">
+<span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 04</span>
+<h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Wirkung entfalten</h2>
+<p class="text-lg text-white/90 mb-8 leading-relaxed">
+                        Dein Geld arbeitet für deine Gemeinschaft. Wir wandeln Handelsumsätze in soziale und ökologische Wirkung um.
                     </p>
-<a class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all" href="#">
-                        Mehr über Projekte erfahren <span class="material-symbols-outlined">arrow_forward</span>
+<a class="inline-flex items-center gap-2 font-bold hover:translate-x-2 transition-transform" href="#">
+                        Projekte entdecken <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
 </div>
 </div>
 </section>
-<section class="py-24 px-6 bg-white dark:bg-gray-900">
-<div class="max-w-5xl mx-auto">
+<section class="px-6 relative py-20">
+<div class="max-w-5xl mx-auto step-container">
 <div class="text-center mb-16">
 <h2 class="font-display text-5xl font-bold text-primary dark:text-white mb-6">Das Punktesystem</h2>
-<p class="text-xl text-gray-600 dark:text-gray-400">Transparenz ist unsere Basis. So teilt sich die 3% Gebühr auf:</p>
+<p class="text-xl text-gray-600 dark:text-gray-400">So teilt sich die 3% Gebühr auf:</p>
 </div>
-<div class="grid md:grid-cols-3 gap-8">
-<div class="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-gray-800 text-center flex flex-col items-center">
-<div class="w-24 h-24 rounded-full border-8 border-primary/20 flex items-center justify-center mb-6">
-<span class="text-3xl font-bold text-primary">50%</span>
+<div class="grid md:grid-cols-3 gap-8 relative p-12 lg:p-16">
+<div class="absolute inset-0 bg-earthy-blob/30 dark:bg-primary/5 blob-v2 organic-blob -z-10 blur-2xl"></div>
+<div class="p-8 rounded-[40px] bg-white dark:bg-gray-800 text-center shadow-lg border border-primary/5">
+<div class="w-24 h-24 mx-auto rounded-full border-8 border-primary/10 flex items-center justify-center mb-6">
+<span class="text-3xl font-bold text-primary dark:text-white">50%</span>
 </div>
 <h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">Nutzer-Punkte</h4>
-<p class="text-gray-600 dark:text-gray-400">1.5% des Umsatzes gehen direkt als Cashback-Punkte zurück an dich.</p>
+<p class="text-sm text-gray-500">1.5% Cashback an dich.</p>
 </div>
-<div class="p-8 rounded-3xl border border-primary/30 bg-primary/5 text-center flex flex-col items-center shadow-lg relative overflow-hidden">
-<div class="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-4 py-1 rounded-bl-xl uppercase">Impact</div>
-<div class="w-24 h-24 rounded-full border-8 border-accent flex items-center justify-center mb-6">
-<span class="text-3xl font-bold text-primary">10%</span>
+<div class="p-8 rounded-[40px] bg-primary text-white text-center shadow-xl transform md:-translate-y-4">
+<div class="w-24 h-24 mx-auto rounded-full border-8 border-white/20 flex items-center justify-center mb-6">
+<span class="text-3xl font-bold">10%</span>
 </div>
-<h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">Non-Profits</h4>
-<p class="text-gray-600 dark:text-gray-400">Direkte Förderung für lokale Vereine und soziale Organisationen deiner Wahl.</p>
+<h4 class="font-display text-2xl font-bold mb-4">Non-Profits</h4>
+<p class="text-sm text-white/80">Regionale Projekte.</p>
 </div>
-<div class="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-gray-800 text-center flex flex-col items-center">
-<div class="w-24 h-24 rounded-full border-8 border-gray-300 flex items-center justify-center mb-6">
-<span class="text-3xl font-bold text-primary">40%</span>
+<div class="p-8 rounded-[40px] bg-white dark:bg-gray-800 text-center shadow-lg border border-primary/5">
+<div class="w-24 h-24 mx-auto rounded-full border-8 border-gray-100 flex items-center justify-center mb-6">
+<span class="text-3xl font-bold text-primary dark:text-white">40%</span>
 </div>
 <h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">SOMOS</h4>
-<p class="text-gray-600 dark:text-gray-400">Für den Betrieb der Plattform, Support und die Weiterentwicklung des Netzwerks.</p>
+<p class="text-sm text-gray-500">Plattform &amp; Betrieb.</p>
 </div>
 </div>
-<div class="mt-16 bg-gray-200 dark:bg-gray-800 h-12 rounded-full overflow-hidden flex shadow-inner">
-<div class="bg-primary h-full flex items-center justify-center text-white text-xs font-bold" style="width: 50%">Punkte (1.5%)</div>
-<div class="bg-accent h-full flex items-center justify-center text-white text-xs font-bold" style="width: 10%">Impact</div>
-<div class="bg-primary/40 h-full flex items-center justify-center text-primary text-xs font-bold" style="width: 40%">Platform</div>
-</div>
-<p class="text-center mt-6 text-sm text-gray-500 italic">Gesamtgebühr: 3.0% pro Transaktion für den Händler (Inkl. MwSt.)</p>
 </div>
 </section>
-<section class="py-24 px-6 bg-primary">
-<div class="max-w-4xl mx-auto text-center text-white">
-<h2 class="font-display text-5xl font-bold mb-8">Bereit für einen regionalen Wandel?</h2>
-<p class="text-xl mb-12 text-white/80">Lade die SOMOS App noch heute herunter und fange an, deine Umgebung positiv zu gestalten.</p>
+</main>
+<section class="relative py-40 px-6 bg-primary overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10">
+<div class="absolute top-0 left-0 w-[600px] h-[600px] bg-white blob-1 organic-blob -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-white blob-2 organic-blob translate-x-1/2 translate-y-1/2"></div>
+</div>
+<div class="max-w-4xl mx-auto text-center text-white relative z-10">
+<h2 class="font-display text-5xl font-bold mb-8">Bereit für den Wandel?</h2>
+<p class="text-xl mb-12 text-white/80">Lade die SOMOS App und gestalte deine Region mit.</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-colors flex items-center justify-center gap-2" href="#">
-<span class="material-symbols-outlined">apple</span> App Store
-                </a>
-<a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2" href="#">
-<span class="material-symbols-outlined">play_store</span> Google Play
-                </a>
+<a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-all shadow-xl" href="#">
+                App Store
+            </a>
+<a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#">
+                Google Play
+            </a>
 </div>
 </div>
 </section>
-<footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-200 dark:border-gray-800">
-<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+<footer class="bg-background-light dark:bg-background-dark py-20 px-6 border-t border-gray-100 dark:border-gray-800">
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">
 <div class="col-span-1 md:col-span-2">
-<div class="flex items-center gap-2 mb-6">
-<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<div class="flex items-center gap-2 mb-8">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
 <span class="material-symbols-outlined text-white text-sm">public</span>
 </div>
-<span class="font-display text-xl font-bold text-primary dark:text-white">SOMOS</span>
+<span class="font-display text-2xl font-bold text-primary dark:text-white">SOMOS</span>
 </div>
-<p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6">
-                    Die Plattform für regionalen Handel und gemeinschaftliche Wirkung. Zusammen bauen wir eine Wirtschaft, die allen dient.
-                </p>
+<p class="text-gray-600 dark:text-gray-400 max-w-sm mb-8 leading-relaxed">
+                Die Plattform für regionalen Handel und gemeinschaftliche Wirkung. Zusammen bauen wir eine Wirtschaft, die allen dient.
+            </p>
 <div class="flex gap-4">
-<a class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">language</span></a>
-<a class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
 </div>
 </div>
 <div>
 <h5 class="font-bold mb-6 text-gray-900 dark:text-white">Plattform</h5>
 <ul class="space-y-4 text-gray-600 dark:text-gray-400">
-<li><a class="hover:text-primary" href="#">Für Partner</a></li>
-<li><a class="hover:text-primary" href="#">Für Vereine</a></li>
-<li><a class="hover:text-primary" href="#">Impact Report</a></li>
-<li><a class="hover:text-primary" href="#">Punkte einlösen</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Für Partner</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Impact Report</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Punkte einlösen</a></li>
 </ul>
 </div>
 <div>
 <h5 class="font-bold mb-6 text-gray-900 dark:text-white">Rechtliches</h5>
 <ul class="space-y-4 text-gray-600 dark:text-gray-400">
-<li><a class="hover:text-primary" href="#">Impressum</a></li>
-<li><a class="hover:text-primary" href="#">Datenschutz</a></li>
-<li><a class="hover:text-primary" href="#">AGB</a></li>
-<li><a class="hover:text-primary" href="#">Kontakt</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Impressum</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Datenschutz</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">AGB</a></li>
 </ul>
 </div>
 </div>
-<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-500 text-sm">
-            © 2024 SOMOS Regional Platform. Alle Rechte vorbehalten.
-        </div>
+<div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm">
+        © 2024 SOMOS Regional Platform. Alle Rechte vorbehalten.
+    </div>
 </footer>
-<script>
-        // Check for dark mode preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Uncomment to enable auto dark mode
-            // document.documentElement.classList.add('dark');
-        }
-    </script>
 
 </body></html>
