@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>SOMOS – Regionale Plattform für lokalen Handel & gemeinnützige Wirkung</title>
+    <title>SOMOS – Regional einkaufen, Punkte sammeln, lokale Projekte stärken</title>
     <meta
       name="description"
-      content="SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen: Karte mit Filtern & Siegeln, Punkte sammeln & einlösen, transparente Finanzierung regionaler Projekte."
+      content="SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen: Karte mit Siegeln & Filtern, Punkte sammeln & einlösen, transparente Finanzierung regionaler Projekte."
     />
     <meta name="robots" content="index,follow" />
 
@@ -15,7 +15,7 @@
     <meta property="og:title" content="SOMOS – Regional einkaufen, Punkte sammeln, lokale Projekte stärken" />
     <meta
       property="og:description"
-      content="Finde regionale Geschäfte & Vereine auf der Karte, sammle Punkte bei jedem Einkauf und unterstütze automatisch gemeinnützige Projekte – transparent & fair."
+      content="Karte mit Filtern & Siegeln, Punkte sammeln & im Netzwerk einlösen – und automatisch lokale Projekte unterstützen. Transparent, regional, gemeinschaftlich."
     />
     <meta property="og:type" content="website" />
     <!-- <meta property="og:url" content="https://deine-domain.tld/" /> -->
@@ -42,7 +42,6 @@
               "soft-sage": "#D8E2D1",
               "earthy-light": "#F5F0E6",
               "earthy-blob": "#E2E8D8",
-              "green-blob": "#2D5A27",
               "background-dark": "#1A1C19",
               accent: "#E9AC57",
               mapGreen: "#6B8E4E",
@@ -80,29 +79,23 @@
       .blob-3 {
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
       }
-      .blob-4 {
-        border-radius: 58% 42% 46% 54% / 41% 55% 45% 59%;
-      }
       .blob-v2 {
         border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
       }
-      .step-container {
-        position: relative;
-        z-index: 10;
+      .shadow-soft {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
       }
     </style>
 
-    <!-- JSON-LD: Organization + App + FAQ (anpassen: URLs, Logos, Kontakt) -->
+    <!-- JSON-LD (URLs optional später ersetzen) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "SOMOS",
-        "description": "SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen über ein transparentes Punktesystem und eine Karte mit Siegeln/Filtern.",
-        "foundingLocation": "Potsdam, Deutschland",
-        "sameAs": [],
-        "url": "https://deine-domain.tld/",
-        "logo": "https://deine-domain.tld/logo.png"
+        "description": "SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen über eine Karte mit Siegeln/Filtern und ein transparentes Punktesystem.",
+        "url": "/",
+        "logo": "/logo.png"
       }
     </script>
 
@@ -116,404 +109,196 @@
         "description": "Mit der SOMOS App regionale Geschäfte & Vereine entdecken, Punkte sammeln und im Netzwerk einlösen – transparent und lokal."
       }
     </script>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Ist SOMOS kostenlos für Verbraucher:innen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja. Die Nutzung der App ist für Verbraucher:innen kostenlos. Punkte entstehen durch Einkäufe bei teilnehmenden regionalen Geschäften."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Können große Ketten oder reiner Onlinehandel teilnehmen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nein. SOMOS ist bewusst auf regionale, kleine und mittlere Geschäfte ausgerichtet und schließt große Ketten, internationale Anbieter und reinen Onlinehandel aus."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie finanziert sich SOMOS?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "SOMOS erhebt eine Transaktionsgebühr von 3%. Die Aufteilung ist transparent: 50% Nutzer-Punkte, 10% Non-Profits, 40% SOMOS (Plattform & Betrieb)."
-            }
-          }
-        ]
-      }
-    </script>
   </head>
 
   <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
     <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a class="flex items-center gap-2" href="#top" aria-label="SOMOS Startseite">
-          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <span class="material-symbols-outlined text-white">public</span>
-          </div>
+        <a class="flex items-center gap-3" href="/" aria-label="SOMOS Startseite">
+          <img src="/logo.png" alt="SOMOS Logo" class="w-10 h-10 rounded-full object-cover" />
           <span class="font-display text-2xl font-bold tracking-tight text-primary dark:text-white">SOMOS</span>
         </a>
 
         <div class="hidden md:flex items-center gap-8">
-          <a class="font-medium hover:text-primary transition-colors" href="#was-ist-somos">Was ist SOMOS?</a>
-          <a class="font-medium hover:text-primary transition-colors" href="#wie-es-funktioniert">So funktioniert’s</a>
-          <a class="font-medium hover:text-primary transition-colors" href="#fuer-wen">Für wen?</a>
-          <a class="font-medium hover:text-primary transition-colors" href="#faq">FAQ</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/wie-es-funktioniert">So funktioniert’s</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/verbraucher">Für Verbraucher:innen</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/geschaefte">Für Geschäfte</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/vereine">Für Non-Profits</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/siegel">Siegel</a>
           <a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#app">
             App laden
           </a>
         </div>
+
+        <a class="md:hidden bg-primary text-white px-4 py-2 rounded-full font-semibold" href="#app">App</a>
       </div>
     </nav>
 
-    <!-- HERO (Startseite-Anker) -->
-    <header id="top" class="relative pt-44 pb-24 px-6 overflow-hidden">
+    <!-- HERO -->
+    <header class="relative pt-44 pb-24 px-6 overflow-hidden">
       <div class="max-w-5xl mx-auto text-center relative z-10">
         <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold uppercase tracking-widest text-xs mb-6">
           Regional. Transparent. Gemeinschaftlich.
         </p>
 
         <h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-8">
-          SOMOS stärkt regionalen Handel <br class="hidden md:block" />
-          und lokale Projekte – mit jedem Einkauf
+          Regional einkaufen.<br class="hidden md:block" />
+          Punkte sammeln.<br class="hidden md:block" />
+          Lokale Projekte stärken.
         </h1>
 
         <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Entdecke regionale Geschäfte und gemeinnützige Organisationen auf einer Karte, filtere nach Siegeln (regional, bio, vegan, fair …)
-          und sammle Punkte, die du im Netzwerk wieder einlösen kannst – transparent und lokal.
+          SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen.
+          Entdecke Akteur:innen auf der Karte, filtere nach Siegeln und sammle Punkte, die du im Netzwerk wieder einlösen kannst.
         </p>
 
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#wie-es-funktioniert" class="bg-primary text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity">
+          <a href="/wie-es-funktioniert" class="bg-primary text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity">
             So funktioniert’s
           </a>
-          <a href="#fuer-wen" class="bg-white/70 dark:bg-gray-800/70 border border-primary/10 px-8 py-4 rounded-full font-bold hover:bg-white transition-colors">
-            Für Nutzer:innen, Geschäfte & Vereine
+          <a href="/geschaefte" class="bg-white/70 dark:bg-gray-800/70 border border-primary/10 px-8 py-4 rounded-full font-bold hover:bg-white transition-colors">
+            Für Geschäfte
           </a>
         </div>
 
-        <!-- SEO/IA-Kern in klarer Sprache -->
+        <!-- Semantischer Kern für Suchsysteme -->
         <p class="sr-only">
-          SOMOS ist eine regionale Plattform, die kleine und mittlere Geschäfte ohne Ketten sowie Verbraucher:innen und gemeinnützige Organisationen verbindet.
-          Nutzer:innen sammeln Punkte bei Einkäufen und lösen sie im Netzwerk ein. Ein Teil jeder Transaktionsgebühr fließt in regionale Projekte.
+          SOMOS ist eine regionale Plattform für kleine und mittlere Geschäfte (ohne große Ketten und ohne reinen Onlinehandel).
+          Nutzer:innen sammeln Punkte bei Einkäufen und lösen sie im Netzwerk ein. Ein Teil der Transaktionsgebühr fließt an gemeinnützige Organisationen.
         </p>
       </div>
 
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[650px] bg-soft-sage/30 blob-v2 organic-blob blur-3xl -z-10"></div>
     </header>
 
-    <main class="space-y-28 pb-28">
-      <!-- 1) WAS IST SOMOS? -->
-      <section id="was-ist-somos" class="px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Was ist SOMOS?</h2>
-              <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                SOMOS ist eine digitale Infrastruktur für regionalen Handel: eine Karte mit Filtern & Siegeln und ein Punktesystem,
-                das Einkäufe belohnt und zugleich lokale gemeinnützige Projekte stärkt.
-              </p>
+    <main class="space-y-24 pb-24">
+      <!-- WAS IST SOMOS -->
+      <section class="px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Was ist SOMOS?</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              SOMOS ist eine digitale Infrastruktur für regionalen Handel: eine Karte mit Filtern & Siegeln und ein Punktesystem,
+              das Einkäufe belohnt und gleichzeitig regionale gemeinnützige Projekte stärkt.
+            </p>
 
-              <div class="grid gap-4">
-                <div class="p-5 bg-white dark:bg-gray-800 rounded-2xl border border-primary/10">
-                  <p class="font-semibold text-primary dark:text-white mb-1">SOMOS ist nicht …</p>
-                  <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
-                    <li>• kein Bonusprogramm für große Ketten</li>
-                    <li>• kein Gutscheinportal / kurzfristige Rabattplattform</li>
-                    <li>• kein Marktplatz für reinen Onlinehandel</li>
-                  </ul>
-                </div>
-                <div class="p-5 bg-primary/10 rounded-2xl border border-primary/10">
-                  <p class="font-semibold text-primary mb-1">SOMOS ist …</p>
-                  <ul class="text-gray-700 dark:text-gray-200 text-sm space-y-1">
-                    <li>• regional (KMU & lokale Akteur:innen)</li>
-                    <li>• transparent (klare Geldflüsse)</li>
-                    <li>• gemeinschaftlich (Mitgestaltung statt Top-down)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">Der regionale Kreislauf</h3>
-              <ol class="space-y-4 text-gray-600 dark:text-gray-400">
-                <li class="flex gap-3">
-                  <span class="material-symbols-outlined text-primary">store</span>
-                  <span>Regionale Geschäfte werden sichtbar (Karte, Kategorien, Öffnungszeiten, Siegel).</span>
-                </li>
-                <li class="flex gap-3">
-                  <span class="material-symbols-outlined text-primary">payments</span>
-                  <span>Einkäufe erzeugen Punkte für Nutzer:innen – einlösbar im gesamten Netzwerk.</span>
-                </li>
-                <li class="flex gap-3">
-                  <span class="material-symbols-outlined text-primary">volunteer_activism</span>
-                  <span>Ein Anteil fließt kontinuierlich an gemeinnützige Organisationen in der Region.</span>
-                </li>
-                <li class="flex gap-3">
-                  <span class="material-symbols-outlined text-primary">account_tree</span>
-                  <span>SOMOS finanziert Betrieb & Weiterentwicklung – mit dem Ziel regionaler Reinvestition.</span>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2) FÜR WEN? (3 Zielgruppen) -->
-      <section id="fuer-wen" class="px-6 relative">
-        <div class="max-w-6xl mx-auto step-container">
-          <div class="relative p-12 lg:p-16">
-            <div class="absolute inset-0 bg-earthy-blob/40 dark:bg-primary/5 blob-1 organic-blob -z-10"></div>
-
-            <div class="text-center mb-12">
-              <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-5">Für wen ist SOMOS gemacht?</h2>
-              <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                Drei Gruppen – ein gemeinsamer Kreislauf: Verbraucher:innen, regionale Geschäfte und gemeinnützige Organisationen.
-              </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-              <article class="p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5">
-                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
-                  <span class="material-symbols-outlined text-primary">person</span>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Verbraucher:innen</h3>
-                <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-2">
-                  <li>• Karte mit Filtern & Siegeln</li>
-                  <li>• Punkte sammeln & einlösen</li>
-                  <li>• Wirkung nachvollziehen (transparent)</li>
-                  <li>• Referral-System (optional)</li>
+            <div class="grid gap-4">
+              <div class="p-5 bg-white dark:bg-gray-800 rounded-2xl border border-primary/10">
+                <p class="font-semibold text-primary dark:text-white mb-2">SOMOS ist nicht …</p>
+                <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                  <li>• kein Bonusprogramm für große Ketten</li>
+                  <li>• kein Gutscheinportal / kurzfristige Rabattplattform</li>
+                  <li>• kein Marktplatz für reinen Onlinehandel</li>
                 </ul>
-              </article>
-
-              <article class="p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5">
-                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
-                  <span class="material-symbols-outlined text-primary">storefront</span>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Regionale Geschäfte</h3>
-                <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-2">
-                  <li>• Sichtbarkeit ohne Ketten-Logik</li>
-                  <li>• Kundenbindung durch Netzwerk-Punkte</li>
-                  <li>• Einfache Annahme (App oder Karte)</li>
-                  <li>• Siegel als klare Eigenschaften</li>
+              </div>
+              <div class="p-5 bg-primary/10 rounded-2xl border border-primary/10">
+                <p class="font-semibold text-primary mb-2">SOMOS ist …</p>
+                <ul class="text-gray-700 dark:text-gray-200 text-sm space-y-1">
+                  <li>• regional (KMU & lokale Akteur:innen)</li>
+                  <li>• transparent (klare Geldflüsse)</li>
+                  <li>• gemeinschaftlich (Mitgestaltung statt top-down)</li>
                 </ul>
-              </article>
-
-              <article class="p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5">
-                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
-                  <span class="material-symbols-outlined text-primary">volunteer_activism</span>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Non-Profits / Vereine</h3>
-                <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-2">
-                  <li>• Stetige Mittel durch reale Umsätze</li>
-                  <li>• Sichtbarkeit auf der Karte</li>
-                  <li>• Community-Nähe & Austausch</li>
-                  <li>• Regionale Projektförderung</li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3) SO FUNKTIONIERT'S (Schrittlogik) -->
-      <section id="wie-es-funktioniert" class="px-6">
-        <div class="max-w-6xl mx-auto text-center mb-10">
-          <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-5">So funktioniert SOMOS</h2>
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Klarer Ablauf – damit Nutzer:innen, Geschäfte und Suchsysteme sofort verstehen, was passiert.
-          </p>
-        </div>
-
-        <!-- Schritt 1 -->
-        <div class="max-w-6xl mx-auto step-container">
-          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative mb-10">
-            <div class="absolute inset-0 bg-earthy-blob/40 dark:bg-primary/5 blob-1 organic-blob -z-10"></div>
-
-            <div class="order-2 lg:order-1">
-              <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 01</span>
-              <h3 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Regionale Akteur:innen entdecken</h3>
-              <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                Finde regionale Geschäfte und gemeinnützige Organisationen auf einer Karte. Filtere nach Kategorien, Öffnungszeiten und Siegeln
-                (z. B. regional, bio, vegan, fair).
-              </p>
-              <ul class="space-y-4">
-                <li class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-primary">check_circle</span>
-                  <span>Karte mit Kategorien & Öffnungszeiten</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-primary">check_circle</span>
-                  <span>Filter nach Siegeln (Eigenschaften statt Werbung)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="order-1 lg:order-2 bg-white dark:bg-gray-800 p-4 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
-              <div class="aspect-video relative rounded-2xl overflow-hidden bg-[#e6d9b8] map-bg">
-                <div class="absolute top-0 left-0 w-full h-full">
-                  <div class="absolute top-[10%] left-[20%] w-[30%] h-[40%] bg-mapBrown/40 rounded-full blur-xl rotate-12"></div>
-                  <div class="absolute bottom-[20%] right-[15%] w-[40%] h-[50%] bg-mapGreen/40 rounded-full blur-xl -rotate-12"></div>
-                </div>
-                <div class="absolute top-[30%] left-[40%]">
-                  <div class="w-12 h-12 bg-accent rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce">
-                    <span class="material-symbols-outlined text-white text-lg">store</span>
-                  </div>
-                </div>
-                <div class="absolute bottom-[25%] right-[25%]">
-                  <div class="w-10 h-10 bg-primary rounded-full border-4 border-white shadow-lg flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white text-sm">restaurant</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Schritt 2 -->
-          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative mb-10">
-            <div class="absolute inset-0 bg-primary/90 blob-2 organic-blob -z-10 shadow-2xl"></div>
-
-            <div class="flex justify-center">
-              <div class="relative w-full max-w-sm">
-                <img
-                  alt="Einkauf im regionalen Geschäft"
-                  class="rounded-2xl shadow-xl border-4 border-white/20"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZXGzFDJ32ZTubn_kjCZBgqyFc_JonVfKw3A3REI95U3R18D-Sa8HHHkyrtEnXY07w2Vb2by6zczhpE54VHMqSMgvy-y8-nfxlz4BAhd80YGkS-xVN9rtEhZxZivOTIRvaa4swI4qukrL_27YFpsnqIZKfI1oRjzw31gbcAeFqhKxTFz-7ck6exO0JOMIKBoPDNCEvlEVpZs2lx1d10nFwi9dfjurtSlkTQBR7C9eIrta_mwADlUlxGapQ91MSkZG2fnre-wyd5c"
-                />
               </div>
             </div>
 
-            <div class="text-white">
-              <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 02</span>
-              <h3 class="font-display text-4xl md:text-5xl font-bold mb-6">Einkauf im lokalen Geschäft</h3>
-              <p class="text-lg text-white/90 mb-8 leading-relaxed">
-                Du kaufst wie gewohnt vor Ort ein. In der App gibst du den Betrag ein – anschließend bestätigt das Geschäft die Transaktion.
-              </p>
-              <div class="bg-white/10 p-6 rounded-2xl border-l-4 border-white/60">
-                <p class="italic text-white/90">
-                  SOMOS ist für regionale Geschäfte gedacht – keine Ketten, keine internationalen Filialnetzwerke, kein reiner Onlinehandel.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Schritt 3 -->
-          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative mb-10">
-            <div class="absolute inset-0 bg-soft-sage/40 dark:bg-primary/5 blob-3 organic-blob -z-10"></div>
-
-            <div class="order-2 lg:order-1">
-              <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 03</span>
-              <h3 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Transaktion bestätigen</h3>
-              <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                Das Geschäft bestätigt per Merchant-App oder mit einer SOMOS-Karte (als Alternative zur App). Danach siehst du sofort deine Punkte.
-              </p>
-
-              <div class="grid grid-cols-2 gap-4">
-                <div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
-                  <span class="block text-2xl font-bold text-primary dark:text-white">0%</span>
-                  <span class="text-sm text-gray-500">Kosten für Nutzer:innen</span>
-                </div>
-                <div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
-                  <span class="block text-2xl font-bold text-primary dark:text-white">100%</span>
-                  <span class="text-sm text-gray-500">Transparent</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="order-1 lg:order-2 flex justify-center">
-              <div class="relative w-64 h-[480px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-800 shadow-2xl overflow-hidden">
-                <div class="absolute top-0 w-full h-6 bg-gray-800 rounded-b-xl"></div>
-                <div class="p-6 pt-12 flex flex-col h-full bg-background-light dark:bg-gray-900">
-                  <div class="w-12 h-12 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white">check</span>
-                  </div>
-                  <h4 class="text-center font-bold text-xl mb-2 text-primary">Erfolgreich!</h4>
-                  <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm mt-4">
-                    <div class="flex justify-between text-xs mb-1">
-                      <span>Betrag</span>
-                      <span class="font-bold">45,00 €</span>
-                    </div>
-                    <div class="flex justify-between text-xs text-primary font-bold">
-                      <span>Punkte</span>
-                      <span>+ 0,67 P</span>
-                    </div>
-                  </div>
-                  <p class="text-xs text-gray-500 mt-6">
-                    Hinweis: Beispielwerte zur Illustration. Punkte ergeben sich aus der fest definierten Aufteilung.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Schritt 4 -->
-          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
-            <div class="absolute inset-0 bg-primary/90 blob-4 organic-blob -z-10 shadow-2xl"></div>
-
-            <div class="bg-white/10 backdrop-blur-sm text-white p-10 rounded-3xl border border-white/20 shadow-xl">
-              <h3 class="font-display text-3xl font-bold mb-8">Wirkung & Nutzen</h3>
-              <div class="space-y-6">
-                <div class="flex gap-4">
-                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
-                    <span class="material-symbols-outlined text-sm">person</span>
-                  </div>
-                  <div>
-                    <h4 class="font-bold">Für dich</h4>
-                    <p class="text-white/70 text-sm">Punkte sammeln und später im Netzwerk einlösen.</p>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
-                    <span class="material-symbols-outlined text-sm">volunteer_activism</span>
-                  </div>
-                  <div>
-                    <h4 class="font-bold">Für die Region</h4>
-                    <p class="text-white/70 text-sm">Stetige Förderung regionaler gemeinnütziger Projekte.</p>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
-                    <span class="material-symbols-outlined text-sm">storefront</span>
-                  </div>
-                  <div>
-                    <h4 class="font-bold">Für Geschäfte</h4>
-                    <p class="text-white/70 text-sm">Sichtbarkeit & Kundenbindung ohne Kettenlogik.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-white">
-              <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 04</span>
-              <h3 class="font-display text-4xl md:text-5xl font-bold mb-6">Wirkung entfalten</h3>
-              <p class="text-lg text-white/90 mb-8 leading-relaxed">
-                SOMOS verwandelt regionale Umsätze in regionale Wirkung: Punkte für Nutzer:innen, Mittel für Non-Profits und Finanzierung für Betrieb & Weiterentwicklung.
-              </p>
-              <a class="inline-flex items-center gap-2 font-bold hover:translate-x-2 transition-transform" href="#punktesystem">
-                Punktesystem ansehen <span class="material-symbols-outlined">arrow_forward</span>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="/wie-es-funktioniert" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+                Details: So funktioniert’s <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+              <a href="/siegel" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+                Details: Siegel & Filter <span class="material-symbols-outlined">arrow_forward</span>
               </a>
             </div>
           </div>
+
+          <!-- Visual summary card -->
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-soft">
+            <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-5">Der regionale Kreislauf</h3>
+            <ol class="space-y-4 text-gray-600 dark:text-gray-400">
+              <li class="flex gap-3">
+                <span class="material-symbols-outlined text-primary">map</span>
+                <span>Karte: Geschäfte & Non-Profits entdecken, filtern und vergleichen.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="material-symbols-outlined text-primary">shopping_bag</span>
+                <span>Einkauf vor Ort: Betrag eingeben, Transaktion bestätigen lassen.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="material-symbols-outlined text-primary">payments</span>
+                <span>Punkte: sammeln und später im SOMOS-Netzwerk einlösen.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+                <span>Wirkung: Anteil fließt automatisch in regionale gemeinnützige Projekte.</span>
+              </li>
+            </ol>
+          </div>
         </div>
       </section>
 
-      <!-- 4) PUNKTESYSTEM (Transparenz-Anker) -->
-      <section id="punktesystem" class="px-6 relative py-16">
-        <div class="max-w-5xl mx-auto step-container">
-          <div class="text-center mb-14">
+      <!-- FÜR WEN (3 Cards, linkt zu Subpages) -->
+      <section class="px-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-5">Für wen ist SOMOS?</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Drei Zielgruppen – ein gemeinsamer regionaler Nutzen. Jede Seite erklärt Details, Prozesse und Vorteile.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <a href="/verbraucher" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                <span class="material-symbols-outlined text-primary">person</span>
+              </div>
+              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Verbraucher:innen</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Geschäfte & Vereine finden, Punkte sammeln und im Netzwerk einlösen – Wirkung nachvollziehen.
+              </p>
+              <span class="inline-flex items-center gap-2 text-primary font-semibold">
+                Mehr erfahren <span class="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </a>
+
+            <a href="/geschaefte" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                <span class="material-symbols-outlined text-primary">storefront</span>
+              </div>
+              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Regionale Geschäfte</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Sichtbarkeit & Kundenbindung ohne Kettenlogik – Transaktionen per App oder SOMOS-Karte.
+              </p>
+              <span class="inline-flex items-center gap-2 text-primary font-semibold">
+                Mehr erfahren <span class="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </a>
+
+            <a href="/vereine" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+              </div>
+              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-3">Non-Profits</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Stetige Mittel aus realen Umsätzen + Sichtbarkeit auf der Karte und Austausch mit der Community.
+              </p>
+              <span class="inline-flex items-center gap-2 text-primary font-semibold">
+                Mehr erfahren <span class="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUNKTESYSTEM (Kurz, mit Link zu /wie-es-funktioniert oder /transparenz später) -->
+      <section class="px-6 relative py-10">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
             <h2 class="font-display text-5xl font-bold text-primary dark:text-white mb-6">Das Punktesystem</h2>
             <p class="text-xl text-gray-600 dark:text-gray-400">So wird die 3% Transaktionsgebühr transparent aufgeteilt:</p>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-8 relative p-12 lg:p-16">
+          <div class="grid md:grid-cols-3 gap-8 relative p-10 lg:p-14">
             <div class="absolute inset-0 bg-earthy-blob/30 dark:bg-primary/5 blob-v2 organic-blob -z-10 blur-2xl"></div>
 
             <div class="p-8 rounded-[40px] bg-white dark:bg-gray-800 text-center shadow-lg border border-primary/5">
@@ -537,86 +322,57 @@
                 <span class="text-3xl font-bold text-primary dark:text-white">40%</span>
               </div>
               <h3 class="font-display text-2xl font-bold mb-3 text-primary dark:text-white">SOMOS</h3>
-              <p class="text-sm text-gray-500">Plattformbetrieb & Weiterentwicklung (Reinvestition in die Region).</p>
+              <p class="text-sm text-gray-500">Plattformbetrieb & Weiterentwicklung (regionaler Fokus).</p>
             </div>
           </div>
 
-          <p class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-            Die Aufteilung ist klar kommuniziert und dient der nachvollziehbaren Finanzierung von Nutzer-Vorteilen, regionaler Wirkung und Plattformbetrieb.
-          </p>
-        </div>
-      </section>
-
-      <!-- 5) SIEGEL (SEO-Hebel) -->
-      <section id="siegel" class="px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">SOMOS-Siegel</h2>
-              <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                Siegel sind Eigenschaften, nach denen du auf der Karte filtern kannst – z. B. regionale Produkte, Bio-Angebote, vegane Optionen oder Fair-Trade.
-                Statt Marketing-Floskeln bekommst du klare Orientierung.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Regional</span>
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Bio</span>
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Vegan</span>
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Fair</span>
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Unverpackt</span>
-              </div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">Filter-Beispiele</h3>
-              <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Café“ + „Vegan“ + „Bio“</span></li>
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Lebensmittel“ + „Regional (vollständig)“</span></li>
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Restaurant“ + „Fair“</span></li>
-              </ul>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
-                Hinweis: Siegel basieren auf Angaben der Geschäfte und werden von SOMOS plausibilisiert / geprüft.
-              </p>
-            </div>
+          <div class="mt-8 text-center">
+            <a href="/wie-es-funktioniert" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+              Mehr Details zum Ablauf <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <!-- 6) KOLLABORATION -->
-      <section id="mitgestalten" class="px-6 relative">
-        <div class="max-w-6xl mx-auto step-container">
-          <div class="grid lg:grid-cols-2 gap-12 items-center p-12 lg:p-16 relative">
-            <div class="absolute inset-0 bg-earthy-blob/35 dark:bg-primary/5 blob-2 organic-blob -z-10"></div>
-
-            <div>
-              <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Gemeinsam statt top-down</h2>
-              <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                SOMOS wird nicht hierarchisch „ausgerollt“. Händler:innen, Vereine und Nutzer:innen sollen mitentscheiden, welche Werkzeuge wirklich fehlen
-                – und wie die Plattform weiterwächst.
-              </p>
-              <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">group</span><span>Bedarfe gemeinsam identifizieren</span></li>
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">build</span><span>Tools für KMU, Vereine & Community</span></li>
-                <li class="flex gap-3"><span class="material-symbols-outlined text-primary">recycling</span><span>Reinvestition in regionale Wirkung</span></li>
-              </ul>
+      <!-- SIEGEL (Teaser + Link) -->
+      <section class="px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Siegel & Filter</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              Statt Werbeversprechen: Siegel beschreiben Eigenschaften (z. B. regional, bio, vegan, fair) und machen die Karte filterbar.
+              So finden Nutzer:innen schneller, was wirklich zu ihnen passt.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Regional</span>
+              <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Bio</span>
+              <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Vegan</span>
+              <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Fair</span>
+              <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Unverpackt</span>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-              <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">Aktuelles Problem, das wir lösen</h3>
-              <p class="text-gray-600 dark:text-gray-400">
-                Regionale Gutschein- und Bon-Systeme sind oft uneinheitlich. Besonders bei Cafés und Betrieben mit hoher Fluktuation wird die Einarbeitung neuer
-                Mitarbeitender komplex. SOMOS arbeitet an einer Lösung, die Prozesse vereinheitlicht und Schulung vereinfacht.
-              </p>
-            </div>
+            <a href="/siegel" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+              Alle Siegel ansehen <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+            <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">Beispiel-Filter</h3>
+            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+              <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Café“ + „Vegan“ + „Bio“</span></li>
+              <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Lebensmittel“ + „Regional (vollständig)“</span></li>
+              <li class="flex gap-3"><span class="material-symbols-outlined text-primary">tune</span><span>„Restaurant“ + „Fair“</span></li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- 7) FAQ -->
-      <section id="faq" class="px-6">
+      <!-- FAQ (Teaser + Link) -->
+      <section class="px-6">
         <div class="max-w-5xl mx-auto">
-          <div class="text-center mb-12">
+          <div class="text-center mb-10">
             <h2 class="font-display text-5xl font-bold text-primary dark:text-white mb-6">FAQ</h2>
-            <p class="text-xl text-gray-600 dark:text-gray-400">Kurze Antworten auf typische Fragen – gut für Menschen und Suchsysteme.</p>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Kurze Antworten – die ausführliche Version kommt auf die FAQ-Seite.</p>
           </div>
 
           <div class="space-y-4">
@@ -626,7 +382,7 @@
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
               </summary>
               <p class="mt-3 text-gray-600 dark:text-gray-400">
-                Ja. Die Nutzung der App ist für Verbraucher:innen kostenlos. Punkte entstehen durch Einkäufe bei teilnehmenden regionalen Geschäften.
+                Ja. Die Nutzung ist für Verbraucher:innen kostenlos. Punkte entstehen durch Einkäufe bei teilnehmenden regionalen Geschäften.
               </p>
             </details>
 
@@ -646,26 +402,22 @@
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
               </summary>
               <p class="mt-3 text-gray-600 dark:text-gray-400">
-                Das Geschäft bestätigt über die Merchant-App oder über eine SOMOS-Karte (als Alternative zur App).
+                Das Geschäft bestätigt per Merchant-App oder über eine SOMOS-Karte (Alternative zur App).
               </p>
             </details>
+          </div>
 
-            <details class="group bg-white dark:bg-gray-800 rounded-2xl border border-primary/10 p-6">
-              <summary class="cursor-pointer font-semibold text-primary dark:text-white flex items-center justify-between">
-                Wie finanziert sich SOMOS?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-              </summary>
-              <p class="mt-3 text-gray-600 dark:text-gray-400">
-                SOMOS erhebt 3% Transaktionsgebühr. Die Aufteilung ist transparent: 50% Nutzer-Punkte, 10% Non-Profits, 40% SOMOS (Plattform & Betrieb).
-              </p>
-            </details>
+          <div class="mt-8 text-center">
+            <a href="/faq" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+              Zur vollständigen FAQ <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
           </div>
         </div>
       </section>
     </main>
 
     <!-- CTA APP -->
-    <section id="app" class="relative py-32 px-6 bg-primary overflow-hidden">
+    <section id="app" class="relative py-28 px-6 bg-primary overflow-hidden">
       <div class="absolute top-0 left-0 w-full h-full opacity-10">
         <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-white blob-1 organic-blob -translate-x-1/2 -translate-y-1/2"></div>
         <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-white blob-2 organic-blob translate-x-1/2 translate-y-1/2"></div>
@@ -674,7 +426,7 @@
       <div class="max-w-4xl mx-auto text-center text-white relative z-10">
         <h2 class="font-display text-5xl font-bold mb-8">App laden & regional handeln</h2>
         <p class="text-xl mb-12 text-white/80">
-          Entdecke regionale Geschäfte & Vereine, sammle Punkte und stärke lokale Projekte – transparent und gemeinschaftlich.
+          Entdecke regionale Geschäfte & Non-Profits, sammle Punkte und stärke lokale Projekte – transparent und gemeinschaftlich.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -685,6 +437,12 @@
             Google Play
           </a>
         </div>
+
+        <div class="mt-8 text-white/80 text-sm">
+          <a class="underline hover:text-white" href="/geschaefte">Als Geschäft teilnehmen</a>
+          <span class="mx-2">·</span>
+          <a class="underline hover:text-white" href="/vereine">Als Non-Profit teilnehmen</a>
+        </div>
       </div>
     </section>
 
@@ -692,10 +450,8 @@
     <footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-100 dark:border-gray-800">
       <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
         <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center gap-2 mb-6">
-            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-white text-sm">public</span>
-            </div>
+          <div class="flex items-center gap-3 mb-6">
+            <img src="/logo.png" alt="SOMOS Logo" class="w-10 h-10 rounded-full object-cover" />
             <span class="font-display text-2xl font-bold text-primary dark:text-white">SOMOS</span>
           </div>
 
@@ -714,20 +470,23 @@
         </div>
 
         <div>
-          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">SOMOS</h5>
+          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Seiten</h5>
           <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-            <li><a class="hover:text-primary transition-colors" href="#was-ist-somos">Was ist SOMOS?</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#wie-es-funktioniert">So funktioniert’s</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#punktesystem">Punktesystem</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/wie-es-funktioniert">So funktioniert’s</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/verbraucher">Für Verbraucher:innen</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/geschaefte">Für Geschäfte</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/vereine">Für Non-Profits</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/siegel">Siegel</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/faq">FAQ</a></li>
           </ul>
         </div>
 
         <div>
           <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Rechtliches</h5>
           <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-            <li><a class="hover:text-primary transition-colors" href="#">Impressum</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#">Datenschutz</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#">AGB</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/impressum">Impressum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/agb">AGB</a></li>
           </ul>
         </div>
       </div>
