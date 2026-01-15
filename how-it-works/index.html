@@ -120,16 +120,52 @@
     <!-- NAV (mismo layout que tu página anterior, pero con rutas en inglés + logo.png) -->
     <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a class="flex items-center" href="/" aria-label="SOMOS Startseite">
-          <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-10 md:h-12 object-contain" />
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
+          <img
+            src="/logo.png"
+            alt="SOMOS – Regionale Plattform"
+            class="h-10 md:h-12 object-contain"
+          />
         </a>
 
+        <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-8">
-          <a class="font-medium hover:text-primary transition-colors" href="/#">Marketplace</a>
-          <a class="font-medium text-primary border-b-2 border-primary" href="/how-it-works">How it works</a>
-          <a class="font-medium hover:text-primary transition-colors" href="/merchants">Für Partner</a>
-          <a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#app">App laden</a>
+          <a href="/how-it-works" class="font-medium text-primary border-b-2 border-primary">
+            So funktioniert’s
+          </a>
+          <a href="/consumers" class="font-medium hover:text-primary transition-colors">
+            Für Verbraucher:innen
+          </a>
+          <a href="/merchants" class="font-medium hover:text-primary transition-colors">
+            Für Geschäfte
+          </a>
+          <a href="/non-profits" class="font-medium hover:text-primary transition-colors">
+            Für Non-Profits
+          </a>
+          <a href="/labels" class="font-medium hover:text-primary transition-colors">
+            Siegel
+          </a>
+          <a href="/faq" class="font-medium hover:text-primary transition-colors">
+            FAQ
+          </a>
+
+          <a
+            href="#app"
+            class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
+          >
+            App laden
+          </a>
         </div>
+
+        <!-- Mobile CTA -->
+        <a
+          href="#app"
+          class="md:hidden bg-primary text-white px-4 py-2 rounded-full font-semibold"
+        >
+          App
+        </a>
       </div>
     </nav>
 
