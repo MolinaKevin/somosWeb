@@ -64,6 +64,69 @@
       .shadow-soft {
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       }
+
+      /* ---- Mobile drawer wiring (same as index) ---- */
+      #mobile-menu-checkbox { display: none; }
+
+      /* Backdrop */
+      #mobile-backdrop {
+        background: rgba(0,0,0,.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease;
+      }
+
+      /* Drawer panel */
+      #mobile-menu {
+        background: #F9F4E8;              /* background-light */
+        color: #111827;                   /* gray-900 */
+        border-left: 1px solid rgba(45,90,39,.12);
+        box-shadow: 0 30px 80px rgba(0,0,0,.25);
+
+        transform: translateX(100%);
+        transition: transform .32s cubic-bezier(.4,0,.2,1);
+      }
+
+      .dark #mobile-menu {
+        background: #1A1C19;              /* background-dark */
+        color: #F3F4F6;                   /* gray-100 */
+        border-left: 1px solid rgba(255,255,255,.10);
+      }
+
+      /* Open state */
+      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+      }
+
+      /* Mobile links look & touch targets */
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 14px 14px;
+        border-radius: 16px;
+
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+
+        color: #111827;
+        background: rgba(45,90,39,.06);
+        border: 1px solid rgba(45,90,39,.10);
+      }
+      .mobile-link:hover { background: rgba(45,90,39,.10); }
+
+      .dark .mobile-link {
+        color: #F3F4F6;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .dark .mobile-link:hover { background: rgba(255,255,255,.10); }
     </style>
 
     <script type="application/ld+json">
@@ -81,28 +144,87 @@
 
   <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
     <!-- NAV (active: non-profits) -->
-    <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
-          <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-10 md:h-12 object-contain" />
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <!-- checkbox must be direct child of nav -->
+      <input id="mobile-menu-checkbox" type="checkbox" />
+
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Home">
+          <img src="/logo.png" alt="SOMOS" class="h-9 md:h-11 object-contain" />
         </a>
 
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/how-it-works" class="font-medium hover:text-primary transition-colors">So funktioniert’s</a>
-          <a href="/consumers" class="font-medium hover:text-primary transition-colors">Für Verbraucher:innen</a>
-          <a href="/merchants" class="font-medium hover:text-primary transition-colors">Für Geschäfte</a>
-          <a href="/non-profits" class="font-medium text-primary border-b-2 border-primary">Für Non-Profits</a>
-          <a href="/labels" class="font-medium hover:text-primary transition-colors">Siegel</a>
-          <a href="/faq" class="font-medium hover:text-primary transition-colors">FAQ</a>
-          <a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#contact">Kontakt</a>
+        <!-- Desktop -->
+        <div class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert’s</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="text-sm font-medium text-primary border-b-2 border-primary" href="/non-profits">Für Non-Profits</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
+
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="#contact">
+            Kontakt
+          </a>
         </div>
 
-        <a class="md:hidden bg-primary text-white px-4 py-2 rounded-full font-semibold" href="#contact">Kontakt</a>
+        <!-- Mobile hamburger -->
+        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Open menu">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
       </div>
+
+      <!-- Backdrop -->
+      <label
+        id="mobile-backdrop"
+        for="mobile-menu-checkbox"
+        class="fixed inset-0 md:hidden z-[110]"
+        aria-label="Close menu"
+      ></label>
+
+      <!-- Drawer -->
+      <aside
+        id="mobile-menu"
+        class="fixed top-0 right-0 h-[100dvh] w-[86%] max-w-sm md:hidden z-[120] flex flex-col"
+        aria-label="Mobile navigation"
+      >
+        <div class="flex items-center justify-between px-6 h-16 border-b border-primary/10">
+          <a
+            href="/"
+            class="flex items-center"
+            aria-label="SOMOS Home"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            <img src="/logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+
+          <label class="cursor-pointer p-2 rounded-xl hover:bg-primary/10" for="mobile-menu-checkbox" aria-label="Close menu">
+            <span class="material-symbols-outlined text-primary text-3xl">close</span>
+          </label>
+        </div>
+
+        <nav class="px-6 py-6 flex flex-col gap-2 overflow-auto">
+          <a class="mobile-link" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert’s</a>
+          <a class="mobile-link" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+          <a class="mobile-link" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+          <a class="mobile-link" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+          <a class="mobile-link" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+          <a class="mobile-link" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
+        </nav>
+
+        <div class="mt-auto p-6 border-t border-primary/10">
+          <a
+            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+            href="#contact"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            Kontakt
+          </a>
+        </div>
+      </aside>
     </nav>
 
     <!-- HERO -->
-    <header class="relative pt-44 pb-24 px-6 overflow-hidden">
+    <header class="relative pt-36 md:pt-44 pb-24 px-6 overflow-hidden">
       <div class="max-w-5xl mx-auto text-center relative z-10">
         <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold uppercase tracking-widest text-xs mb-6">
           Für Non-Profits
@@ -218,7 +340,7 @@
               <div class="p-5 bg-background-alt dark:bg-gray-900 rounded-2xl border border-primary/10">
                 <p class="font-semibold text-primary dark:text-white mb-2">Finanzierung</p>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Mittel entstehen aus realen Umsätzen – nicht aus einmaligen Kampagnen. Das schafft Planbarkeit.
+                  Mittel entstehen aus realen Umsätzeniwl;sen – nicht aus einmaligen Kampagnen. Das schafft Planbarkeit.
                 </p>
               </div>
 
