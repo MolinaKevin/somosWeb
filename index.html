@@ -84,28 +84,13 @@
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       }
 
-      /* Mobile menu wiring (works with this DOM) */
-      #mobile-menu-checkbox {
-        display: none;
-      }
-      /* default: closed */
-      #mobile-backdrop {
-        opacity: 0;
-        pointer-events: none;
-      }
-      #mobile-menu {
-        transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+      #mobile-menu-checkbox { display: none; }
+#mobile-backdrop { opacity: 0; pointer-events: none; }
+#mobile-menu { transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
 
-      /* open: checkbox checked -> show backdrop + slide panel */
-      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      #mobile-menu-checkbox:checked ~ #mobile-menu {
-        transform: translateX(0);
-      }
+#mobile-menu-checkbox:checked ~ #mobile-backdrop { opacity: 1; pointer-events: auto; }
+#mobile-menu-checkbox:checked ~ #mobile-menu { transform: translateX(0); }
+
     </style>
 
     <!-- JSON-LD -->
@@ -135,77 +120,77 @@
   <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
     <!-- NAV (single, fixed) -->
     <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-        <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
-          <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-9 md:h-11 object-contain" />
-        </a>
+  <!-- IMPORTANT: checkbox must be a direct child of nav -->
+  <input id="mobile-menu-checkbox" type="checkbox" />
 
-        <!-- Desktop menu (smaller text) -->
-        <div class="hidden md:flex items-center gap-6">
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert’s</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
+  <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+    <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
+      <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-9 md:h-11 object-contain" />
+    </a>
 
-          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="#app">
-            App laden
-          </a>
-        </div>
+    <!-- Desktop menu -->
+    <div class="hidden md:flex items-center gap-6">
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert’s</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
 
-        <!-- Mobile hamburger -->
-        <input id="mobile-menu-checkbox" type="checkbox" />
-        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Menü öffnen">
-          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
-        </label>
-      </div>
+      <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="#app">
+        App laden
+      </a>
+    </div>
 
-      <!-- Backdrop (click to close) -->
-      <label
-        id="mobile-backdrop"
-        for="mobile-menu-checkbox"
-        class="fixed inset-0 bg-black/40 transition-opacity duration-300 md:hidden z-[110]"
-        aria-label="Menü schließen"
-      ></label>
+    <!-- Mobile hamburger -->
+    <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Menü öffnen">
+      <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+    </label>
+  </div>
 
-      <!-- Mobile panel -->
-      <div
-        id="mobile-menu"
-        class="fixed top-0 right-0 h-full w-[86%] max-w-sm bg-background-light dark:bg-background-dark border-l border-gray-200 dark:border-gray-800 shadow-2xl p-6 flex flex-col md:hidden z-[120]"
-      >
-        <div class="flex justify-between items-center mb-8">
-          <a href="/" class="flex items-center" aria-label="SOMOS Startseite" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
-            <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-9 object-contain" />
-          </a>
+  <!-- Backdrop -->
+  <label
+    id="mobile-backdrop"
+    for="mobile-menu-checkbox"
+    class="fixed inset-0 bg-black/40 transition-opacity duration-300 md:hidden z-[110]"
+    aria-label="Menü schließen"
+  ></label>
 
-          <label class="cursor-pointer p-1" for="mobile-menu-checkbox" aria-label="Menü schließen">
-            <span class="material-symbols-outlined text-primary text-3xl">close</span>
-          </label>
-        </div>
+  <!-- Mobile panel -->
+  <div
+    id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-[86%] max-w-sm bg-background-light dark:bg-background-dark border-l border-gray-200 dark:border-gray-800 shadow-2xl p-6 flex flex-col md:hidden z-[120]"
+  >
+    <div class="flex justify-between items-center mb-8">
+      <a href="/" class="flex items-center" aria-label="SOMOS Startseite" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
+        <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-9 object-contain" />
+      </a>
 
-        <!-- Smaller mobile links -->
-        <nav class="flex flex-col gap-4">
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert’s</a>
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
-          <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
-        </nav>
+      <label class="cursor-pointer p-1" for="mobile-menu-checkbox" aria-label="Menü schließen">
+        <span class="material-symbols-outlined text-primary text-3xl">close</span>
+      </label>
+    </div>
 
-        <!-- Only ONE button (removed extra one) -->
-        <div class="mt-auto pt-8">
-          <a
-            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
-            href="#app"
-            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
-          >
-            App laden
-          </a>
-        </div>
-      </div>
+    <nav class="flex flex-col gap-4">
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert’s</a>
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+      <a class="text-base font-semibold text-gray-900 dark:text-gray-100 hover:text-primary transition-colors" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
     </nav>
+
+    <div class="mt-auto pt-8">
+      <a
+        class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+        href="#app"
+        onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+      >
+        App laden
+      </a>
+    </div>
+  </div>
+</nav>
 
     <!-- HERO -->
     <header class="relative pt-36 md:pt-44 pb-24 px-6 overflow-hidden">
