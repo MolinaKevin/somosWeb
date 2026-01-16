@@ -101,6 +101,71 @@
         height: 110%;
         z-index: -1;
       }
+
+      /* ---- Mobile drawer wiring (same as index) ---- */
+      #mobile-menu-checkbox {
+        display: none;
+      }
+
+      #mobile-backdrop {
+        background: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+
+      #mobile-menu {
+        background: #f9f4e8; /* background-light */
+        color: #111827; /* gray-900 */
+        border-left: 1px solid rgba(45, 90, 39, 0.12);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .dark #mobile-menu {
+        background: #1a1c19; /* background-dark */
+        color: #f3f4f6; /* gray-100 */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+      }
+
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 14px 14px;
+        border-radius: 16px;
+
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+
+        color: #111827;
+        background: rgba(45, 90, 39, 0.06);
+        border: 1px solid rgba(45, 90, 39, 0.1);
+      }
+      .mobile-link:hover {
+        background: rgba(45, 90, 39, 0.1);
+      }
+
+      .dark .mobile-link {
+        color: #f3f4f6;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .dark .mobile-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
     </style>
 
     <!-- Optional: Breadcrumb -->
@@ -117,60 +182,73 @@
   </head>
 
   <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
-    <!-- NAV (mismo layout que tu página anterior, pero con rutas en inglés + logo.png) -->
-    <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- NAV (same as index) -->
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <input id="mobile-menu-checkbox" type="checkbox" />
 
-        <!-- Logo -->
-        <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
-          <img
-            src="/logo.png"
-            alt="SOMOS – Regionale Plattform"
-            class="h-10 md:h-12 object-contain"
-          />
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Home">
+          <img src="/logo.png" alt="SOMOS" class="h-9 md:h-11 object-contain" />
         </a>
 
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/how-it-works" class="font-medium text-primary border-b-2 border-primary">
-            So funktioniert’s
-          </a>
-          <a href="/consumers" class="font-medium hover:text-primary transition-colors">
-            Für Verbraucher:innen
-          </a>
-          <a href="/merchants" class="font-medium hover:text-primary transition-colors">
-            Für Geschäfte
-          </a>
-          <a href="/non-profits" class="font-medium hover:text-primary transition-colors">
-            Für Non-Profits
-          </a>
-          <a href="/labels" class="font-medium hover:text-primary transition-colors">
-            Siegel
-          </a>
-          <a href="/faq" class="font-medium hover:text-primary transition-colors">
-            FAQ
-          </a>
+        <!-- Desktop -->
+        <div class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium text-primary border-b-2 border-primary" href="/how-it-works">So funktioniert’s</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
 
-          <a
-            href="#app"
-            class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
-          >
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="#app">
             App laden
           </a>
         </div>
 
-        <!-- Mobile CTA -->
-        <a
-          href="#app"
-          class="md:hidden bg-primary text-white px-4 py-2 rounded-full font-semibold"
-        >
-          App
-        </a>
+        <!-- Mobile button -->
+        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Open menu">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
       </div>
+
+      <!-- Backdrop -->
+      <label id="mobile-backdrop" for="mobile-menu-checkbox" class="fixed inset-0 md:hidden z-[110]" aria-label="Close menu"></label>
+
+      <!-- Drawer -->
+      <aside id="mobile-menu" class="fixed top-0 right-0 h-[100dvh] w-[86%] max-w-sm md:hidden z-[120] flex flex-col" aria-label="Mobile navigation">
+        <div class="flex items-center justify-between px-6 h-16 border-b border-primary/10">
+          <a href="/" class="flex items-center" aria-label="SOMOS Home" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
+            <img src="/logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+
+          <label class="cursor-pointer p-2 rounded-xl hover:bg-primary/10" for="mobile-menu-checkbox" aria-label="Close menu">
+            <span class="material-symbols-outlined text-primary text-3xl">close</span>
+          </label>
+        </div>
+
+        <nav class="px-6 py-6 flex flex-col gap-2 overflow-auto">
+          <a class="mobile-link" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert’s</a>
+          <a class="mobile-link" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+          <a class="mobile-link" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+          <a class="mobile-link" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+          <a class="mobile-link" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+          <a class="mobile-link" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
+        </nav>
+
+        <div class="mt-auto p-6 border-t border-primary/10">
+          <a
+            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+            href="#app"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            App laden
+          </a>
+        </div>
+      </aside>
     </nav>
 
-    <!-- HEADER (idéntico al estilo anterior) -->
-    <header class="relative pt-48 pb-32 px-6 overflow-hidden">
+    <!-- HEADER -->
+    <header class="relative pt-36 md:pt-44 pb-32 px-6 overflow-hidden">
       <div class="max-w-4xl mx-auto text-center relative z-10">
         <h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-8">How it works</h1>
         <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -180,7 +258,7 @@
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-soft-sage/30 blob-v2 organic-blob blur-3xl -z-10"></div>
     </header>
 
-    <!-- MAIN (misma composición: 4 pasos + punktesystem + CTA) -->
+    <!-- MAIN -->
     <main class="space-y-32 pb-32">
       <!-- STEP 01 -->
       <section class="px-6 relative">
@@ -386,7 +464,7 @@
         </div>
       </section>
 
-      <!-- POINT SYSTEM (igual a tu anterior) -->
+      <!-- POINT SYSTEM -->
       <section id="punktesystem" class="px-6 relative py-20">
         <div class="max-w-5xl mx-auto step-container">
           <div class="text-center mb-16">
@@ -406,7 +484,7 @@
             </div>
 
             <div class="p-8 rounded-[40px] bg-primary text-white text-center shadow-xl transform md:-translate-y-4">
-              <div class="w-24 h-24 mx-auto rounded-full border-8 border-white/20 flex items-center justify-center mb-6">
+              <div class="w-24 h-24 mx-auto rounded-full border-8 border-white/20 flex items-center justify-content mb-6">
                 <span class="text-3xl font-bold">10%</span>
               </div>
               <h4 class="font-display text-2xl font-bold mb-4">Non-Profits</h4>
@@ -437,17 +515,13 @@
         <p class="text-xl mb-12 text-white/80">Lade die SOMOS App und gestalte deine Region mit.</p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-all shadow-xl" href="#">
-            App Store
-          </a>
-          <a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#">
-            Google Play
-          </a>
+          <a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-all shadow-xl" href="#">App Store</a>
+          <a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#">Google Play</a>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER (mismo layout, con logo completo) -->
+    <!-- FOOTER -->
     <footer class="bg-background-light dark:bg-background-dark py-20 px-6 border-t border-gray-100 dark:border-gray-800">
       <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">
         <div class="col-span-1 md:col-span-2">
@@ -481,9 +555,9 @@
         <div>
           <h5 class="font-bold mb-6 text-gray-900 dark:text-white">Rechtliches</h5>
           <ul class="space-y-4 text-gray-600 dark:text-gray-400">
-            <li><a class="hover:text-primary transition-colors" href="/imprint">Impressum</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/privacy">Datenschutz</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/terms">AGB</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/impressum">Impressum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/agb">AGB</a></li>
           </ul>
         </div>
       </div>
