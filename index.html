@@ -7,7 +7,7 @@
     <title>SOMOS – Regional einkaufen, Punkte sammeln, lokale Projekte stärken</title>
     <meta
       name="description"
-      content="SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen: Karte mit Siegeln & Filtern, Punkte sammeln & einlösen, transparente Finanzierung regionaler Projekte."
+      content="SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemein­nützige Organisationen: Karte mit Siegeln & Filtern, Punkte sammeln & einlösen, transparente Finanzierung regionaler Projekte."
     />
     <meta name="robots" content="index,follow" />
 
@@ -18,8 +18,6 @@
       content="Karte mit Filtern & Siegeln, Punkte sammeln & im Netzwerk einlösen – und automatisch lokale Projekte unterstützen. Transparent, regional, gemeinschaftlich."
     />
     <meta property="og:type" content="website" />
-    <!-- <meta property="og:url" content="https://deine-domain.tld/" /> -->
-    <!-- <meta property="og:image" content="https://deine-domain.tld/og.jpg" /> -->
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -83,11 +81,27 @@
         border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
       }
       .shadow-soft {
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Mobile menu (checkbox) */
+      #mobile-menu-checkbox {
+        display: none;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
       }
     </style>
 
-    <!-- JSON-LD (URLs optional später ersetzen) -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -113,37 +127,70 @@
 
   <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
     <!-- NAV -->
-    <nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a class="flex items-center gap-3" href="/" aria-label="SOMOS Startseite">
-          <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
-           <img
-             src="/logo.png"
-             alt="SOMOS – Regionale Plattform"
-             class="h-10 md:h-12 object-contain"
-           />
-          </a>
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
+          <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-10 md:h-12 object-contain" />
         </a>
 
+        <!-- Desktop menu -->
         <div class="hidden md:flex items-center gap-8">
-         <a href="/how-it-works">So funktioniert’s</a>
-         <a href="/consumers">Für Verbraucher:innen</a>
-         <a href="/merchants">Für Geschäfte</a>
-         <a href="/non-profits">Für Non-Profits</a>
-         <a href="/labels">Siegel</a>
-         <a href="/faq">FAQ</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert’s</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
 
-         <a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#app">
+          <a class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity" href="#app">
             App laden
           </a>
         </div>
 
-        <a class="md:hidden bg-primary text-white px-4 py-2 rounded-full font-semibold" href="#app">App</a>
+        <!-- Mobile hamburger (checkbox) -->
+        <input id="mobile-menu-checkbox" type="checkbox" />
+        <label class="md:hidden cursor-pointer p-2 z-[110]" for="mobile-menu-checkbox" aria-label="Menü öffnen">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
+
+        <!-- Mobile menu overlay -->
+        <div class="fixed inset-0 bg-background-light dark:bg-background-dark z-[105] flex flex-col p-8 md:hidden" id="mobile-menu">
+          <div class="absolute top-[-10%] right-[-10%] w-[320px] h-[320px] bg-soft-sage/40 blob-1 organic-blob -z-10"></div>
+          <div class="absolute bottom-[-10%] left-[-10%] w-[420px] h-[420px] bg-primary/10 blob-v2 organic-blob -z-10"></div>
+
+          <div class="flex justify-between items-center mb-14">
+            <a href="/" class="flex items-center" aria-label="SOMOS Startseite">
+              <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-10 object-contain" />
+            </a>
+
+            <label class="cursor-pointer" for="mobile-menu-checkbox" aria-label="Menü schließen">
+              <span class="material-symbols-outlined text-primary text-3xl">close</span>
+            </label>
+          </div>
+
+          <div class="flex flex-col gap-7">
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/how-it-works">So funktioniert’s</a>
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/consumers">Für Verbraucher:innen</a>
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/merchants">Für Geschäfte</a>
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/non-profits">Für Non-Profits</a>
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/labels">Siegel</a>
+            <a class="text-3xl font-display font-bold text-gray-800 dark:text-gray-100" href="/faq">FAQ</a>
+          </div>
+
+          <div class="mt-auto pt-10 space-y-4">
+            <a class="block w-full text-center bg-primary text-white py-5 rounded-2xl font-bold text-xl shadow-lg" href="#app">
+              App laden
+            </a>
+            <a class="block w-full text-center bg-white/70 dark:bg-gray-800/70 border border-primary/10 py-5 rounded-2xl font-bold text-xl" href="/merchants">
+              Für Geschäfte
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
 
     <!-- HERO -->
-    <header class="relative pt-44 pb-24 px-6 overflow-hidden">
+    <header class="relative pt-36 md:pt-44 pb-24 px-6 overflow-hidden">
       <div class="max-w-5xl mx-auto text-center relative z-10">
         <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold uppercase tracking-widest text-xs mb-6">
           Regional. Transparent. Gemeinschaftlich.
@@ -156,23 +203,22 @@
         </h1>
 
         <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen.
-          Entdecke Akteur:innen auf der Karte, filtere nach Siegeln und sammle Punkte, die du im Netzwerk wieder einlösen kannst.
+          SOMOS verbindet regionale Geschäfte, Verbraucher:innen und gemeinnützige Organisationen. Entdecke Akteur:innen auf der Karte, filtere nach
+          Siegeln und sammle Punkte, die du im Netzwerk wieder einlösen kannst.
         </p>
 
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/wie-es-funktioniert" class="bg-primary text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity">
+          <a href="/how-it-works" class="bg-primary text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity">
             So funktioniert’s
           </a>
-          <a href="/geschaefte" class="bg-white/70 dark:bg-gray-800/70 border border-primary/10 px-8 py-4 rounded-full font-bold hover:bg-white transition-colors">
+          <a href="/merchants" class="bg-white/70 dark:bg-gray-800/70 border border-primary/10 px-8 py-4 rounded-full font-bold hover:bg-white transition-colors">
             Für Geschäfte
           </a>
         </div>
 
-        <!-- Semantischer Kern für Suchsysteme -->
         <p class="sr-only">
-          SOMOS ist eine regionale Plattform für kleine und mittlere Geschäfte (ohne große Ketten und ohne reinen Onlinehandel).
-          Nutzer:innen sammeln Punkte bei Einkäufen und lösen sie im Netzwerk ein. Ein Teil der Transaktionsgebühr fließt an gemeinnützige Organisationen.
+          SOMOS ist eine regionale Plattform für kleine und mittlere Geschäfte (ohne große Ketten und ohne reinen Onlinehandel). Nutzer:innen sammeln Punkte
+          bei Einkäufen und lösen sie im Netzwerk ein. Ein Teil der Transaktionsgebühr fließt an gemeinnützige Organisationen.
         </p>
       </div>
 
@@ -186,8 +232,8 @@
           <div>
             <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Was ist SOMOS?</h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              SOMOS ist eine digitale Infrastruktur für regionalen Handel: eine Karte mit Filtern & Siegeln und ein Punktesystem,
-              das Einkäufe belohnt und gleichzeitig regionale gemeinnützige Projekte stärkt.
+              SOMOS ist eine digitale Infrastruktur für regionalen Handel: eine Karte mit Filtern & Siegeln und ein Punktesystem, das Einkäufe belohnt und
+              gleichzeitig regionale gemeinnützige Projekte stärkt.
             </p>
 
             <div class="grid gap-4">
@@ -210,16 +256,15 @@
             </div>
 
             <div class="mt-8 flex flex-wrap gap-3">
-              <a href="/wie-es-funktioniert" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+              <a href="/how-it-works" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
                 Details: So funktioniert’s <span class="material-symbols-outlined">arrow_forward</span>
               </a>
-              <a href="/siegel" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+              <a href="/labels" class="inline-flex items-center gap-2 font-semibold text-primary hover:underline">
                 Details: Siegel & Filter <span class="material-symbols-outlined">arrow_forward</span>
               </a>
             </div>
           </div>
 
-          <!-- Visual summary card -->
           <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-soft">
             <h3 class="font-display text-2xl font-bold text-primary dark:text-white mb-5">Der regionale Kreislauf</h3>
             <ol class="space-y-4 text-gray-600 dark:text-gray-400">
@@ -244,7 +289,7 @@
         </div>
       </section>
 
-      <!-- FÜR WEN (3 Cards, linkt zu Subpages) -->
+      <!-- FÜR WEN -->
       <section class="px-6">
         <div class="max-w-6xl mx-auto">
           <div class="text-center mb-12">
@@ -255,7 +300,7 @@
           </div>
 
           <div class="grid md:grid-cols-3 gap-8">
-            <a href="/verbraucher" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+            <a href="/consumers" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
                 <span class="material-symbols-outlined text-primary">person</span>
               </div>
@@ -268,7 +313,7 @@
               </span>
             </a>
 
-            <a href="/geschaefte" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+            <a href="/merchants" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
                 <span class="material-symbols-outlined text-primary">storefront</span>
               </div>
@@ -281,7 +326,7 @@
               </span>
             </a>
 
-            <a href="/vereine" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
+            <a href="/non-profits" class="block p-8 rounded-[28px] bg-white dark:bg-gray-800 shadow-lg border border-primary/5 hover:-translate-y-1 transition-transform">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-5">
                 <span class="material-symbols-outlined text-primary">volunteer_activism</span>
               </div>
@@ -297,7 +342,7 @@
         </div>
       </section>
 
-      <!-- PUNKTESYSTEM (Kurz, mit Link zu /wie-es-funktioniert oder /transparenz später) -->
+      <!-- PUNKTESYSTEM -->
       <section class="px-6 relative py-10">
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-12">
@@ -334,21 +379,21 @@
           </div>
 
           <div class="mt-8 text-center">
-            <a href="/wie-es-funktioniert" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+            <a href="/how-it-works" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
               Mehr Details zum Ablauf <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- SIEGEL (Teaser + Link) -->
+      <!-- SIEGEL -->
       <section class="px-6">
         <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">Siegel & Filter</h2>
             <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Statt Werbeversprechen: Siegel beschreiben Eigenschaften (z. B. regional, bio, vegan, fair) und machen die Karte filterbar.
-              So finden Nutzer:innen schneller, was wirklich zu ihnen passt.
+              Statt Werbeversprechen: Siegel beschreiben Eigenschaften (z. B. regional, bio, vegan, fair) und machen die Karte filterbar. So finden
+              Nutzer:innen schneller, was wirklich zu ihnen passt.
             </p>
             <div class="flex flex-wrap gap-2 mb-6">
               <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Regional</span>
@@ -358,7 +403,7 @@
               <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">Unverpackt</span>
             </div>
 
-            <a href="/siegel" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+            <a href="/labels" class="inline-flex items-center gap-2 font-bold text-primary hover:underline">
               Alle Siegel ansehen <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
@@ -374,7 +419,7 @@
         </div>
       </section>
 
-      <!-- FAQ (Teaser + Link) -->
+      <!-- FAQ TEASER -->
       <section class="px-6">
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-10">
@@ -446,9 +491,9 @@
         </div>
 
         <div class="mt-8 text-white/80 text-sm">
-          <a class="underline hover:text-white" href="/geschaefte">Als Geschäft teilnehmen</a>
+          <a class="underline hover:text-white" href="/merchants">Als Geschäft teilnehmen</a>
           <span class="mx-2">·</span>
-          <a class="underline hover:text-white" href="/vereine">Als Non-Profit teilnehmen</a>
+          <a class="underline hover:text-white" href="/non-profits">Als Non-Profit teilnehmen</a>
         </div>
       </div>
     </section>
@@ -458,8 +503,7 @@
       <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
         <div class="col-span-1 md:col-span-2">
           <div class="flex items-center gap-3 mb-6">
-            <img src="/logo.png" alt="SOMOS Logo" class="w-10 h-10 rounded-full object-cover" />
-            <span class="font-display text-2xl font-bold text-primary dark:text-white">SOMOS</span>
+            <img src="/logo.png" alt="SOMOS Logo" class="h-10 object-contain" />
           </div>
 
           <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6 leading-relaxed">
@@ -479,11 +523,11 @@
         <div>
           <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Seiten</h5>
           <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-            <li><a class="hover:text-primary transition-colors" href="/wie-es-funktioniert">So funktioniert’s</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/verbraucher">Für Verbraucher:innen</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/geschaefte">Für Geschäfte</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/vereine">Für Non-Profits</a></li>
-            <li><a class="hover:text-primary transition-colors" href="/siegel">Siegel</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/how-it-works">So funktioniert’s</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/labels">Siegel</a></li>
             <li><a class="hover:text-primary transition-colors" href="/faq">FAQ</a></li>
           </ul>
         </div>
