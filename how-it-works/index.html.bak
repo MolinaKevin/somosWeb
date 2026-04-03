@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>SOMOS | How it works</title>
+    <meta
+      name="description"
+      content="So funktioniert SOMOS: regionale Akteur:innen entdecken, im lokalen Geschäft einkaufen, Transaktion bestätigen (App oder Karte), Punkte sammeln und im Netzwerk einlösen – transparent und regional."
+    />
+    <meta name="robots" content="index,follow" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              "background-alt": "#F2EFE4",
+              "soft-sage": "#D8E2D1",
+              "earthy-light": "#F5F0E6",
+              "earthy-blob": "#E2E8D8",
+              "green-blob": "#2D5A27",
+              "background-dark": "#1A1C19",
+              accent: "#E9AC57",
+              mapGreen: "#6B8E4E",
+              mapBrown: "#A67C52",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "12px",
+              xl: "24px",
+              "2xl": "32px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style type="text/tailwindcss">
+      .map-bg {
+        background-image: radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+        background-size: 24px 24px;
+      }
+      .organic-blob {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transition: all 1s ease-in-out;
+      }
+      .blob-1 {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      }
+      .blob-2 {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+      }
+      .blob-3 {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+      .blob-4 {
+        border-radius: 58% 42% 46% 54% / 41% 55% 45% 59%;
+      }
+      .blob-v2 {
+        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+      }
+      .step-container {
+        position: relative;
+        z-index: 10;
+      }
+      .blob-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        z-index: -1;
+        opacity: 0.15;
+      }
+      .dark .blob-wrapper {
+        opacity: 0.05;
+      }
+      .blob-wrapper-solid {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110%;
+        height: 110%;
+        z-index: -1;
+      }
+
+      /* ---- Mobile drawer wiring (same as index) ---- */
+      #mobile-menu-checkbox {
+        display: none;
+      }
+
+      #mobile-backdrop {
+        background: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+
+      #mobile-menu {
+        background: #f9f4e8; /* background-light */
+        color: #111827; /* gray-900 */
+        border-left: 1px solid rgba(45, 90, 39, 0.12);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .dark #mobile-menu {
+        background: #1a1c19; /* background-dark */
+        color: #f3f4f6; /* gray-100 */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+      }
+
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 14px 14px;
+        border-radius: 16px;
+
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+
+        color: #111827;
+        background: rgba(45, 90, 39, 0.06);
+        border: 1px solid rgba(45, 90, 39, 0.1);
+      }
+      .mobile-link:hover {
+        background: rgba(45, 90, 39, 0.1);
+      }
+
+      .dark .mobile-link {
+        color: #f3f4f6;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .dark .mobile-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+
+    <!-- Optional: Breadcrumb -->
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"SOMOS","item":"/"},
+          {"@type":"ListItem","position":2,"name":"How it works","item":"/how-it-works"}
+        ]
+      }
+    </script>
+  </head>
+
+  <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
+    <!-- NAV (same as index) -->
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <input id="mobile-menu-checkbox" type="checkbox" />
+
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Home">
+          <img src="/logo.png" alt="SOMOS" class="h-9 md:h-11 object-contain" />
+        </a>
+
+        <!-- Desktop -->
+        <div class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium text-primary border-b-2 border-primary" href="/how-it-works">So funktioniert’s</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
+
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="#app">
+            App laden
+          </a>
+        </div>
+
+        <!-- Mobile button -->
+        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Open menu">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
+      </div>
+
+      <!-- Backdrop -->
+      <label id="mobile-backdrop" for="mobile-menu-checkbox" class="fixed inset-0 md:hidden z-[110]" aria-label="Close menu"></label>
+
+      <!-- Drawer -->
+      <aside id="mobile-menu" class="fixed top-0 right-0 h-[100dvh] w-[86%] max-w-sm md:hidden z-[120] flex flex-col" aria-label="Mobile navigation">
+        <div class="flex items-center justify-between px-6 h-16 border-b border-primary/10">
+          <a href="/" class="flex items-center" aria-label="SOMOS Home" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
+            <img src="/logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+
+          <label class="cursor-pointer p-2 rounded-xl hover:bg-primary/10" for="mobile-menu-checkbox" aria-label="Close menu">
+            <span class="material-symbols-outlined text-primary text-3xl">close</span>
+          </label>
+        </div>
+
+        <nav class="px-6 py-6 flex flex-col gap-2 overflow-auto">
+          <a class="mobile-link" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert’s</a>
+          <a class="mobile-link" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+          <a class="mobile-link" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+          <a class="mobile-link" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+          <a class="mobile-link" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+          <a class="mobile-link" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
+        </nav>
+
+        <div class="mt-auto p-6 border-t border-primary/10">
+          <a
+            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+            href="#app"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            App laden
+          </a>
+        </div>
+      </aside>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="relative pt-36 md:pt-44 pb-32 px-6 overflow-hidden">
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-primary dark:text-white mb-8">How it works</h1>
+        <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          Entdecke regionale Akteur:innen, kaufe vor Ort ein, sammle Punkte und unterstütze lokale Non-Profits – transparent und einfach.
+        </p>
+      </div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-soft-sage/30 blob-v2 organic-blob blur-3xl -z-10"></div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="space-y-32 pb-32">
+      <!-- STEP 01 -->
+      <section class="px-6 relative">
+        <div class="max-w-6xl mx-auto step-container">
+          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+            <div class="absolute inset-0 bg-earthy-blob/40 dark:bg-primary/5 blob-1 organic-blob -z-10"></div>
+
+            <div class="order-2 lg:order-1">
+              <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 01</span>
+              <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Regionale Akteur:innen entdecken</h2>
+              <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                Nutze die interaktive Karte, um regionale Geschäfte und Non-Profits zu finden. Filtere nach Kategorien (z. B. Café, Restaurant, Laden) und nach
+                Siegeln (z. B. regional, bio, vegan, fair).
+              </p>
+
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary">check_circle</span>
+                  <span>Karte mit Profilen, Fotos, Öffnungszeiten</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary">check_circle</span>
+                  <span>Filter nach Siegeln & Kategorien</span>
+                </li>
+              </ul>
+
+              <div class="mt-8">
+                <a class="inline-flex items-center gap-2 font-bold text-primary hover:translate-x-1 transition-transform" href="/labels">
+                  Siegel ansehen <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="order-1 lg:order-2 bg-white dark:bg-gray-800 p-4 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
+              <div class="aspect-video relative rounded-2xl overflow-hidden bg-[#e6d9b8] map-bg">
+                <div class="absolute top-0 left-0 w-full h-full">
+                  <div class="absolute top-[10%] left-[20%] w-[30%] h-[40%] bg-mapBrown/40 rounded-full blur-xl rotate-12"></div>
+                  <div class="absolute bottom-[20%] right-[15%] w-[40%] h-[50%] bg-mapGreen/40 rounded-full blur-xl -rotate-12"></div>
+                </div>
+
+                <div class="absolute top-[30%] left-[40%]">
+                  <div class="relative group cursor-pointer">
+                    <div class="w-12 h-12 bg-accent rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce">
+                      <span class="material-symbols-outlined text-white text-lg">store</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="absolute bottom-[25%] right-[25%]">
+                  <div class="w-10 h-10 bg-primary rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-sm">volunteer_activism</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 02 -->
+      <section class="px-6 relative">
+        <div class="max-w-6xl mx-auto step-container">
+          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+            <div class="absolute inset-0 bg-primary/90 blob-2 organic-blob -z-10 shadow-2xl"></div>
+
+            <div class="flex justify-center">
+              <div class="relative w-full max-w-sm">
+                <img
+                  alt="Einkauf im lokalen Geschäft"
+                  class="rounded-2xl shadow-xl border-4 border-white/20"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZXGzFDJ32ZTubn_kjCZBgqyFc_JonVfKw3A3REI95U3R18D-Sa8HHHkyrtEnXY07w2Vb2by6zczhpE54VHMqSMgvy-y8-nfxlz4BAhd80YGkS-xVN9rtEhZxZivOTIRvaa4swI4qukrL_27YFpsnqIZKfI1oRjzw31gbcAeFqhKxTFz-7ck6exO0JOMIKBoPDNCEvlEVpZs2lx1d10nFwi9dfjurtSlkTQBR7C9eIrta_mwADlUlxGapQ91MSkZG2fnre-wyd5c"
+                />
+              </div>
+            </div>
+
+            <div class="text-white">
+              <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 02</span>
+              <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Einkauf im lokalen Geschäft</h2>
+              <p class="text-lg text-white/90 mb-8 leading-relaxed">
+                Kaufe wie gewohnt vor Ort ein. In der SOMOS App gibst du den Betrag ein (z. B. 10 €) und startest die Transaktion. Jede Transaktion stärkt das
+                regionale Netzwerk.
+              </p>
+
+              <div class="bg-white/10 p-6 rounded-2xl border-l-4 border-white/70 italic">
+                SOMOS ist bewusst für regionale KMU gedacht: keine großen Ketten, keine internationalen Filialnetzwerke, kein reiner Onlinehandel.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 03 -->
+      <section class="px-6 relative">
+        <div class="max-w-6xl mx-auto step-container">
+          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+            <div class="absolute inset-0 bg-soft-sage/40 dark:bg-primary/5 blob-3 organic-blob -z-10"></div>
+
+            <div class="order-2 lg:order-1">
+              <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold mb-4 uppercase tracking-widest text-sm">Schritt 03</span>
+              <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">Transaktion bestätigen</h2>
+              <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                Das Geschäft bestätigt die Transaktion auf zwei Wegen: über die Merchant-App oder über eine SOMOS-Karte (Alternative zur App). Du erhältst sofort
+                eine Bestätigung und siehst deine Punkte.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
+                  <span class="block text-2xl font-bold text-primary dark:text-white">0%</span>
+                  <span class="text-sm text-gray-500">Zusatzkosten</span>
+                </div>
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-primary/10">
+                  <span class="block text-2xl font-bold text-primary dark:text-white">100%</span>
+                  <span class="text-sm text-gray-500">Transparent</span>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <a class="inline-flex items-center gap-2 font-bold text-primary hover:translate-x-1 transition-transform" href="/merchants">
+                  Details für Geschäfte <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="order-1 lg:order-2 flex justify-center">
+              <div class="relative w-64 h-[480px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-800 shadow-2xl overflow-hidden">
+                <div class="absolute top-0 w-full h-6 bg-gray-800 rounded-b-xl"></div>
+                <div class="p-6 pt-12 flex flex-col h-full bg-background-light dark:bg-gray-900">
+                  <div class="w-12 h-12 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white">check</span>
+                  </div>
+                  <h4 class="text-center font-bold text-xl mb-2 text-primary">Erfolgreich!</h4>
+                  <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm mt-4">
+                    <div class="flex justify-between text-xs mb-1">
+                      <span>Betrag</span>
+                      <span class="font-bold">45.00 €</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-primary font-bold">
+                      <span>Punkte</span>
+                      <span>+ 0.67 P</span>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-6">Beispielwerte zur Illustration.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 04 -->
+      <section class="px-6 relative">
+        <div class="max-w-6xl mx-auto step-container">
+          <div class="grid lg:grid-cols-2 gap-16 items-center p-12 lg:p-20 relative">
+            <div class="absolute inset-0 bg-primary/90 blob-4 organic-blob -z-10 shadow-2xl"></div>
+
+            <div class="bg-white/10 backdrop-blur-sm text-white p-10 rounded-3xl border border-white/20 shadow-xl">
+              <h3 class="font-display text-3xl font-bold mb-8">Einfluss &amp; Wirkung</h3>
+              <div class="space-y-6">
+                <div class="flex gap-4">
+                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-sm">person</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Für dich</h4>
+                    <p class="text-white/70 text-sm">Punkte sammeln und im Netzwerk einlösen.</p>
+                  </div>
+                </div>
+
+                <div class="flex gap-4">
+                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-sm">volunteer_activism</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Für die Region</h4>
+                    <p class="text-white/70 text-sm">Ein Teil fließt in regionale Projekte (Non-Profits).</p>
+                  </div>
+                </div>
+
+                <div class="flex gap-4">
+                  <div class="w-10 h-10 shrink-0 bg-white/20 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-sm">storefront</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Für Geschäfte</h4>
+                    <p class="text-white/70 text-sm">Sichtbarkeit und Bindung im regionalen Netzwerk.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-white">
+              <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white font-bold mb-4 uppercase tracking-widest text-sm">Schritt 04</span>
+              <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Wirkung entfalten</h2>
+              <p class="text-lg text-white/90 mb-8 leading-relaxed">
+                Nach der Bestätigung erhältst du Punkte. Gleichzeitig unterstützt jede Transaktion regionale Non-Profits und finanziert den Betrieb von SOMOS
+                transparent.
+              </p>
+              <a class="inline-flex items-center gap-2 font-bold hover:translate-x-2 transition-transform" href="#punktesystem">
+                Punktesystem ansehen <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POINT SYSTEM -->
+      <section id="punktesystem" class="px-6 relative py-20">
+        <div class="max-w-5xl mx-auto step-container">
+          <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-primary dark:text-white mb-6">Das Punktesystem</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400">So teilt sich die 3% Gebühr auf:</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 relative p-12 lg:p-16">
+            <div class="absolute inset-0 bg-earthy-blob/30 dark:bg-primary/5 blob-v2 organic-blob -z-10 blur-2xl"></div>
+
+            <div class="p-8 rounded-[40px] bg-white dark:bg-gray-800 text-center shadow-lg border border-primary/5">
+              <div class="w-24 h-24 mx-auto rounded-full border-8 border-primary/10 flex items-center justify-center mb-6">
+                <span class="text-3xl font-bold text-primary dark:text-white">50%</span>
+              </div>
+              <h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">Nutzer-Punkte</h4>
+              <p class="text-sm text-gray-500">1.5% Cashback an dich.</p>
+            </div>
+
+            <div class="p-8 rounded-[40px] bg-primary text-white text-center shadow-xl transform md:-translate-y-4">
+              <div class="w-24 h-24 mx-auto rounded-full border-8 border-white/20 flex items-center justify-content mb-6">
+                <span class="text-3xl font-bold">10%</span>
+              </div>
+              <h4 class="font-display text-2xl font-bold mb-4">Non-Profits</h4>
+              <p class="text-sm text-white/80">Regionale Projekte.</p>
+            </div>
+
+            <div class="p-8 rounded-[40px] bg-white dark:bg-gray-800 text-center shadow-lg border border-primary/5">
+              <div class="w-24 h-24 mx-auto rounded-full border-8 border-gray-100 flex items-center justify-center mb-6">
+                <span class="text-3xl font-bold text-primary dark:text-white">40%</span>
+              </div>
+              <h4 class="font-display text-2xl font-bold mb-4 text-primary dark:text-white">SOMOS</h4>
+              <p class="text-sm text-gray-500">Plattform &amp; Betrieb.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- CTA -->
+    <section id="app" class="relative py-40 px-6 bg-primary overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full opacity-10">
+        <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-white blob-1 organic-blob -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-white blob-2 organic-blob translate-x-1/2 translate-y-1/2"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto text-center text-white relative z-10">
+        <h2 class="font-display text-5xl font-bold mb-8">Bereit für den Wandel?</h2>
+        <p class="text-xl mb-12 text-white/80">Lade die SOMOS App und gestalte deine Region mit.</p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-background-light transition-all shadow-xl" href="#">App Store</a>
+          <a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#">Google Play</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-20 px-6 border-t border-gray-100 dark:border-gray-800">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-2 mb-8">
+            <img src="/logo.png" alt="SOMOS – Regionale Plattform" class="h-12 object-contain" />
+          </div>
+
+          <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-8 leading-relaxed">
+            Die Plattform für regionalen Handel und gemeinschaftliche Wirkung. Zusammen bauen wir eine Wirtschaft, die allen dient.
+          </p>
+
+          <div class="flex gap-4">
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">language</span>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">share</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-6 text-gray-900 dark:text-white">Plattform</h5>
+          <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/merchants">Für Partner</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/#">Impact Report</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/#">Punkte einlösen</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-6 text-gray-900 dark:text-white">Rechtliches</h5>
+          <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/impressum">Impressum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/agb">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm">
+        © 2026 SOMOS. Alle Rechte vorbehalten.
+      </div>
+    </footer>
+  </body>
+</html>
+

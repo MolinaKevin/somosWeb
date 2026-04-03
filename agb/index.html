@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Allgemeine Geschäftsbedingungen – SOMOS</title>
+    <meta
+      name="description"
+      content="Allgemeine Geschäftsbedingungen (AGB) von SOMOS – der regionalen Plattform für lokalen Handel und gemeinschaftliche Wirkung."
+    />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AGB – SOMOS" />
+    <meta property="og:description" content="Allgemeine Geschäftsbedingungen von SOMOS." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              "background-alt": "#F2EFE4",
+              "soft-sage": "#D8E2D1",
+              "earthy-light": "#F5F0E6",
+              "earthy-blob": "#E2E8D8",
+              "background-dark": "#1A1C19",
+              accent: "#E9AC57",
+              mapGreen: "#6B8E4E",
+              mapBrown: "#A67C52",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "12px",
+              xl: "24px",
+              "2xl": "32px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style type="text/tailwindcss">
+      .organic-blob {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transition: all 1s ease-in-out;
+      }
+      .blob-v2 {
+        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+      }
+
+      #mobile-menu-checkbox { display: none; }
+
+      #mobile-backdrop {
+        background: rgba(0,0,0,.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease;
+      }
+
+      #mobile-menu {
+        background: #F9F4E8;
+        color: #111827;
+        border-left: 1px solid rgba(45,90,39,.12);
+        box-shadow: 0 30px 80px rgba(0,0,0,.25);
+        transform: translateX(100%);
+        transition: transform .32s cubic-bezier(.4,0,.2,1);
+      }
+
+      .dark #mobile-menu {
+        background: #1A1C19;
+        color: #F3F4F6;
+        border-left: 1px solid rgba(255,255,255,.10);
+      }
+
+      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+      }
+
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 14px;
+        border-radius: 16px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+        color: #111827;
+        background: rgba(45,90,39,.06);
+        border: 1px solid rgba(45,90,39,.10);
+      }
+
+      .mobile-link:hover {
+        background: rgba(45,90,39,.10);
+      }
+
+      .dark .mobile-link {
+        color: #F3F4F6;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .dark .mobile-link:hover {
+        background: rgba(255,255,255,.10);
+      }
+    </style>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AGB – SOMOS",
+        "description": "Allgemeine Geschäftsbedingungen von SOMOS."
+      }
+    </script>
+  </head>
+
+  <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <input id="mobile-menu-checkbox" type="checkbox" />
+
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Home">
+          <img src="/logo.png" alt="SOMOS" class="h-9 md:h-11 object-contain" />
+        </a>
+
+        <div class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert's</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
+
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="/#app">
+            App laden
+          </a>
+        </div>
+
+        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Open menu">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
+      </div>
+
+      <label
+        id="mobile-backdrop"
+        for="mobile-menu-checkbox"
+        class="fixed inset-0 md:hidden z-[110]"
+        aria-label="Close menu"
+      ></label>
+
+      <aside
+        id="mobile-menu"
+        class="fixed top-0 right-0 h-[100dvh] w-[86%] max-w-sm md:hidden z-[120] flex flex-col"
+        aria-label="Mobile navigation"
+      >
+        <div class="flex items-center justify-between px-6 h-16 border-b border-primary/10">
+          <a href="/" class="flex items-center" aria-label="SOMOS Home" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
+            <img src="/logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+
+          <label class="cursor-pointer p-2 rounded-xl hover:bg-primary/10" for="mobile-menu-checkbox" aria-label="Close menu">
+            <span class="material-symbols-outlined text-primary text-3xl">close</span>
+          </label>
+        </div>
+
+        <nav class="px-6 py-6 flex flex-col gap-2 overflow-auto">
+          <a class="mobile-link" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert's</a>
+          <a class="mobile-link" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+          <a class="mobile-link" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+          <a class="mobile-link" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+          <a class="mobile-link" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+          <a class="mobile-link" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
+        </nav>
+
+        <div class="mt-auto p-6 border-t border-primary/10">
+          <a
+            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+            href="/#app"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            App laden
+          </a>
+        </div>
+      </aside>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="relative pt-32 md:pt-40 pb-16 px-6">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">
+          Allgemeine Geschäftsbedingungen
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Nutzungsbedingungen für die SOMOS-Plattform
+        </p>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="px-6 pb-24">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 border border-primary/10 space-y-8">
+
+          <!-- Hinweis -->
+          <section class="bg-primary/5 border border-primary/10 rounded-2xl p-6">
+            <div class="flex gap-3">
+              <span class="material-symbols-outlined text-primary flex-shrink-0">info</span>
+              <p class="text-gray-600 dark:text-gray-400">
+                <strong>Hinweis:</strong> SOMOS befindet sich derzeit in der Entwicklungs- und Pilotphase. Diese AGB werden mit Start des operativen Betriebs entsprechend aktualisiert und erweitert.
+              </p>
+            </div>
+          </section>
+
+          <!-- Geltungsbereich -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 1 Geltungsbereich</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Diese Allgemeinen Geschäftsbedingungen gelten für die Nutzung der SOMOS-Plattform, bestehend aus der Website und den mobilen Anwendungen (Apps).
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Anbieter ist Kevin Molina, Max-Volmer-Straße 15, 14473 Potsdam (nachfolgend „SOMOS" oder „wir").
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              (3) Diese AGB gelten für alle Nutzergruppen: Verbraucher:innen, teilnehmende Geschäfte und gemeinnützige Organisationen.
+            </p>
+          </section>
+
+          <!-- Leistungsbeschreibung -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 2 Leistungsbeschreibung</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) SOMOS ist eine regionale Plattform, die Verbraucher:innen, lokale Geschäfte und gemeinnützige Organisationen verbindet.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Die Plattform bietet:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-3">
+              <li>Eine Karte mit regionalen Geschäften und Organisationen</li>
+              <li>Filter nach Siegeln (regional, bio, vegan, fair, unverpackt)</li>
+              <li>Ein Punktesystem für Einkäufe bei teilnehmenden Geschäften</li>
+              <li>Automatische Weiterleitung von Spendenanteilen an gemeinnützige Organisationen</li>
+            </ul>
+            <p class="text-gray-600 dark:text-gray-400">
+              (3) Die Nutzung der Plattform ist für Verbraucher:innen und gemeinnützige Organisationen kostenlos.
+            </p>
+          </section>
+
+          <!-- Registrierung -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 3 Registrierung und Nutzerkonto</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Die Nutzung bestimmter Funktionen erfordert eine Registrierung.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Bei der Registrierung sind wahrheitsgemäße Angaben zu machen. Änderungen sind unverzüglich mitzuteilen.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              (3) Der Nutzer ist für die Geheimhaltung seiner Zugangsdaten verantwortlich.
+            </p>
+          </section>
+
+          <!-- Punktesystem -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 4 Punktesystem</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Bei Einkäufen in teilnehmenden Geschäften sammeln Verbraucher:innen Punkte. Der Punktewert entspricht 1,5% des Einkaufswertes (50% der 3% Transaktionsgebühr).
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Punkte können bei allen teilnehmenden Geschäften als Rabatt eingelöst oder an gemeinnützige Organisationen gespendet werden.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (3) Geschäfte und gemeinnützige Organisationen können angesammelte Punkte jederzeit auszahlen lassen.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              (4) Punkte verfallen nicht, solange das Nutzerkonto aktiv ist.
+            </p>
+          </section>
+
+          <!-- Gebühren für Geschäfte -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 5 Gebühren für teilnehmende Geschäfte</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Die Teilnahme an SOMOS ist für Geschäfte ohne Grundgebühr, Mindestlaufzeit oder Fixkosten möglich.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Bei jeder Transaktion, bei der Punkte eingelöst werden, fällt eine nutzungsabhängige Gebühr von 3% des Transaktionswertes an.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (3) Die Gebührenverteilung:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-3">
+              <li>50% → Bonuspunkte für Verbraucher:innen</li>
+              <li>10% → Spende an gemeinnützige Organisationen</li>
+              <li>40% → SOMOS (Plattformbetrieb und Weiterentwicklung)</li>
+            </ul>
+            <p class="text-gray-600 dark:text-gray-400">
+              (4) Die Teilnahme kann jederzeit ohne Angabe von Gründen beendet werden.
+            </p>
+          </section>
+
+          <!-- Pflichten -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 6 Pflichten der Nutzer</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Nutzer verpflichten sich zur rechtskonformen Nutzung der Plattform.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Folgende Handlungen sind untersagt:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+              <li>Missbrauch des Punktesystems</li>
+              <li>Falsche Angaben bei der Registrierung oder Siegelzuweisung</li>
+              <li>Störung des Plattformbetriebs</li>
+              <li>Nutzung zu rechtswidrigen Zwecken</li>
+            </ul>
+          </section>
+
+          <!-- Haftung -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 7 Haftung</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) SOMOS haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Bei leichter Fahrlässigkeit haftet SOMOS nur bei Verletzung wesentlicher Vertragspflichten, begrenzt auf den vorhersehbaren, vertragstypischen Schaden.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              (3) SOMOS haftet nicht für die Richtigkeit der von Geschäften angegebenen Siegel und Informationen.
+            </p>
+          </section>
+
+          <!-- Datenschutz -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 8 Datenschutz</h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer <a href="/datenschutz" class="text-primary hover:underline">Datenschutzerklärung</a>. SOMOS verzichtet bewusst auf personalisierte Werbeprofile.
+            </p>
+          </section>
+
+          <!-- Änderungen -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 9 Änderungen der AGB</h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              SOMOS behält sich vor, diese AGB zu ändern. Änderungen werden den Nutzern per E-Mail oder in der App mitgeteilt. Bei Widerspruch innerhalb von 4 Wochen kann das Nutzungsverhältnis beendet werden.
+            </p>
+          </section>
+
+          <!-- Kündigung -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 10 Kündigung</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Nutzer können ihr Konto jederzeit ohne Angabe von Gründen löschen.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              (2) Vor der Löschung sollten angesammelte Punkte eingelöst oder ausgezahlt werden.
+            </p>
+          </section>
+
+          <!-- Schlussbestimmungen -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">§ 11 Schlussbestimmungen</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (1) Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-3">
+              (2) Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              <strong>Stand:</strong> März 2026
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-100 dark:border-gray-800">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <img src="/logo.png" alt="SOMOS Logo" class="h-10 object-contain" />
+          </div>
+
+          <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6 leading-relaxed">
+            Die Plattform für regionalen Handel und gemeinschaftliche Wirkung – sichtbar, fair und transparent.
+          </p>
+
+          <div class="flex gap-4">
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">language</span>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">share</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Seiten</h5>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/how-it-works">So funktioniert's</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/labels">Siegel</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Rechtliches</h5>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/impressum">Impressum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/agb">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm">
+        © 2026 SOMOS. Alle Rechte vorbehalten.
+      </div>
+    </footer>
+  </body>
+</html>

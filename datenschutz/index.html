@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Datenschutzerklärung – SOMOS</title>
+    <meta
+      name="description"
+      content="Datenschutzerklärung von SOMOS – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO."
+    />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Datenschutzerklärung – SOMOS" />
+    <meta property="og:description" content="Datenschutzerklärung von SOMOS gemäß DSGVO." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              "background-alt": "#F2EFE4",
+              "soft-sage": "#D8E2D1",
+              "earthy-light": "#F5F0E6",
+              "earthy-blob": "#E2E8D8",
+              "background-dark": "#1A1C19",
+              accent: "#E9AC57",
+              mapGreen: "#6B8E4E",
+              mapBrown: "#A67C52",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "12px",
+              xl: "24px",
+              "2xl": "32px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style type="text/tailwindcss">
+      .organic-blob {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transition: all 1s ease-in-out;
+      }
+      .blob-v2 {
+        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+      }
+
+      #mobile-menu-checkbox { display: none; }
+
+      #mobile-backdrop {
+        background: rgba(0,0,0,.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease;
+      }
+
+      #mobile-menu {
+        background: #F9F4E8;
+        color: #111827;
+        border-left: 1px solid rgba(45,90,39,.12);
+        box-shadow: 0 30px 80px rgba(0,0,0,.25);
+        transform: translateX(100%);
+        transition: transform .32s cubic-bezier(.4,0,.2,1);
+      }
+
+      .dark #mobile-menu {
+        background: #1A1C19;
+        color: #F3F4F6;
+        border-left: 1px solid rgba(255,255,255,.10);
+      }
+
+      #mobile-menu-checkbox:checked ~ #mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #mobile-menu-checkbox:checked ~ #mobile-menu {
+        transform: translateX(0);
+      }
+
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 14px;
+        border-radius: 16px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.2;
+        color: #111827;
+        background: rgba(45,90,39,.06);
+        border: 1px solid rgba(45,90,39,.10);
+      }
+
+      .mobile-link:hover {
+        background: rgba(45,90,39,.10);
+      }
+
+      .dark .mobile-link {
+        color: #F3F4F6;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .dark .mobile-link:hover {
+        background: rgba(255,255,255,.10);
+      }
+    </style>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Datenschutzerklärung – SOMOS",
+        "description": "Datenschutzerklärung von SOMOS gemäß DSGVO."
+      }
+    </script>
+  </head>
+
+  <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-[100] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+      <input id="mobile-menu-checkbox" type="checkbox" />
+
+      <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center" aria-label="SOMOS Home">
+          <img src="/logo.png" alt="SOMOS" class="h-9 md:h-11 object-contain" />
+        </a>
+
+        <div class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/how-it-works">So funktioniert's</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/labels">Siegel</a>
+          <a class="text-sm font-medium hover:text-primary transition-colors" href="/faq">FAQ</a>
+
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity" href="/#app">
+            App laden
+          </a>
+        </div>
+
+        <label class="md:hidden cursor-pointer p-2 z-[130]" for="mobile-menu-checkbox" aria-label="Open menu">
+          <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+        </label>
+      </div>
+
+      <label
+        id="mobile-backdrop"
+        for="mobile-menu-checkbox"
+        class="fixed inset-0 md:hidden z-[110]"
+        aria-label="Close menu"
+      ></label>
+
+      <aside
+        id="mobile-menu"
+        class="fixed top-0 right-0 h-[100dvh] w-[86%] max-w-sm md:hidden z-[120] flex flex-col"
+        aria-label="Mobile navigation"
+      >
+        <div class="flex items-center justify-between px-6 h-16 border-b border-primary/10">
+          <a href="/" class="flex items-center" aria-label="SOMOS Home" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">
+            <img src="/logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+
+          <label class="cursor-pointer p-2 rounded-xl hover:bg-primary/10" for="mobile-menu-checkbox" aria-label="Close menu">
+            <span class="material-symbols-outlined text-primary text-3xl">close</span>
+          </label>
+        </div>
+
+        <nav class="px-6 py-6 flex flex-col gap-2 overflow-auto">
+          <a class="mobile-link" href="/how-it-works" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">So funktioniert's</a>
+          <a class="mobile-link" href="/consumers" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Verbraucher:innen</a>
+          <a class="mobile-link" href="/merchants" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Geschäfte</a>
+          <a class="mobile-link" href="/non-profits" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Für Non-Profits</a>
+          <a class="mobile-link" href="/labels" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">Siegel</a>
+          <a class="mobile-link" href="/faq" onclick="document.getElementById('mobile-menu-checkbox').checked=false;">FAQ</a>
+        </nav>
+
+        <div class="mt-auto p-6 border-t border-primary/10">
+          <a
+            class="block w-full text-center bg-primary text-white py-3 rounded-2xl font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
+            href="/#app"
+            onclick="document.getElementById('mobile-menu-checkbox').checked=false;"
+          >
+            App laden
+          </a>
+        </div>
+      </aside>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="relative pt-32 md:pt-40 pb-16 px-6">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-primary dark:text-white mb-6">
+          Datenschutzerklärung
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO
+        </p>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="px-6 pb-24">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 border border-primary/10 space-y-8">
+
+          <!-- Einleitung -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">1. Datenschutz auf einen Blick</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. SOMOS verzichtet bewusst auf personalisierte Werbeprofile und verarbeitet Daten nur, soweit dies für den Betrieb der Plattform erforderlich ist.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              Diese Datenschutzerklärung erläutert, welche Daten wir erheben, wie wir sie nutzen und welche Rechte Sie haben.
+            </p>
+          </section>
+
+          <!-- Verantwortlicher -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">2. Verantwortlicher</h2>
+            <div class="text-gray-600 dark:text-gray-400 space-y-1">
+              <p><strong>Kevin Molina</strong></p>
+              <p>Max-Volmer-Straße 15</p>
+              <p>14473 Potsdam</p>
+              <p>Deutschland</p>
+              <p class="mt-3">E-Mail: <a href="mailto:hallo@somos-regional.de" class="text-primary hover:underline">hallo@somos-regional.de</a></p>
+              <p>Telefon: <a href="tel:+4917624686820" class="text-primary hover:underline">+49 176 24686820</a></p>
+            </div>
+          </section>
+
+          <!-- Datenerfassung Website -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">3. Datenerfassung auf dieser Website</h2>
+
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-6 mb-2">Server-Log-Dateien</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+              <li>Browsertyp und Browserversion</li>
+              <li>Verwendetes Betriebssystem</li>
+              <li>Referrer URL</li>
+              <li>Hostname des zugreifenden Rechners</li>
+              <li>Uhrzeit der Serveranfrage</li>
+              <li>IP-Adresse</li>
+            </ul>
+            <p class="text-gray-600 dark:text-gray-400">
+              Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung und Sicherheit der Website).
+            </p>
+
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-6 mb-2">Cookies</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Diese Website verwendet derzeit keine Cookies für Tracking oder Werbezwecke. Sollte sich dies ändern, werden wir Sie entsprechend informieren und Ihre Einwilligung einholen.
+            </p>
+          </section>
+
+          <!-- Externe Dienste -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">4. Externe Dienste</h2>
+
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-6 mb-2">Google Fonts</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Web Fonts von Google. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in Ihren Browser-Cache. Dabei wird Ihre IP-Adresse an Google übermittelt.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              Weitere Informationen zu Google Web Fonts finden Sie unter <a href="https://developers.google.com/fonts/faq" class="text-primary hover:underline" target="_blank" rel="noopener">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" class="text-primary hover:underline" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.
+            </p>
+
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-6 mb-2">Tailwind CSS (CDN)</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Diese Website nutzt das CSS-Framework Tailwind, das über ein Content Delivery Network (CDN) geladen wird. Dabei kann Ihre IP-Adresse an den CDN-Anbieter übermittelt werden.
+            </p>
+          </section>
+
+          <!-- Kontaktaufnahme -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">5. Kontaktaufnahme</h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und für eventuelle Anschlussfragen gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+            </p>
+          </section>
+
+          <!-- SOMOS App -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">6. SOMOS App (zukünftig)</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Die SOMOS App befindet sich derzeit in der Entwicklung. Sobald die App veröffentlicht wird, werden wir diese Datenschutzerklärung entsprechend ergänzen. Grundsätzlich gilt:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
+              <li>SOMOS erstellt keine personalisierten Werbeprofile</li>
+              <li>Daten werden nur für den Betrieb der Plattform verwendet</li>
+              <li>Transaktionsdaten werden nur soweit erforderlich gespeichert</li>
+              <li>Nutzer:innen haben volle Kontrolle über ihre Daten</li>
+            </ul>
+          </section>
+
+          <!-- Ihre Rechte -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">7. Ihre Rechte</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Sie haben gemäß DSGVO folgende Rechte:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+              <li><strong>Auskunft (Art. 15 DSGVO):</strong> Sie können Auskunft über Ihre gespeicherten Daten verlangen.</li>
+              <li><strong>Berichtigung (Art. 16 DSGVO):</strong> Sie können die Berichtigung unrichtiger Daten verlangen.</li>
+              <li><strong>Löschung (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer Daten verlangen.</li>
+              <li><strong>Einschränkung (Art. 18 DSGVO):</strong> Sie können die Einschränkung der Verarbeitung verlangen.</li>
+              <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie können Ihre Daten in einem gängigen Format erhalten.</li>
+              <li><strong>Widerspruch (Art. 21 DSGVO):</strong> Sie können der Verarbeitung widersprechen.</li>
+            </ul>
+            <p class="text-gray-600 dark:text-gray-400 mt-4">
+              Bei Beschwerden können Sie sich an die zuständige Aufsichtsbehörde wenden: Die Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht Brandenburg.
+            </p>
+          </section>
+
+          <!-- Änderungen -->
+          <section>
+            <h2 class="font-display text-2xl font-bold text-primary dark:text-white mb-4">8. Änderungen</h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version finden Sie stets auf dieser Seite.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mt-4">
+              <strong>Stand:</strong> März 2026
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-gray-100 dark:border-gray-800">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <img src="/logo.png" alt="SOMOS Logo" class="h-10 object-contain" />
+          </div>
+
+          <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6 leading-relaxed">
+            Die Plattform für regionalen Handel und gemeinschaftliche Wirkung – sichtbar, fair und transparent.
+          </p>
+
+          <div class="flex gap-4">
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">language</span>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+              <span class="material-symbols-outlined">share</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Seiten</h5>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/how-it-works">So funktioniert's</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/consumers">Für Verbraucher:innen</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/merchants">Für Geschäfte</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/non-profits">Für Non-Profits</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/labels">Siegel</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-5 text-gray-900 dark:text-white">Rechtliches</h5>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="/impressum">Impressum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/datenschutz">Datenschutz</a></li>
+            <li><a class="hover:text-primary transition-colors" href="/agb">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-gray-100 dark:border-gray-800 text-center text-gray-400 text-sm">
+        © 2026 SOMOS. Alle Rechte vorbehalten.
+      </div>
+    </footer>
+  </body>
+</html>
