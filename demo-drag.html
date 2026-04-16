@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOMOS – Demo Zahlung</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2D5A27",
+            "background-light": "#F9F4E8",
+            "soft-sage": "#D8E2D1",
+            "earthy-blob": "#E2E8D8",
+            accent: "#E9AC57",
+            mapGreen: "#6B8E4E",
+          },
+          fontFamily: {
+            display: ["Crimson Pro", "serif"],
+            body: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .blob-bg { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+
+    /* ── PHONE (Kunde) ── */
+    .phone {
+      width: 210px;
+      height: 400px;
+      background: #fff;
+      border-radius: 38px;
+      border: 2px solid #D8E2D1;
+      box-shadow: 0 0 0 5px #F9F4E8, 0 24px 60px rgba(45,90,39,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      width: 56px;
+      height: 5px;
+      background: #D8E2D1;
+      border-radius: 99px;
+    }
+
+    .phone.drag-over {
+      border-color: #2D5A27;
+      box-shadow: 0 0 0 5px #F9F4E8, 0 0 36px rgba(45,90,39,0.28), 0 24px 60px rgba(45,90,39,0.15);
+    }
+
+    /* somos app icon */
+    .phone-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2D5A27, #6B8E4E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 24px;
+      box-shadow: 0 6px 18px rgba(45,90,39,0.22);
+      flex-shrink: 0;
+    }
+
+    .phone-eyebrow {
+      color: #9ca3af;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .phone-amount {
+      color: #111827;
+      font-family: 'Crimson Pro', serif;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .phone-merchant {
+      color: #6b7280;
+      font-size: 11px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .phone-points {
+      margin-top: 14px;
+      padding: 7px 14px;
+      background: rgba(45,90,39,0.07);
+      border-radius: 99px;
+      color: #2D5A27;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 38px;
+      border: 2px solid #2D5A27;
+      opacity: 0;
+      animation: pulse 2.2s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1);    opacity: 0.35; }
+      100% { transform: scale(1.05); opacity: 0; }
+    }
+
+    .waiting-dots span {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #2D5A27;
+      margin: 0 2px;
+      animation: dot-bounce 1.4s infinite ease-in-out;
+    }
+    .waiting-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .waiting-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: scale(0.7); opacity: 0.3; }
+      40%            { transform: scale(1);   opacity: 1; }
+    }
+
+    /* ── MERCHANT CARD (Händler) – credit-card format ── */
+    .merchant-card {
+      /* standard credit-card ratio 85.6 × 53.98mm → ~286 × 180px */
+      width: 286px;
+      height: 180px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1e3d1a 0%, #2D5A27 45%, #4a7c3f 75%, #E9AC57 150%);
+      padding: 20px 22px 18px;
+      cursor: grab;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 52px rgba(45,90,39,0.38), 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .merchant-card:active { cursor: grabbing; }
+
+    /* subtle pattern overlay */
+    .merchant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 110% 120%, rgba(233,172,87,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at -10% -20%, rgba(255,255,255,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* EMV chip */
+    .card-chip {
+      width: 34px;
+      height: 26px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #d4a843 0%, #f0cc6e 40%, #b8891f 100%);
+      position: relative;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 1px 3px rgba(0,0,0,0.3);
+    }
+    /* chip lines */
+    .card-chip::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0; right: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.2);
+      transform: translateY(-50%);
+    }
+    .card-chip::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(0,0,0,0.2);
+      transform: translateX(-50%);
+    }
+
+    /* top row: chip + somos wordmark */
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-somos {
+      font-family: 'Crimson Pro', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.14em;
+    }
+
+    /* middle: seals row */
+    .card-seals {
+      display: flex;
+      gap: 5px;
+    }
+
+    .card-seal {
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    /* bottom row: shop name + amount */
+    .card-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .card-bottom-left {}
+
+    .card-shop-name {
+      font-family: 'Crimson Pro', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+    }
+
+    .card-address-line {
+      color: rgba(255,255,255,0.55);
+      font-size: 10px;
+      font-weight: 400;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .card-amount-block { text-align: right; }
+
+    .card-amount {
+      font-family: 'Crimson Pro', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .card-drag-hint {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      color: rgba(255,255,255,0.45);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-top: 3px;
+      animation: nudge 2s ease-in-out infinite;
+    }
+
+    @keyframes nudge {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(-3px); }
+    }
+
+    .merchant-card.dragging { opacity: 0.15; }
+
+    #drag-clone {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: rotate(-4deg) scale(1.03);
+      box-shadow: 0 24px 60px rgba(45,90,39,0.25);
+    }
+
+    /* ── SUCCESS overlay (inside phone) ── */
+    .success-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 36px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      padding: 20px;
+    }
+
+    .success-overlay.show { opacity: 1; pointer-events: all; }
+
+    .check-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2D5A27, #6B8E4E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 26px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 20px rgba(45,90,39,0.28);
+      animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .success-eyebrow {
+      color: #2D5A27;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .success-amount {
+      color: #111827;
+      font-family: 'Crimson Pro', serif;
+      font-size: 34px;
+      font-weight: 700;
+      margin-top: 2px;
+      line-height: 1;
+    }
+
+    .success-points {
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: rgba(45,90,39,0.08);
+      border-radius: 99px;
+      color: #2D5A27;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .success-merchant {
+      color: #9ca3af;
+      font-size: 10.5px;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .reset-btn {
+      margin-top: 14px;
+      padding: 6px 18px;
+      background: #F9F4E8;
+      color: #6b7280;
+      border: 1px solid #D8E2D1;
+      border-radius: 99px;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .reset-btn:hover { background: #D8E2D1; color: #2D5A27; }
+
+    /* ── section labels ── */
+    .section-label {
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9ca3af;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .arrow-hint {
+      position: absolute;
+      top: 50%;
+      left: -42px;
+      transform: translateY(-50%);
+      color: #D8E2D1;
+      font-size: 18px;
+      animation: arrow-pulse 1.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes arrow-pulse {
+      0%, 100% { transform: translateY(-50%) translateX(0);    opacity: 0.5; }
+      50%       { transform: translateY(-50%) translateX(-5px); opacity: 1; }
+    }
+
+    .somos-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: rgba(45,90,39,0.08);
+      color: #2D5A27;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light min-h-screen flex flex-col items-center justify-center gap-6 relative overflow-hidden px-6 py-10">
+
+  <!-- blobs -->
+  <div class="absolute top-[-140px] left-[-180px] w-[520px] h-[520px] bg-soft-sage/40 blob-bg blur-3xl -z-10"></div>
+  <div class="absolute bottom-[-120px] right-[-160px] w-[440px] h-[440px] bg-earthy-blob/50 blob-bg blur-3xl -z-10"></div>
+
+  <!-- heading -->
+  <div class="text-center">
+    <div class="somos-badge">
+      <svg width="8" height="8" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+      SOMOS · Demo
+    </div>
+    <h1 class="font-display text-3xl md:text-4xl font-bold text-primary leading-tight">
+      Einkauf bestätigen per Drag &amp; Drop
+    </h1>
+    <p class="text-gray-500 text-sm mt-2">
+      Der Händler zieht seine Karte auf das Handy des Kunden, um den Einkauf bei SOMOS zu registrieren.
+    </p>
+  </div>
+
+  <!-- stage -->
+  <div class="flex flex-row items-center gap-14 md:gap-20 mt-2">
+
+    <!-- PHONE – Kunde -->
+    <div style="position:relative;">
+      <div class="phone" id="phone">
+        <div class="pulse-ring"></div>
+
+        <img src="./logo.png" alt="SOMOS" style="height:32px; margin-bottom:16px; object-fit:contain;" />
+
+        <div class="phone-eyebrow">Einkauf bestätigen</div>
+        <div class="phone-amount">€ 24,50</div>
+
+        <div class="phone-merchant">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Bäckerei Sonnenblume
+        </div>
+
+        <div class="phone-points">+ 36 Punkte sichern</div>
+
+        <div style="margin-top:18px;" class="waiting-dots">
+          <span></span><span></span><span></span>
+        </div>
+
+        <!-- success -->
+        <div class="success-overlay" id="success-overlay">
+          <div class="check-circle">✓</div>
+          <div class="success-eyebrow">Einkauf registriert</div>
+          <div class="success-amount">€ 24,50</div>
+          <div class="success-points">🌿 + 36 Punkte gesammelt</div>
+          <div class="success-merchant">Bäckerei Sonnenblume</div>
+          <button class="reset-btn" id="reset-btn">Demo zurücksetzen</button>
+        </div>
+      </div>
+      <div class="section-label">Handy des Kunden</div>
+    </div>
+
+    <!-- MERCHANT CARD – Händler -->
+    <div style="position:relative;" id="card-wrapper">
+      <div class="merchant-card" id="card">
+
+        <!-- top: SOMOS CARD label + logo -->
+        <div class="card-top">
+          <div style="color:rgba(255,255,255,0.85); font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;">SOMOS CARD</div>
+          <img src="./logo.png" alt="SOMOS" style="height:20px; opacity:0.9; filter:brightness(0) invert(1);" />
+        </div>
+
+        <!-- middle: seals -->
+        <div class="card-seals">
+          <span class="card-seal">Regional</span>
+          <span class="card-seal">Bio</span>
+          <span class="card-seal">Handwerk</span>
+        </div>
+
+        <!-- bottom: shop name + drag hint -->
+        <div class="card-bottom">
+          <div class="card-bottom-left">
+            <div class="card-shop-name">🌻 Bäckerei Sonnenblume</div>
+            <div class="card-address-line">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Hauptstraße 12, 1010 Wien
+            </div>
+          </div>
+          <div class="card-drag-hint">
+            ← ziehen
+          </div>
+        </div>
+
+      </div>
+
+      <div class="arrow-hint" id="arrow-hint">←</div>
+      <div class="section-label">Karte des Händlers</div>
+    </div>
+
+  </div>
+
+  <p class="text-xs text-gray-400 mt-6 tracking-wide">Regional · Transparent · Gemeinschaftlich</p>
+
+</body>
+
+<script>
+  const card      = document.getElementById('card');
+  const phone     = document.getElementById('phone');
+  const overlay   = document.getElementById('success-overlay');
+  const resetBtn  = document.getElementById('reset-btn');
+  const arrowHint = document.getElementById('arrow-hint');
+
+  let clone = null;
+  let offsetX, offsetY;
+  let dragging = false;
+
+  function getCenter(el) {
+    const r = el.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  }
+
+  function dist(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+
+  function startDrag(x, y) {
+    if (overlay.classList.contains('show')) return;
+    dragging = true;
+
+    const rect = card.getBoundingClientRect();
+    offsetX = x - rect.left;
+    offsetY = y - rect.top;
+
+    clone = card.cloneNode(true);
+    clone.id = 'drag-clone';
+    clone.style.width        = rect.width  + 'px';
+    clone.style.height       = rect.height + 'px';
+    clone.style.borderRadius = '16px';
+    document.body.appendChild(clone);
+
+    card.classList.add('dragging');
+    arrowHint.style.display = 'none';
+    moveDrag(x, y);
+  }
+
+  function moveDrag(x, y) {
+    if (!clone) return;
+    clone.style.left = (x - offsetX) + 'px';
+    clone.style.top  = (y - offsetY) + 'px';
+
+    const cc = {
+      x: x - offsetX + clone.offsetWidth  / 2,
+      y: y - offsetY + clone.offsetHeight / 2,
+    };
+    phone.classList.toggle('drag-over', dist(cc, getCenter(phone)) < 140);
+  }
+
+  function endDrag(x, y) {
+    if (!dragging || !clone) return;
+    dragging = false;
+
+    const cc = {
+      x: x - offsetX + clone.offsetWidth  / 2,
+      y: y - offsetY + clone.offsetHeight / 2,
+    };
+
+    if (dist(cc, getCenter(phone)) < 140) {
+      clone.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+      clone.style.transform  = 'rotate(0deg) scale(0.35)';
+      clone.style.opacity    = '0';
+      setTimeout(() => { clone.remove(); clone = null; triggerSuccess(); }, 280);
+    } else {
+      clone.style.transition =
+        'left 0.38s cubic-bezier(0.25,1,0.5,1), top 0.38s cubic-bezier(0.25,1,0.5,1), transform 0.38s, opacity 0.38s';
+      const rect = card.getBoundingClientRect();
+      clone.style.left      = rect.left + 'px';
+      clone.style.top       = rect.top  + 'px';
+      clone.style.transform = 'rotate(0deg) scale(1)';
+      clone.style.opacity   = '1';
+      setTimeout(() => {
+        clone.remove(); clone = null;
+        card.classList.remove('dragging');
+        arrowHint.style.display = '';
+      }, 380);
+    }
+
+    phone.classList.remove('drag-over');
+  }
+
+  function triggerSuccess() {
+    card.classList.add('dragging');
+    overlay.classList.add('show');
+    phone.querySelector('.pulse-ring').style.animationPlayState = 'paused';
+    phone.querySelector('.waiting-dots').style.display = 'none';
+  }
+
+  resetBtn.addEventListener('click', () => {
+    overlay.classList.remove('show');
+    card.classList.remove('dragging');
+    arrowHint.style.display = '';
+    phone.querySelector('.pulse-ring').style.animationPlayState = 'running';
+    phone.querySelector('.waiting-dots').style.display = '';
+  });
+
+  // Mouse
+  card.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+  document.addEventListener('mousemove', e => { if (dragging) moveDrag(e.clientX, e.clientY); });
+  document.addEventListener('mouseup',   e => { if (dragging) endDrag(e.clientX, e.clientY); });
+
+  // Touch
+  card.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+  }, { passive: false });
+
+  document.addEventListener('touchmove', e => {
+    if (dragging) { e.preventDefault(); const t = e.touches[0]; moveDrag(t.clientX, t.clientY); }
+  }, { passive: false });
+
+  document.addEventListener('touchend', e => {
+    if (dragging) { const t = e.changedTouches[0]; endDrag(t.clientX, t.clientY); }
+  });
+</script>
+</html>

@@ -119,55 +119,30 @@
     .phone-row strong { font-size: 13px; color: var(--text); }
     .phone-pts { color: var(--green) !important; font-weight: 600 !important; }
 
-    /* CYCLE SECTION */
-    .cycle-section { padding: 80px 40px 100px; background: var(--green); color: white; overflow: hidden; position: relative; }
-    .cycle-section::before { content: ''; position: absolute; top: -80px; right: -80px; width: 500px; height: 500px; border-radius: 50%; background: rgba(255,255,255,.04); }
-    .cycle-section::after  { content: ''; position: absolute; bottom: -120px; left: -100px; width: 600px; height: 600px; border-radius: 50%; background: rgba(255,255,255,.03); }
-    .cycle-section .section-wrap { position: relative; z-index: 2; }
-    .cycle-head { text-align: center; margin-bottom: 64px; }
-    .cycle-head h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -0.03em; color: white; margin-bottom: 16px; }
-    .cycle-head p { font-size: 1.05rem; color: rgba(255,255,255,.65); max-width: 520px; margin: 0 auto; }
-    .cycle-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; }
-    .cycle-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 36px 28px; display: flex; flex-direction: column; gap: 16px; transition: background .25s; }
-    .cycle-item:hover { background: rgba(255,255,255,.10); }
-    .cycle-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: rgba(255,255,255,.2); line-height: 1; }
-    .cycle-icon { width: 44px; height: 44px; background: rgba(255,255,255,.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    .cycle-item h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.2rem; color: white; line-height: 1.2; }
-    .cycle-item p { font-size: 0.875rem; line-height: 1.65; color: rgba(255,255,255,.6); }
-
     /* FLOW SECTION */
-    .flow-section { padding: 100px 40px 40px; }
-    .flow-diagram { background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--r-lg); padding: 56px 48px; }
+    .flow-section { padding: 100px 40px 80px; background: var(--green); color: white; overflow: hidden; position: relative; }
+    .flow-section .section-head h2 { color: white; }
+    .flow-section .section-head p { color: rgba(255,255,255,.65); }
+    .flow-diagram { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r-lg); padding: 56px 48px; }
     .flow-actors { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; align-items: center; }
     .flow-actor { border-radius: 16px; padding: 24px 16px; text-align: center; border: 1.5px solid transparent; }
-    .flow-actor--member { background: var(--green-pale); border-color: var(--green-light); }
-    .flow-actor--shop   { background: rgba(212,148,58,.1); border-color: rgba(212,148,58,.3); }
-    .flow-actor--somos  { background: var(--green); }
-    .flow-actor--npo    { background: rgba(61,122,53,.08); border-color: var(--green-light); }
-    .flow-actor-icon { font-size: 22px; margin-bottom: 8px; }
-    .flow-actor-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; }
-    .flow-actor--somos .flow-actor-name { color: white; }
-    .flow-actor--member .flow-actor-name, .flow-actor--npo .flow-actor-name { color: var(--green); }
-    .flow-actor--shop .flow-actor-name { color: #8a5c10; }
-    .flow-actor-sub { font-size: 0.73rem; margin-top: 4px; }
-    .flow-actor--somos .flow-actor-sub { color: rgba(255,255,255,.6); }
-    .flow-actor--member .flow-actor-sub, .flow-actor--npo .flow-actor-sub { color: var(--text-muted); }
-    .flow-actor--shop .flow-actor-sub { color: #a06a18; }
-    .flow-arr { display: flex; align-items: center; justify-content: center; color: var(--sand); font-size: 18px; }
+    .flow-actor--member { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); }
+    .flow-actor--shop   { background: rgba(212,148,58,.2); border-color: rgba(212,148,58,.4); }
+    .flow-actor--somos  { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.35); }
+    .flow-actor--npo    { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); }
+    .flow-actor-icon { font-size: 22px; margin-bottom: 8px; color: white; }
+    .flow-actor-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; color: white; }
+    .flow-actor-sub { font-size: 0.73rem; margin-top: 4px; color: rgba(255,255,255,.6); }
+    .flow-arr { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 18px; }
     .flow-cols { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; gap: 0; align-items: start; margin-top: 8px; }
     .flow-col { padding: 0 6px; }
     .flow-box { border-radius: 12px; padding: 14px 16px; }
-    .flow-box--teal   { background: var(--green-pale); border: 1px solid var(--green-light); }
-    .flow-box--gold   { background: rgba(212,148,58,.08); border: 1px solid rgba(212,148,58,.25); }
-    .flow-box--green  { background: var(--green); }
-    .flow-box--sage   { background: rgba(61,122,53,.08); border: 1px solid var(--green-light); }
-    .flow-box-label   { font-size: 0.73rem; font-weight: 500; margin-bottom: 6px; }
-    .flow-box--teal  .flow-box-label  { color: var(--green); }
-    .flow-box--gold  .flow-box-label  { color: #8a5c10; }
-    .flow-box--green .flow-box-label  { color: rgba(255,255,255,.6); }
-    .flow-box--sage  .flow-box-label  { color: var(--green); }
-    .flow-box-text { font-size: 0.8rem; line-height: 1.55; }
-    .flow-box--teal  .flow-box-text, .flow-box--sage .flow-box-text, .flow-box--gold .flow-box-text { color: var(--text-mid); }
+    .flow-box--teal   { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); }
+    .flow-box--gold   { background: rgba(212,148,58,.2); border: 1px solid rgba(212,148,58,.35); }
+    .flow-box--green  { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2); }
+    .flow-box--sage   { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); }
+    .flow-box-label   { font-size: 0.73rem; font-weight: 500; margin-bottom: 6px; color: rgba(255,255,255,.6); }
+    .flow-box-text { font-size: 0.8rem; line-height: 1.55; color: rgba(255,255,255,.85); }
     .flow-dist-row { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,.1); border-radius: 8px; padding: 7px 10px; margin-top: 5px; }
     .flow-dist-row:first-of-type { margin-top: 8px; }
     .flow-dist-label { font-size: 0.75rem; color: rgba(255,255,255,.8); }
@@ -242,8 +217,7 @@
       .step-inner { grid-template-columns: 1fr; }
       .step-inner.reverse { direction: ltr; }
       .step-visual { min-height: 200px; }
-      .cycle-grid { grid-template-columns: 1fr 1fr; }
-      .flow-section { padding: 60px 20px 20px; }
+      .flow-section { padding: 60px 20px 40px; }
       .flow-diagram { padding: 28px 16px; overflow-x: auto; }
       .flow-actors, .flow-cols { min-width: 560px; }
       .merchant-callout { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
@@ -251,7 +225,7 @@
       .why-grid { grid-template-columns: 1fr; }
       .cta-section { margin: 0 20px 60px; padding: 60px 28px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .steps, .cycle-section, .points-section, .why-section { padding-left: 0; padding-right: 0; }
+      .steps, .flow-section, .points-section, .why-section { padding-left: 0; padding-right: 0; }
     }
 
     /* ANIMATIONS */
@@ -353,9 +327,9 @@
             <h2 class="step-h">Regionale Akteur:innen entdecken</h2>
             <p class="step-p">Öffne die SOMOS-Karte und finde lokale Geschäfte in deiner Nähe. Filter nach Kategorien wie Café, Laden oder Restaurant — und nach Siegeln wie regional, bio oder fair.</p>
             <div class="step-tags">
-              <span class="tag tag--green">🗺 Interaktive Karte</span>
-              <span class="tag tag--green">Filter & Siegel</span>
-              <span class="tag tag--green">Öffnungszeiten</span>
+              <span class="tag tag--green" style="display:inline-flex;align-items:center;gap:5px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Interaktive Karte</span>
+              <span class="tag tag--green">🏷️ Filter & Siegel</span>
+              <span class="tag tag--green">🕐 Öffnungszeiten</span>
             </div>
           </div>
           <div class="step-visual">
@@ -363,9 +337,9 @@
               <div class="map-dots"></div>
               <div class="map-blot map-blot-1"></div>
               <div class="map-blot map-blot-2"></div>
-              <div class="map-pin" style="top:35%;left:42%;"><div class="map-pin-dot map-pin-dot--gold">🛒</div><div class="map-pin-label">BioMarkt Mitte</div></div>
-              <div class="map-pin" style="top:58%;left:24%;"><div class="map-pin-dot map-pin-dot--green">🫶</div><div class="map-pin-label">Klimahilfe e.V.</div></div>
-              <div class="map-pin" style="top:28%;left:65%;"><div class="map-pin-dot map-pin-dot--gold">☕</div><div class="map-pin-label">Café Heimat</div></div>
+              <div class="map-pin" style="top:35%;left:42%;"><div class="map-pin-dot map-pin-dot--gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-9 13-9 13S3 16 3 11a9 9 0 0 1 9-9z"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"/></svg></div><div class="map-pin-label">Bäckerei Sonnenblume</div></div>
+              <div class="map-pin" style="top:58%;left:24%;"><div class="map-pin-dot map-pin-dot--green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 12 7 10 5 6c3 0 5.5 1 7 3 1.5-2 4-3 7-3-2 4-7 6-7 6z"/></svg></div><div class="map-pin-label">Klimahilfe e.V.</div></div>
+              <div class="map-pin" style="top:28%;left:65%;"><div class="map-pin-dot map-pin-dot--gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="map-pin-label">Café Heimat</div></div>
             </div>
           </div>
         </div>
@@ -387,13 +361,13 @@
               <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:20px 24px;">
                 <p style="color:rgba(255,255,255,.6);font-size:11px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;">Betrag eingeben</p>
                 <div style="display:flex;align-items:baseline;gap:6px;">
-                  <span style="font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:white;line-height:1;">38</span>
+                  <span style="font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:white;line-height:1;">24,50</span>
                   <span style="color:rgba(255,255,255,.6);font-size:1.2rem;">€</span>
                 </div>
               </div>
               <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
-                <div><p style="color:rgba(255,255,255,.5);font-size:10px;">Geschäft</p><p style="color:white;font-size:13px;font-weight:500;">BioMarkt Mitte</p></div>
-                <div style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🛒</div>
+                <div><p style="color:rgba(255,255,255,.5);font-size:10px;">Geschäft</p><p style="color:white;font-size:13px;font-weight:500;">Bäckerei Sonnenblume</p></div>
+                <div style="width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
               </div>
               <button style="background:white;color:var(--green);border:none;border-radius:14px;padding:16px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Transaktion starten →</button>
             </div>
@@ -406,27 +380,84 @@
           <div class="step-content">
             <div class="step-num">Schritt 03</div>
             <h2 class="step-h">Transaktion bestätigen</h2>
-            <p class="step-p">Das Geschäft bestätigt in der Merchant-App oder mit der SOMOS-Karte. Du siehst sofort deine neuen Punkte. Das Geschäft verbucht die 3% als normale Betriebsausgabe.</p>
+            <p class="step-p">Das Geschäft bestätigt mit der SOMOS-Karte — einfach auf das Handy des Kunden ziehen. Du siehst sofort deine neuen Punkte. Das Geschäft verbucht die 3% als normale Betriebsausgabe.</p>
             <div class="step-tags">
               <span class="tag tag--sand">App oder Karte</span>
               <span class="tag tag--sand">Sofort-Bestätigung</span>
               <span class="tag tag--sand">Rechnung von SOMOS</span>
             </div>
           </div>
-          <div class="step-visual">
-            <div class="phone-mock float" style="animation-delay:.4s;">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="phone-success">
-                  <div class="check">✓</div>
-                  <strong>Bestätigt!</strong>
-                  <p>BioMarkt Mitte</p>
+          <div class="step-visual" style="overflow:visible;">
+            <!-- ── interactive drag demo ── -->
+            <div id="demo-wrap" style="transform:scale(0.78);transform-origin:center;display:flex;align-items:center;gap:44px;position:relative;flex-shrink:0;">
+
+              <!-- PHONE -->
+              <div style="position:relative;">
+                <div id="d-phone" style="width:200px;height:380px;background:#fff;border-radius:36px;border:2px solid #D8E2D1;box-shadow:0 0 0 4px #F9F4E8,0 20px 50px rgba(45,90,39,0.12);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s;">
+                  <!-- notch -->
+                  <div style="position:absolute;top:13px;width:52px;height:5px;background:#D8E2D1;border-radius:99px;"></div>
+                  <!-- pulse ring -->
+                  <div id="d-pulse" style="position:absolute;width:100%;height:100%;border-radius:36px;border:2px solid #2D5A27;opacity:0;animation:d-pulse 2.2s ease-out infinite;"></div>
+
+                  <img src="../logo.png" alt="SOMOS" style="height:28px;margin-bottom:14px;object-fit:contain;" />
+                  <div style="color:#9ca3af;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Einkauf bestätigen</div>
+                  <div style="color:#111827;font-family:'Fraunces',serif;font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1;">€ 24,50</div>
+                  <div style="color:#6b7280;font-size:10.5px;margin-top:5px;display:flex;align-items:center;gap:4px;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Bäckerei Sonnenblume
+                  </div>
+                  <div style="margin-top:12px;padding:6px 13px;background:rgba(45,90,39,0.07);border-radius:99px;color:#2D5A27;font-size:10px;font-weight:600;">+ 36 Punkte sichern</div>
+                  <div id="d-dots" style="margin-top:16px;display:flex;gap:4px;">
+                    <span style="width:5px;height:5px;border-radius:50%;background:#2D5A27;animation:d-dot 1.4s infinite ease-in-out;"></span>
+                    <span style="width:5px;height:5px;border-radius:50%;background:#2D5A27;animation:d-dot 1.4s .2s infinite ease-in-out;"></span>
+                    <span style="width:5px;height:5px;border-radius:50%;background:#2D5A27;animation:d-dot 1.4s .4s infinite ease-in-out;"></span>
+                  </div>
+                  <!-- success overlay -->
+                  <div id="d-success" style="position:absolute;inset:0;border-radius:34px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px;">
+                    <div id="d-check" style="width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#2D5A27,#6B8E4E);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;margin-bottom:12px;box-shadow:0 6px 18px rgba(45,90,39,0.28);">✓</div>
+                    <div style="color:#2D5A27;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">Einkauf registriert</div>
+                    <div style="color:#111827;font-family:'Fraunces',serif;font-size:30px;font-weight:700;margin-top:2px;line-height:1;">€ 24,50</div>
+                    <div style="margin-top:9px;padding:5px 12px;background:rgba(45,90,39,0.08);border-radius:99px;color:#2D5A27;font-size:10px;font-weight:600;">🌿 + 36 Punkte gesammelt</div>
+                    <div style="color:#9ca3af;font-size:10px;margin-top:6px;">Bäckerei Sonnenblume</div>
+                    <button id="d-reset" style="margin-top:12px;padding:5px 16px;background:#F9F4E8;color:#6b7280;border:1px solid #D8E2D1;border-radius:99px;font-size:10px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Zurücksetzen</button>
+                  </div>
                 </div>
-                <div class="phone-row"><span>Betrag</span><strong>38,00 €</strong></div>
-                <div class="phone-row"><span>Punkte erhalten</span><strong class="phone-pts">+ 0,57 P</strong></div>
-                <div style="background:var(--green-pale);border-radius:10px;padding:10px 12px;font-size:10px;color:var(--green-mid);text-align:center;line-height:1.5;">Klimahilfe e.V. wird unterstützt ✓</div>
+                <div style="position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);color:#9ca3af;font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;">Handy des Kunden</div>
               </div>
+
+              <!-- CARD -->
+              <div style="position:relative;">
+                <div id="d-card" style="width:272px;height:171px;border-radius:15px;background:linear-gradient(135deg,#1e3d1a 0%,#2D5A27 45%,#4a7c3f 75%,#E9AC57 150%);padding:19px 21px 17px;cursor:grab;user-select:none;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(45,90,39,0.38),0 3px 10px rgba(0,0,0,0.14);display:flex;flex-direction:column;justify-content:space-between;">
+                  <!-- sheen -->
+                  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 110% 120%,rgba(233,172,87,0.25) 0%,transparent 55%),radial-gradient(ellipse at -10% -20%,rgba(255,255,255,0.07) 0%,transparent 50%);pointer-events:none;"></div>
+                  <!-- top row -->
+                  <div style="display:flex;align-items:center;justify-content:space-between;position:relative;">
+                    <div style="color:rgba(255,255,255,0.85);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">SOMOS CARD</div>
+                    <img src="../logo.png" alt="SOMOS" style="height:19px;opacity:.9;filter:brightness(0) invert(1);" />
+                  </div>
+                  <!-- seals -->
+                  <div style="display:flex;gap:5px;position:relative;">
+                    <span style="padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);">Regional</span>
+                    <span style="padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);">Bio</span>
+                    <span style="padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);">Handwerk</span>
+                  </div>
+                  <!-- bottom row -->
+                  <div style="display:flex;align-items:flex-end;justify-content:space-between;position:relative;">
+                    <div>
+                      <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.15;">🌻 Bäckerei Sonnenblume</div>
+                      <div style="color:rgba(255,255,255,.5);font-size:9.5px;margin-top:2px;display:flex;align-items:center;gap:3px;">
+                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Hauptstraße 12, 1010 Wien
+                      </div>
+                    </div>
+                    <div id="d-arrow" style="color:rgba(255,255,255,.4);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;animation:d-nudge 2s ease-in-out infinite;">← ziehen</div>
+                  </div>
+                </div>
+                <div style="position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);color:#9ca3af;font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;">Karte des Händlers</div>
+              </div>
+
             </div>
+            <!-- end demo-wrap -->
           </div>
         </div>
       </div>
@@ -438,63 +469,34 @@
             <h2 class="step-h">Punkte einlösen & Wirkung entfalten</h2>
             <p class="step-p">Deine Punkte sind echtes Geld. Nutze sie beim nächsten Einkauf als Zahlungsmittel — bei jedem SOMOS-Geschäft im ganzen Netzwerk.</p>
             <div class="step-tags">
-              <span class="tag tag--green">1 Punkt = 1 €</span>
+              <span class="tag tag--green">1 Punkt = 0,01 €</span>
               <span class="tag tag--green">Im ganzen Netzwerk</span>
               <span class="tag tag--green">Kein Verfall</span>
             </div>
           </div>
           <div class="step-visual">
-            <div style="display:flex;flex-direction:column;gap:10px;max-width:280px;width:100%;">
-              <div style="background:var(--green);border-radius:20px;padding:28px;color:white;text-align:center;">
-                <p style="font-size:11px;opacity:.6;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Punkte-Guthaben</p>
-                <p style="font-family:'Fraunces',serif;font-size:3rem;font-weight:700;line-height:1;">12,40</p>
-                <p style="font-size:12px;opacity:.7;">Punkte ≈ 12,40 €</p>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                <div style="background:var(--green-pale);border:1px solid var(--green-light);border-radius:14px;padding:16px;text-align:center;"><p style="font-size:18px;margin-bottom:4px;">🛍</p><p style="font-size:11px;color:var(--green);font-weight:500;">Einlösen</p></div>
-                <div style="background:white;border:1px solid var(--cream-dark);border-radius:14px;padding:16px;text-align:center;"><p style="font-size:18px;margin-bottom:4px;">📊</p><p style="font-size:11px;color:var(--text-muted);font-weight:500;">Verlauf</p></div>
+            <div style="display:flex;flex-direction:column;gap:10px;max-width:280px;width:100%;align-items:center;">
+              <div style="background:var(--cream);border-radius:20px;overflow:hidden;width:100%;color:var(--text);">
+                <!-- title row -->
+                <div style="padding:14px 20px 10px;text-align:center;border-bottom:1px solid var(--cream-dark);">
+                  <p style="font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin:0;">Punkte-Guthaben</p>
+                </div>
+                <!-- two columns -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;">
+                  <div style="display:flex;align-items:center;justify-content:center;padding:16px;">
+                    <img src="../geld-herz.svg" alt="Wirkung & Punkte" style="width:90px;height:90px;object-fit:contain;" />
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center;">
+                    <p style="font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;line-height:1;margin:0;color:var(--green);">1.320</p>
+                    <p style="font-size:11px;opacity:.5;margin-top:6px;">Punkte ≈ 13,20 €</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- CYCLE (dark green) -->
-<section class="cycle-section">
-  <div class="section-wrap">
-    <div class="cycle-head fade-in">
-      <h2>Der Mechanismus dahinter</h2>
-      <p>Das Geschäft zahlt SOMOS — SOMOS verteilt an alle Beteiligten. Einfach, transparent, regional.</p>
-    </div>
-    <div class="cycle-grid">
-      <div class="cycle-item fade-in">
-        <div class="cycle-num">01</div>
-        <div class="cycle-icon">🛒</div>
-        <h3>Kauf im SOMOS-Geschäft</h3>
-        <p>Du kaufst wie gewohnt. Das Geschäft ist vertraglich bei SOMOS registriert und bestätigt die Transaktion.</p>
-      </div>
-      <div class="cycle-item fade-in" style="transition-delay:.1s">
-        <div class="cycle-num">02</div>
-        <div class="cycle-icon">🧾</div>
-        <h3>Geschäft zahlt 3% an SOMOS</h3>
-        <p>Pro Transaktion fließen 3% als Servicegebühr an SOMOS — als Betriebsausgabe absetzbar. SOMOS stellt eine reguläre Rechnung aus.</p>
-      </div>
-      <div class="cycle-item fade-in" style="transition-delay:.2s">
-        <div class="cycle-num">03</div>
-        <div class="cycle-icon">⭐</div>
-        <h3>SOMOS verteilt die 3%</h3>
-        <p>50% werden zu Punkten für dich, 10% gehen an die Non-Profit deiner Wahl, 40% finanzieren die Plattform.</p>
-      </div>
-      <div class="cycle-item fade-in" style="transition-delay:.3s">
-        <div class="cycle-num">04</div>
-        <div class="cycle-icon">🌱</div>
-        <h3>Non-Profit & Mitglied profitieren</h3>
-        <p>Lokale Projekte erhalten regelmäßige Einnahmen. Du sammelst Punkte, die du beim nächsten Einkauf einsetzt.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -509,25 +511,25 @@
     <div class="flow-diagram fade-in">
       <div class="flow-actors">
         <div class="flow-actor flow-actor--member">
-          <div class="flow-actor-icon">🧑</div>
+          <div class="flow-actor-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div class="flow-actor-name">Mitglied</div>
           <div class="flow-actor-sub">kauft normal ein</div>
         </div>
         <div class="flow-arr">→</div>
         <div class="flow-actor flow-actor--shop">
-          <div class="flow-actor-icon">🏪</div>
+          <div class="flow-actor-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="flow-actor-name">Geschäft</div>
           <div class="flow-actor-sub">zahlt 3% pro Transaktion</div>
         </div>
         <div class="flow-arr">→</div>
         <div class="flow-actor flow-actor--somos">
-          <div class="flow-actor-icon">⭐</div>
+          <div class="flow-actor-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
           <div class="flow-actor-name">SOMOS</div>
           <div class="flow-actor-sub">verteilt die 3%</div>
         </div>
         <div class="flow-arr">→</div>
         <div class="flow-actor flow-actor--npo">
-          <div class="flow-actor-icon">🌱</div>
+          <div class="flow-actor-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 17 3 22 4c0 5-4 9-10 8z"/><path d="M12 12C12 7 7 3 2 4c0 5 4 9 10 8z"/></svg></div>
           <div class="flow-actor-name">Non-Profit</div>
           <div class="flow-actor-sub">erhält 10% davon</div>
         </div>
@@ -567,9 +569,9 @@
         </div>
       </div>
 
-      <div style="margin-top:20px;padding:14px 18px;background:var(--cream);border-radius:12px;border:1px solid var(--cream-dark);display:flex;gap:10px;align-items:flex-start;">
-        <span style="font-size:15px;flex-shrink:0;margin-top:1px;">💡</span>
-        <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;"><strong style="color:var(--text);">Die 3%-Gebühr trägt das Geschäft</strong> — nicht du als Käufer:in. Für das Geschäft ist es eine reguläre Betriebsausgabe, vergleichbar mit Kosten für Zahlungsdienstleister oder Marketing. Steuerlich absetzbar, SOMOS stellt Rechnung.</p>
+      <div style="margin-top:20px;padding:14px 18px;background:rgba(255,255,255,.08);border-radius:12px;border:1px solid rgba(255,255,255,.12);display:flex;gap:10px;align-items:flex-start;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p style="font-size:0.8rem;color:rgba(255,255,255,.7);line-height:1.6;"><strong style="color:rgba(255,255,255,.95);">Die 3%-Gebühr trägt das Geschäft</strong> — nicht du als Käufer:in. Für das Geschäft ist es eine reguläre Betriebsausgabe, vergleichbar mit Kosten für Zahlungsdienstleister oder Marketing. Steuerlich absetzbar, SOMOS stellt Rechnung.</p>
       </div>
     </div>
   </div>
@@ -585,19 +587,19 @@
       </div>
       <div class="merchant-benefits">
         <div class="merchant-benefit">
-          <div class="merchant-benefit-icon">🗺</div>
-          <div><h4>Sichtbarkeit auf der Karte</h4><p>Dein Geschäft wird von Menschen gefunden, die bewusst regional einkaufen wollen.</p></div>
+          <div class="merchant-benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div><h4>Sichtbarkeit</h4><p>Dein Geschäft wird von einem neuen Publikum entdeckt — Menschen, die aktiv nach regionalen Alternativen suchen.</p></div>
         </div>
         <div class="merchant-benefit">
-          <div class="merchant-benefit-icon">⭐</div>
+          <div class="merchant-benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
           <div><h4>Fertiges Loyalty-System</h4><p>Punkte für deine Kunden — ohne eigenen Aufwand. Die App regelt alles.</p></div>
         </div>
         <div class="merchant-benefit">
-          <div class="merchant-benefit-icon">🌱</div>
+          <div class="merchant-benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 17 3 22 4c0 5-4 9-10 8z"/><path d="M12 12C12 7 7 3 2 4c0 5 4 9 10 8z"/></svg></div>
           <div><h4>Assoziation mit Non-Profits</h4><p>Kund:innen sehen, welche Organisation durch ihren Kauf bei dir unterstützt wird.</p></div>
         </div>
         <div class="merchant-benefit">
-          <div class="merchant-benefit-icon">🧾</div>
+          <div class="merchant-benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
           <div><h4>Saubere Abrechnung</h4><p>Monatliche Rechnung von SOMOS — reguläre Betriebsausgabe, steuerlich absetzbar.</p></div>
         </div>
       </div>
@@ -663,17 +665,17 @@
     </div>
     <div class="why-grid">
       <div class="why-card fade-in">
-        <div class="why-icon">🧑</div>
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <h3>Für Konsument:innen</h3>
         <p>Punkte sammeln und im Netzwerk einlösen — ohne Mehrkosten. Jeder Kauf unterstützt automatisch eine Non-Profit deiner Wahl.</p>
       </div>
       <div class="why-card fade-in" style="transition-delay:.1s">
-        <div class="why-icon">🏪</div>
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <h3>Für lokale Geschäfte</h3>
         <p>Ein komplettes Loyalty-System, neue Kunden im Netzwerk und starke regionale Sichtbarkeit — als Betriebsausgabe absetzbar, SOMOS stellt Rechnung.</p>
       </div>
       <div class="why-card fade-in" style="transition-delay:.2s">
-        <div class="why-icon">🌱</div>
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 17 3 22 4c0 5-4 9-10 8z"/><path d="M12 12C12 7 7 3 2 4c0 5 4 9 10 8z"/></svg></div>
         <h3>Für Non-Profits</h3>
         <p>Regelmäßige Einnahmen ohne Spendenakquise, direkter Kommunikationskanal zur Community und lokale Projekte, die sichtbar wirken.</p>
       </div>
@@ -721,6 +723,118 @@
     <span>Mit ♥ für die Region</span>
   </div>
 </footer>
+
+<style>
+  @keyframes d-pulse { 0%{transform:scale(1);opacity:.35} 100%{transform:scale(1.05);opacity:0} }
+  @keyframes d-dot   { 0%,80%,100%{transform:scale(.7);opacity:.3} 40%{transform:scale(1);opacity:1} }
+  @keyframes d-nudge { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-3px)} }
+  @keyframes d-pop   { 0%{transform:scale(0)} 100%{transform:scale(1)} }
+  #d-check { animation: none; }
+  #d-check.pop { animation: d-pop .4s cubic-bezier(.175,.885,.32,1.275); }
+  #d-clone { position:fixed;pointer-events:none;z-index:9999;transform:rotate(-4deg) scale(1.03);box-shadow:0 20px 55px rgba(45,90,39,0.32); }
+</style>
+
+<script>
+(function(){
+  const card    = document.getElementById('d-card');
+  const phone   = document.getElementById('d-phone');
+  const success = document.getElementById('d-success');
+  const reset   = document.getElementById('d-reset');
+  const pulse   = document.getElementById('d-pulse');
+  const dots    = document.getElementById('d-dots');
+  const check   = document.getElementById('d-check');
+  if (!card) return;
+
+  let clone = null, offsetX = 0, offsetY = 0, dragging = false;
+
+  function centre(el) { const r = el.getBoundingClientRect(); return { x: r.left + r.width/2, y: r.top + r.height/2 }; }
+  function dist(a,b)  { return Math.hypot(a.x-b.x, a.y-b.y); }
+
+  function startDrag(x, y) {
+    if (success.style.opacity === '1') return;
+    dragging = true;
+    const r = card.getBoundingClientRect();
+    offsetX = x - r.left; offsetY = y - r.top;
+    clone = card.cloneNode(true);
+    clone.id = 'd-clone';
+    clone.style.cssText = card.style.cssText; // copy all inline styles
+    clone.style.position      = 'fixed';
+    clone.style.pointerEvents = 'none';
+    clone.style.zIndex        = '9999';
+    clone.style.width         = r.width  + 'px';
+    clone.style.height        = r.height + 'px';
+    clone.style.margin        = '0';
+    clone.style.transform     = 'rotate(-4deg) scale(1.03)';
+    clone.style.boxShadow     = '0 20px 55px rgba(45,90,39,0.32)';
+    clone.style.opacity       = '1';
+    document.body.appendChild(clone);
+    card.style.opacity = '0.15';
+    moveDrag(x, y);
+  }
+
+  function moveDrag(x, y) {
+    if (!clone) return;
+    clone.style.left = (x - offsetX) + 'px';
+    clone.style.top  = (y - offsetY) + 'px';
+    const cc = { x: x - offsetX + clone.offsetWidth/2, y: y - offsetY + clone.offsetHeight/2 };
+    if (dist(cc, centre(phone)) < 130) {
+      phone.style.borderColor = '#2D5A27';
+      phone.style.boxShadow = '0 0 0 4px #F9F4E8,0 0 28px rgba(45,90,39,0.28),0 20px 50px rgba(45,90,39,0.15)';
+    } else {
+      phone.style.borderColor = '#D8E2D1';
+      phone.style.boxShadow = '0 0 0 4px #F9F4E8,0 20px 50px rgba(45,90,39,0.12)';
+    }
+  }
+
+  function endDrag(x, y) {
+    if (!dragging || !clone) return;
+    dragging = false;
+    const cc = { x: x - offsetX + clone.offsetWidth/2, y: y - offsetY + clone.offsetHeight/2 };
+    phone.style.borderColor = '#D8E2D1';
+    phone.style.boxShadow = '0 0 0 4px #F9F4E8,0 20px 50px rgba(45,90,39,0.12)';
+    if (dist(cc, centre(phone)) < 130) {
+      clone.style.transition = 'transform .25s ease,opacity .25s ease';
+      clone.style.transform  = 'rotate(0deg) scale(0.35)';
+      clone.style.opacity    = '0';
+      setTimeout(() => { clone.remove(); clone = null; triggerSuccess(); }, 250);
+    } else {
+      const r = card.getBoundingClientRect();
+      clone.style.transition = 'left .35s cubic-bezier(.25,1,.5,1),top .35s cubic-bezier(.25,1,.5,1),transform .35s,opacity .35s';
+      clone.style.left      = r.left + 'px';
+      clone.style.top       = r.top  + 'px';
+      clone.style.transform = 'rotate(0deg) scale(1)';
+      clone.style.opacity   = '1';
+      setTimeout(() => { clone.remove(); clone = null; card.style.opacity = '1'; }, 350);
+    }
+  }
+
+  function triggerSuccess() {
+    card.style.opacity = '0.15';
+    success.style.opacity = '1';
+    success.style.pointerEvents = 'all';
+    pulse.style.animationPlayState = 'paused';
+    dots.style.display = 'none';
+    check.classList.remove('pop');
+    void check.offsetWidth;
+    check.classList.add('pop');
+  }
+
+  reset.addEventListener('click', () => {
+    success.style.opacity = '0';
+    success.style.pointerEvents = 'none';
+    card.style.opacity = '1';
+    pulse.style.animationPlayState = 'running';
+    dots.style.display = 'flex';
+  });
+
+  card.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+  document.addEventListener('mousemove', e => { if (dragging) moveDrag(e.clientX, e.clientY); });
+  document.addEventListener('mouseup',   e => { if (dragging) endDrag(e.clientX, e.clientY); });
+  card.addEventListener('touchstart', e => { e.preventDefault(); const t=e.touches[0]; startDrag(t.clientX,t.clientY); }, {passive:false});
+  document.addEventListener('touchmove', e => { if (dragging){e.preventDefault();const t=e.touches[0];moveDrag(t.clientX,t.clientY);} }, {passive:false});
+  document.addEventListener('touchend',  e => { if (dragging){const t=e.changedTouches[0];endDrag(t.clientX,t.clientY);} });
+})();
+</script>
 
 <script>
   const obs = new IntersectionObserver(entries => {
