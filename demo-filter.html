@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SOMOS — Siegel-Filter Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:       #2A5C24;
+      --green-light: #d4e8cf;
+      --green-pale:  #eef5ec;
+      --cream:       #F6F0E4;
+      --cream-dark:  #EDE6D4;
+      --gold:        #D4943A;
+      --text:        #1a1f18;
+      --text-mid:    #3d4a39;
+      --text-muted:  #6b7a65;
+      --white:       #ffffff;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: relative; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 56px;
+      background: rgba(246,240,228,0.97);
+      border-bottom: 1px solid rgba(42,92,36,0.12);
+    }
+    nav img { height: 34px; object-fit: contain; display: block; }
+    .nav-badge {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--green);
+      background: var(--green-pale); border: 1px solid var(--green-light);
+      padding: 4px 12px; border-radius: 100px;
+    }
+
+    /* ── TWO-COLUMN LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      height: calc(100vh - 56px);
+    }
+
+    /* ── LEFT: FILTER PANEL ── */
+    .filter-panel {
+      background: var(--white);
+      border-right: 1px solid var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      gap: 28px;
+      overflow-y: auto;
+    }
+
+    .panel-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    /* Siegel section */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .siegel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Each siegel row */
+    .siegel-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .siegel-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      padding: 0 2px;
+    }
+    .chip-icon { font-size: 1rem; line-height: 1; }
+
+    /* Mini 3-way track per siegel */
+    .mini-track {
+      display: flex;
+      background: var(--cream);
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 10px;
+      padding: 3px;
+      transition: border-color .15s;
+    }
+    .siegel-row.algo .mini-track,
+    .siegel-row.todo .mini-track { border-color: var(--green-light); }
+
+    .mini-btn {
+      flex: 1;
+      padding: 6px 4px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s ease;
+      white-space: nowrap;
+    }
+    .mini-btn.active-nada {
+      background: var(--cream-dark);
+      color: var(--text-mid);
+    }
+    .mini-btn.active-algo {
+      background: var(--green-pale);
+      color: var(--green);
+      border: 1px solid var(--green-light);
+    }
+    .mini-btn.active-todo {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 2px 6px rgba(42,92,36,.2);
+    }
+
+    /* Result counter in panel */
+    .panel-counter {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--cream-dark);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .panel-counter strong { color: var(--green); font-size: 1.4rem; font-family: 'Fraunces', serif; }
+
+    .clear-btn {
+      margin-top: 10px;
+      width: 100%;
+      padding: 9px;
+      border-radius: 10px;
+      border: 1.5px solid var(--cream-dark);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem; font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .clear-btn:hover { border-color: var(--green-light); color: var(--green); background: var(--green-pale); }
+
+    /* ── RIGHT: MAP ── */
+    .map-col {
+      position: relative;
+      overflow: hidden;
+    }
+    .map-bg {
+      position: absolute;
+      inset: 0;
+      background: #e8e4d6;
+    }
+    .map-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1.5px 1.5px, rgba(0,0,0,.07) 1px, transparent 0);
+      background-size: 18px 18px;
+    }
+    .map-blot {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    /* ── MARKERS ── */
+    .markers-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .marker {
+      position: absolute;
+      transform: translate(-50%, -100%);
+      cursor: pointer;
+      pointer-events: all;
+      transition: opacity .25s ease, transform .25s ease, filter .25s ease;
+      z-index: 10;
+    }
+    .marker-pin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .marker-circle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid white;
+      box-shadow: 0 4px 16px rgba(0,0,0,.22);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      transition: all .2s ease;
+    }
+    .marker-tip {
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 9px solid var(--green);
+      margin-top: -2px;
+      transition: border-top-color .2s ease;
+    }
+    .marker.out {
+      opacity: 0.15;
+      filter: grayscale(1);
+      pointer-events: none;
+      transform: translate(-50%, -100%) scale(0.8);
+    }
+    .marker.selected .marker-circle {
+      background: var(--gold);
+      box-shadow: 0 6px 22px rgba(212,148,58,.45);
+      transform: scale(1.14);
+    }
+    .marker.selected .marker-tip { border-top-color: var(--gold); }
+    .marker:not(.out):hover .marker-circle {
+      transform: scale(1.08);
+    }
+
+    /* ── POPUP (aparece sobre el marker) ── */
+    .popup {
+      position: absolute;
+      z-index: 20;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.16);
+      width: 200px;
+      transform: translate(-50%, calc(-100% - 58px));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .popup.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup::after {
+      content: '';
+      position: absolute;
+      bottom: -7px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid var(--white);
+    }
+    .popup-name {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--green);
+      margin-bottom: 2px;
+    }
+    .popup-type {
+      font-size: 0.72rem; color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .popup-siegeln {
+      display: flex; flex-wrap: wrap; gap: 4px;
+    }
+    .siegel-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 0.65rem; font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--green-pale);
+      border: 1px solid var(--green-light);
+      color: var(--green);
+    }
+    .siegel-badge.match {
+      background: var(--green);
+      border-color: var(--green);
+      color: var(--white);
+    }
+
+    @media (max-width: 700px) {
+      .layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .filter-panel { padding: 16px; flex-direction: row; flex-wrap: wrap; gap: 12px; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--cream-dark); }
+      .panel-title { display: none; }
+      .siegel-list { flex-direction: row; }
+      .siegel-chip { padding: 7px 12px; border-radius: 100px; }
+      .chip-check { display: none; }
+      .panel-counter { display: none; }
+      .clear-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="./" aria-label="SOMOS Home"><img src="./logo.png" alt="SOMOS"/></a>
+  <span class="nav-badge">Filter-Demo</span>
+</nav>
+
+<div class="layout">
+
+  <!-- ── COLUMNA IZQUIERDA: FILTROS ── -->
+  <aside class="filter-panel">
+
+    <div class="panel-title">Siegel-Filter</div>
+
+    <div>
+      <div class="section-label">Siegel auswählen</div>
+      <div class="siegel-list" id="siegel-list">
+        <div class="siegel-row" id="row-regional">
+          <div class="siegel-label"><span class="chip-icon">📍</span> regional</div>
+          <div class="mini-track">
+            <button class="mini-btn active-nada" data-siegel="regional" data-mode="nada" onclick="setSiegelMode(this)">Nada</button>
+            <button class="mini-btn" data-siegel="regional" data-mode="algo" onclick="setSiegelMode(this)">Algo</button>
+            <button class="mini-btn" data-siegel="regional" data-mode="todo" onclick="setSiegelMode(this)">Todo</button>
+          </div>
+        </div>
+        <div class="siegel-row" id="row-bio">
+          <div class="siegel-label"><span class="chip-icon">🌿</span> bio</div>
+          <div class="mini-track">
+            <button class="mini-btn active-nada" data-siegel="bio" data-mode="nada" onclick="setSiegelMode(this)">Nada</button>
+            <button class="mini-btn" data-siegel="bio" data-mode="algo" onclick="setSiegelMode(this)">Algo</button>
+            <button class="mini-btn" data-siegel="bio" data-mode="todo" onclick="setSiegelMode(this)">Todo</button>
+          </div>
+        </div>
+        <div class="siegel-row" id="row-vegan">
+          <div class="siegel-label"><span class="chip-icon">🥕</span> vegan</div>
+          <div class="mini-track">
+            <button class="mini-btn active-nada" data-siegel="vegan" data-mode="nada" onclick="setSiegelMode(this)">Nada</button>
+            <button class="mini-btn" data-siegel="vegan" data-mode="algo" onclick="setSiegelMode(this)">Algo</button>
+            <button class="mini-btn" data-siegel="vegan" data-mode="todo" onclick="setSiegelMode(this)">Todo</button>
+          </div>
+        </div>
+        <div class="siegel-row" id="row-fair">
+          <div class="siegel-label"><span class="chip-icon">🤝</span> fair</div>
+          <div class="mini-track">
+            <button class="mini-btn active-nada" data-siegel="fair" data-mode="nada" onclick="setSiegelMode(this)">Nada</button>
+            <button class="mini-btn" data-siegel="fair" data-mode="algo" onclick="setSiegelMode(this)">Algo</button>
+            <button class="mini-btn" data-siegel="fair" data-mode="todo" onclick="setSiegelMode(this)">Todo</button>
+          </div>
+        </div>
+        <div class="siegel-row" id="row-unverpackt">
+          <div class="siegel-label"><span class="chip-icon">♻️</span> unverpackt</div>
+          <div class="mini-track">
+            <button class="mini-btn active-nada" data-siegel="unverpackt" data-mode="nada" onclick="setSiegelMode(this)">Nada</button>
+            <button class="mini-btn" data-siegel="unverpackt" data-mode="algo" onclick="setSiegelMode(this)">Algo</button>
+            <button class="mini-btn" data-siegel="unverpackt" data-mode="todo" onclick="setSiegelMode(this)">Todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-counter">
+      <strong id="visible-count">6</strong> von 6<br/>Geschäfte sichtbar
+      <button class="clear-btn" onclick="clearAll()">Filter zurücksetzen</button>
+    </div>
+
+  </aside>
+
+  <!-- ── COLUMNA DERECHA: MAPA ── -->
+  <div class="map-col" id="map-col">
+
+    <div class="map-bg">
+      <div class="map-dots"></div>
+      <div class="map-blot" style="width:440px;height:440px;background:#c8b98a44;top:-80px;left:-60px;"></div>
+      <div class="map-blot" style="width:500px;height:500px;background:#3d7a3528;bottom:-120px;right:-80px;"></div>
+      <div class="map-blot" style="width:300px;height:300px;background:#c8b98a2a;bottom:15%;left:25%;"></div>
+    </div>
+
+    <div class="markers-layer" id="markers-layer"></div>
+
+    <!-- Popup (único, se mueve al marker activo) -->
+    <div class="popup" id="popup">
+      <div class="popup-name"  id="popup-name"></div>
+      <div class="popup-type"  id="popup-type"></div>
+      <div class="popup-siegeln" id="popup-siegeln"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const STORES = [
+    { id:1, icon:'🍞', name:'Bäckerei Müller',    type:'Bäckerei',       siegeln:['regional','bio'],          x:22, y:35 },
+    { id:2, icon:'🥦', name:'Gemüseladen Schmidt', type:'Gemüse & Obst',  siegeln:['bio','vegan','unverpackt'], x:55, y:25 },
+    { id:3, icon:'☕', name:'Café Grün',           type:'Café & Bistro',  siegeln:['bio','vegan','fair'],       x:38, y:58 },
+    { id:4, icon:'🌾', name:'Bio Markt Natur',     type:'Bio-Supermarkt', siegeln:['regional','bio','vegan','fair','unverpackt'], x:70, y:48 },
+    { id:5, icon:'🍷', name:'Weinhandel Koch',     type:'Wein & Feinkost',siegeln:['regional','fair'],          x:45, y:75 },
+    { id:6, icon:'🧺', name:'Bauernmarkt Hofer',   type:'Hofladen',       siegeln:['regional','bio','unverpackt'], x:78, y:68 },
+  ];
+
+  const ICONS = { regional:'📍', bio:'🌿', vegan:'🥕', fair:'🤝', unverpackt:'♻️' };
+
+  // Estado por siegel: 'nada' | 'algo' | 'todo'
+  const siegelState = { regional:'nada', bio:'nada', vegan:'nada', fair:'nada', unverpackt:'nada' };
+  let selectedId = null;
+
+  // ── BUILD MARKERS ────────────────────────────────────────────────────
+  const layer = document.getElementById('markers-layer');
+
+  STORES.forEach(store => {
+    const el = document.createElement('div');
+    el.className = 'marker';
+    el.id = 'marker-' + store.id;
+    el.style.left = store.x + '%';
+    el.style.top  = store.y + '%';
+    el.innerHTML = `
+      <div class="marker-pin">
+        <div class="marker-circle">${store.icon}</div>
+        <div class="marker-tip"></div>
+      </div>`;
+    el.addEventListener('click', e => { e.stopPropagation(); selectStore(store.id); });
+    layer.appendChild(el);
+  });
+
+  document.getElementById('map-col').addEventListener('click', closePopup);
+
+  // ── FILTER ───────────────────────────────────────────────────────────
+  // Lógica:
+  //   - siegels en "todo": el comercio DEBE tenerlos todos
+  //   - siegels en "algo": el comercio debe tener AL MENOS UNO de ellos
+  //   - siegels en "nada": se ignoran
+  function isVisible(store) {
+    const todoList = Object.keys(siegelState).filter(s => siegelState[s] === 'todo');
+    const algoList = Object.keys(siegelState).filter(s => siegelState[s] === 'algo');
+
+    // si todo está en nada → mostrar todos
+    if (todoList.length === 0 && algoList.length === 0) return true;
+
+    // debe tener TODOS los "todo"
+    if (todoList.some(s => !store.siegeln.includes(s))) return false;
+
+    // debe tener AL MENOS UNO de los "algo"
+    if (algoList.length > 0 && !algoList.some(s => store.siegeln.includes(s))) return false;
+
+    return true;
+  }
+
+  function applyFilters() {
+    let count = 0;
+    STORES.forEach(store => {
+      const el  = document.getElementById('marker-' + store.id);
+      const vis = isVisible(store);
+      el.classList.toggle('out', !vis);
+      if (vis) count++;
+      if (!vis && selectedId === store.id) closePopup();
+    });
+    document.getElementById('visible-count').textContent = count;
+    if (selectedId) {
+      const store = STORES.find(s => s.id === selectedId);
+      if (store) renderPopup(store);
+    }
+  }
+
+  // ── ACTIONS ──────────────────────────────────────────────────────────
+  function setSiegelMode(btn) {
+    const siegel = btn.dataset.siegel;
+    const mode   = btn.dataset.mode;
+    siegelState[siegel] = mode;
+
+    // actualizar botones del track
+    btn.closest('.mini-track').querySelectorAll('.mini-btn').forEach(b => {
+      b.classList.remove('active-nada', 'active-algo', 'active-todo');
+    });
+    btn.classList.add('active-' + mode);
+
+    // color del row
+    const row = document.getElementById('row-' + siegel);
+    row.className = 'siegel-row ' + (mode !== 'nada' ? mode : '');
+
+    applyFilters();
+  }
+
+  function clearAll() {
+    Object.keys(siegelState).forEach(s => siegelState[s] = 'nada');
+    document.querySelectorAll('.mini-btn').forEach(btn => {
+      btn.classList.remove('active-nada', 'active-algo', 'active-todo');
+      if (btn.dataset.mode === 'nada') btn.classList.add('active-nada');
+    });
+    document.querySelectorAll('.siegel-row').forEach(r => r.className = 'siegel-row');
+    applyFilters();
+  }
+
+  function selectStore(id) {
+    if (selectedId === id) { closePopup(); return; }
+    if (selectedId) document.getElementById('marker-' + selectedId)?.classList.remove('selected');
+    selectedId = id;
+    document.getElementById('marker-' + id).classList.add('selected');
+    const store = STORES.find(s => s.id === id);
+    renderPopup(store);
+    document.getElementById('popup').classList.add('visible');
+  }
+
+  function renderPopup(store) {
+    const sel = [...activeSiegeln];
+    const popup = document.getElementById('popup');
+    // position popup at marker coords
+    popup.style.left = store.x + '%';
+    popup.style.top  = store.y + '%';
+    document.getElementById('popup-name').textContent = store.name;
+    document.getElementById('popup-type').textContent = store.type;
+    document.getElementById('popup-siegeln').innerHTML = store.siegeln
+      .map(s => `<span class="siegel-badge ${sel.includes(s) ? 'match' : ''}">${ICONS[s]} ${s}</span>`)
+      .join('');
+  }
+
+  function closePopup() {
+    document.getElementById('popup').classList.remove('visible');
+    if (selectedId) {
+      document.getElementById('marker-' + selectedId)?.classList.remove('selected');
+      selectedId = null;
+    }
+  }
+</script>
+</body>
+</html>
