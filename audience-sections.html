@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOMOS – Zielgruppen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-heading:"Funnel Sans",system-ui,sans-serif;
+    --font-body:"Inter",system-ui,sans-serif;
+    --fg-primary:#1A1A1A;
+    --fg-secondary:#4B5563;
+    --fg-on-dark:#FFFFFF;
+    --fg-on-dark-muted:#B2DFDB;
+    --accent:#009688;
+    --brand-teal:#00897B;
+    --surface-primary:#FAF7F2;
+    --surface-secondary:#E8F5F3;
+    --surface-dark:#00796B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-body);color:var(--fg-primary);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .audience{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+  .audience__image{background-size:cover;background-position:center;min-height:400px}
+  .audience__content{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:80px}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+  .title{font-family:var(--font-heading);font-size:40px;font-weight:700;line-height:1.15;letter-spacing:-.5px}
+  .description{font-size:16px;line-height:1.55}
+  .benefits{list-style:none;display:flex;flex-direction:column;gap:12px;padding:8px 0}
+  .benefits li{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:500;line-height:1.5}
+  .benefits svg{flex-shrink:0;width:20px;height:20px;margin-top:2px}
+  .cta{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:9999px;font-size:15px;font-weight:600;text-decoration:none;transition:transform .15s ease,filter .15s ease;align-self:flex-start;margin-top:12px}
+  .cta:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  .cta svg{width:16px;height:16px}
+
+  .audience--konsumenten{background:var(--surface-primary)}
+  .audience--konsumenten .eyebrow{color:var(--accent)}
+  .audience--konsumenten .title{color:var(--fg-primary)}
+  .audience--konsumenten .description,
+  .audience--konsumenten .benefits li{color:var(--fg-secondary)}
+  .audience--konsumenten .benefits svg{color:var(--accent)}
+  .audience--konsumenten .cta{background:var(--accent);color:var(--fg-on-dark)}
+
+  .audience--geschaefte{background:var(--surface-dark)}
+  .audience--geschaefte .eyebrow,
+  .audience--geschaefte .description,
+  .audience--geschaefte .benefits li{color:var(--fg-on-dark-muted)}
+  .audience--geschaefte .title{color:var(--fg-on-dark)}
+  .audience--geschaefte .benefits svg{color:var(--fg-on-dark-muted)}
+  .audience--geschaefte .cta{background:var(--fg-on-dark);color:var(--surface-dark)}
+  .audience--geschaefte .audience__image{order:2}
+  .audience--geschaefte .audience__content{order:1}
+
+  .audience--vereine{background:var(--surface-secondary)}
+  .audience--vereine .eyebrow{color:var(--brand-teal)}
+  .audience--vereine .title{color:var(--fg-primary)}
+  .audience--vereine .description,
+  .audience--vereine .benefits li{color:var(--fg-secondary)}
+  .audience--vereine .benefits svg{color:var(--brand-teal)}
+  .audience--vereine .cta{background:var(--fg-primary);color:var(--fg-on-dark)}
+
+  @media (max-width:900px){
+    .audience{grid-template-columns:1fr}
+    .audience__content{padding:48px 24px}
+    .title{font-size:32px}
+    .audience--geschaefte .audience__image{order:0}
+    .audience--geschaefte .audience__content{order:1}
+  }
+</style>
+</head>
+<body>
+
+<section class="audience audience--konsumenten" aria-labelledby="konsumenten-title">
+  <div class="audience__image" style="background-image:url('https://images.unsplash.com/photo-1641638260951-e97fe77d8b86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080&q=80')" role="img" aria-label="Menschen beim Einkaufen auf einem lokalen Markt"></div>
+  <div class="audience__content">
+    <span class="eyebrow">Für Menschen aus Potsdam</span>
+    <h2 id="konsumenten-title" class="title">Lokal einkaufen und dabei sammeln</h2>
+    <p class="description">Verwandle deinen alltäglichen Einkauf in Unterstützung für dein Viertel. Ohne Extra-Kosten, ohne komplizierte Anmeldung.</p>
+    <ul class="benefits">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Punkte sammeln bei über 40 lokalen Geschäften</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Deinen Lieblingsverein automatisch unterstützen</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Rabatte und Angebote nur für SOMOS-Mitglieder</li>
+    </ul>
+    <a class="cta" href="/konsumenten">Als Nutzer:in starten
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="audience audience--geschaefte" aria-labelledby="geschaefte-title">
+  <div class="audience__image" style="background-image:url('https://images.unsplash.com/photo-1733282176708-b871707ab33e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080&q=80')" role="img" aria-label="Ladenbesitzer in einem gemütlichen unabhängigen Geschäft"></div>
+  <div class="audience__content">
+    <span class="eyebrow">Für lokale Geschäfte</span>
+    <h2 id="geschaefte-title" class="title">Mehr Stammkund:innen. Keine Fixkosten.</h2>
+    <p class="description">SOMOS bringt regionale Kund:innen direkt in dein Geschäft. Du zahlst nur für tatsächliche Nutzung – nichts wenn nichts läuft.</p>
+    <ul class="benefits">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Neue Sichtbarkeit in der Potsdamer Community</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Keine monatliche Grundgebühr, nur bei Nutzung</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>In 10 Minuten eingerichtet – ohne Technik-Stress</li>
+    </ul>
+    <a class="cta" href="/geschaefte">Als Geschäft mitmachen
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="audience audience--vereine" aria-labelledby="vereine-title">
+  <div class="audience__image" style="background-image:url('https://images.unsplash.com/photo-1631039083528-c05cdf3329a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080&q=80')" role="img" aria-label="Lokales Sportvereinsteam mit Freiwilligen"></div>
+  <div class="audience__content">
+    <span class="eyebrow">Für Vereine und Initiativen</span>
+    <h2 id="vereine-title" class="title">Neue Unterstützung – automatisch</h2>
+    <p class="description">Deine Community shoppt sowieso lokal. Mit SOMOS wird jeder Einkauf zu einer kleinen Spende für euren Verein.</p>
+    <ul class="benefits">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Regelmäßige Unterstützung ohne extra Spendenaktionen</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sichtbarkeit für eure Projekte in der ganzen Stadt</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Transparente Auszahlungen jeden Monat</li>
+    </ul>
+    <a class="cta" href="/vereine">Verein anmelden
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>
