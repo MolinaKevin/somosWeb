@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>SOMOS – Entdecken</title>
+    <meta name="description" content="Entdecke regionale Initiativen, Geschäfte und Personen bei SOMOS Potsdam." />
+    <meta name="robots" content="noindex,follow" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              accent: "#E9AC57",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+        font-size: 20px;
+        line-height: 1;
+      }
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="font-body bg-background-light text-gray-900 min-h-screen">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-background-light/95 backdrop-blur-md border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+        <a href="./" class="flex items-center shrink-0" aria-label="SOMOS Entdecken">
+          <img src="../../logo.png" alt="SOMOS" class="h-9 object-contain" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="./" class="text-sm font-semibold text-primary border-b-2 border-primary pb-0.5">Entdecken</a>
+          <a href="#" onclick="showDemoModal(event)" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Meine Punkte</a>
+          <a href="./nachrichten/" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Nachrichten</a>
+          <a href="#" onclick="showDemoModal(event)" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Support</a>
+        </nav>
+
+        <details class="relative shrink-0">
+          <summary
+            class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full border border-gray-200 bg-white cursor-pointer hover:border-primary/30 transition-colors"
+          >
+            <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">LV</span>
+            <span class="text-sm font-semibold text-gray-800">Lena Vogel</span>
+            <span class="material-symbols-outlined text-gray-400" style="font-size: 18px">expand_more</span>
+          </summary>
+          <div class="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 text-sm">
+            <a href="../profil/" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Profil wechseln</a>
+            <a href="#" onclick="showDemoModal(event)" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Einstellungen</a>
+            <div class="my-1 border-t border-gray-100"></div>
+            <a href="../" class="block px-4 py-2.5 text-red-600 hover:bg-red-50">Abmelden</a>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <!-- SEARCH BAR -->
+    <div class="bg-primary py-6 px-6">
+      <form class="max-w-3xl mx-auto" onsubmit="event.preventDefault()">
+        <div class="flex items-center gap-2 bg-white rounded-full shadow-lg pl-5 pr-1.5 py-1.5">
+          <span class="material-symbols-outlined text-gray-400">search</span>
+          <input
+            type="text"
+            placeholder="Suche nach Namen, Kategorie oder Stadtteil…"
+            class="flex-1 border-0 focus:ring-0 text-sm placeholder-gray-400 py-2"
+          />
+          <button type="submit" class="bg-primary text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity">
+            Suchen
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-[260px_1fr] gap-10">
+      <!-- FILTERS -->
+      <aside class="hidden lg:block">
+        <h2 class="text-lg font-bold text-gray-900 mb-6">Filter</h2>
+
+        <div class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Typ</h3>
+          <div class="flex flex-col gap-2.5 text-sm text-gray-700">
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Initiativen</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Geschäfte</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Personen</label>
+          </div>
+        </div>
+
+        <div class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Kategorie</h3>
+          <div class="flex flex-col gap-2.5 text-sm text-gray-700">
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Umwelt</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Bildung</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Sport</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Kultur</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Soziales</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Gastronomie</label>
+          </div>
+        </div>
+
+        <div class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Stadtteil</h3>
+          <div class="flex flex-col gap-2.5 text-sm text-gray-700">
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Babelsberg</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Innenstadt</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Golm</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Nördliche Vorstadt</label>
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" /> Templiner Vorstadt</label>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Punktesystem</h3>
+          <div class="flex flex-col gap-2.5 text-sm text-gray-700">
+            <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="rounded border-gray-300 text-primary focus:ring-primary" /> Sammeln aktiv</label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RESULTS -->
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <p class="text-gray-600 text-sm">184 Ergebnisse in Potsdam</p>
+          <select class="text-sm border border-gray-200 rounded-full pl-4 pr-8 py-2 bg-white focus:ring-primary focus:border-primary">
+            <option>Neueste zuerst</option>
+            <option>Nächste zuerst</option>
+            <option>Alphabetisch</option>
+          </select>
+        </div>
+
+        <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          <!-- Repair Café Potsdam -->
+          <a href="./initiative/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 font-bold flex items-center justify-center">RC</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded-full px-2 py-1">Initiative</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Repair Café Potsdam</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Babelsberg
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Gemeinsam reparieren statt wegwerfen.</p>
+          </a>
+
+          <!-- Café Nordwind -->
+          <a href="./geschaeft/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 font-bold flex items-center justify-center">CN</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 rounded-full px-2 py-1">Geschäft</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Café Nordwind</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Innenstadt
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Kleine Rösterei mit hausgemachtem Kuchen.</p>
+          </a>
+
+          <!-- Lena Vogel -->
+          <a href="#" onclick="showDemoModal(event)" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-green-100 text-green-700 font-bold flex items-center justify-center">LV</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-blue-700 bg-blue-100 rounded-full px-2 py-1">Person</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Lena Vogel</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Nördliche Vorstadt
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Kunsthandwerkerin & Nachbarschaftsverbinderin.</p>
+          </a>
+
+          <!-- FSV Babelsberg 03 -->
+          <a href="./initiative/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-700 font-bold flex items-center justify-center">FB</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded-full px-2 py-1">Initiative</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">FSV Babelsberg 03</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Babelsberg
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Fußball für alle Generationen.</p>
+          </a>
+
+          <!-- Bäckerei Pletz -->
+          <a href="./geschaeft/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 font-bold flex items-center justify-center">BP</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 rounded-full px-2 py-1">Geschäft</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Bäckerei Pletz</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Golm
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Handwerksbäckerei mit regionalen Zutaten.</p>
+          </a>
+
+          <!-- Marc Hoffmann -->
+          <a href="#" onclick="showDemoModal(event)" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-700 font-bold flex items-center justify-center">MH</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-blue-700 bg-blue-100 rounded-full px-2 py-1">Person</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Marc Hoffmann</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Templiner Vorstadt
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Radaktivist. Organisiert monatliche Critical Mass.</p>
+          </a>
+
+          <!-- Stadtgarten Drewitz -->
+          <a href="./initiative/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center">SD</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded-full px-2 py-1">Initiative</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Stadtgarten Drewitz</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Templiner Vorstadt
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Urbanes Gärtnern für alle.</p>
+          </a>
+
+          <!-- Buchladen Sputnik -->
+          <a href="./geschaeft/" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 font-bold flex items-center justify-center">BS</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 rounded-full px-2 py-1">Geschäft</span>
+                <span class="text-[10px] font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-1">✓ SOMOS geprüft</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Buchladen Sputnik</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Innenstadt
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Unabhängiger Buchladen mit Lesungen.</p>
+          </a>
+
+          <!-- Aisha Bello -->
+          <a href="#" onclick="showDemoModal(event)" class="block bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-lg hover:border-gray-200 transition">
+            <div class="flex items-start justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-pink-100 text-pink-700 font-bold flex items-center justify-center">AB</span>
+              <div class="flex flex-col items-end gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wide text-blue-700 bg-blue-100 rounded-full px-2 py-1">Person</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900">Aisha Bello</h3>
+            <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 14px">location_on</span> Babelsberg
+            </p>
+            <p class="text-sm text-gray-500 mt-2 leading-snug">Fotografin. Dokumentiert Potsdamer Initiativen.</p>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Demo restriction modal -->
+    <div id="demo-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" onclick="hideDemoModal(event)">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="relative bg-white rounded-3xl shadow-2xl p-10 max-w-sm w-full mx-4 text-center" onclick="event.stopPropagation()">
+        <div class="text-5xl mb-4">🚧</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Nur in der Demo</h3>
+        <p class="text-gray-500 mb-6">Dieser Bereich ist in der Demo-Version noch nicht verfügbar.</p>
+        <button onclick="hideDemoModal()" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function showDemoModal(e) {
+        e.preventDefault();
+        document.getElementById("demo-modal").classList.remove("hidden");
+      }
+      function hideDemoModal(e) {
+        document.getElementById("demo-modal").classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>

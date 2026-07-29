@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>SOMOS – Café Nordwind</title>
+    <meta name="description" content="Café Nordwind – Geschäft bei SOMOS Potsdam." />
+    <meta name="robots" content="noindex,follow" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              accent: "#E9AC57",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+        font-size: 20px;
+        line-height: 1;
+      }
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="font-body bg-background-light text-gray-900 min-h-screen">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-background-light/95 backdrop-blur-md border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+        <div class="flex items-center gap-4 min-w-0">
+          <a href="../" class="flex items-center shrink-0" aria-label="SOMOS Entdecken">
+            <img src="../../../logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+          <a href="../" class="text-gray-400 hover:text-primary transition-colors" aria-label="Zurück zu Entdecken">
+            <span class="material-symbols-outlined">arrow_back</span>
+          </a>
+          <p class="text-sm text-gray-500 truncate">
+            <a href="../" class="hover:text-primary transition-colors">Entdecken</a> /
+            <span>Geschäfte</span> /
+            <span class="text-gray-900 font-medium">Café Nordwind</span>
+          </p>
+        </div>
+
+        <details class="relative shrink-0">
+          <summary
+            class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full border border-gray-200 bg-white cursor-pointer hover:border-primary/30 transition-colors"
+          >
+            <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">LV</span>
+            <span class="text-sm font-semibold text-gray-800">Lena Vogel</span>
+            <span class="material-symbols-outlined text-gray-400" style="font-size: 18px">expand_more</span>
+          </summary>
+          <div class="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 text-sm">
+            <a href="../../profil/" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Profil wechseln</a>
+            <a href="#" onclick="showDemoModal(event)" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Einstellungen</a>
+            <div class="my-1 border-t border-gray-100"></div>
+            <a href="../../" class="block px-4 py-2.5 text-red-600 hover:bg-red-50">Abmelden</a>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="relative h-56 md:h-72 w-full overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600&q=80"
+        alt="Theke im Café Nordwind"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 -mt-14 relative z-10 pb-20">
+      <!-- PROFILE HEAD -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+        <div class="flex items-end gap-5">
+          <div class="w-24 h-24 rounded-2xl bg-orange-100 text-orange-700 text-3xl font-bold flex items-center justify-center ring-4 ring-background-light shrink-0">
+            CN
+          </div>
+          <div class="pb-1">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-wide text-amber-700 bg-[#F3EEDF] rounded-full px-3 py-1">Gastronomie</span>
+              <span class="text-[11px] font-bold uppercase tracking-wide text-amber-700 bg-[#F3EEDF] rounded-full px-3 py-1">Innenstadt</span>
+              <span class="text-[11px] font-bold uppercase tracking-wide text-amber-700 bg-[#F3EEDF] rounded-full px-3 py-1">Seit 2018</span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide text-white bg-primary rounded-full px-3 py-1">
+                <span class="material-symbols-outlined" style="font-size: 13px">check_circle</span> SOMOS geprüft
+              </span>
+            </div>
+            <h1 class="font-display text-3xl font-bold text-gray-900">Café Nordwind</h1>
+            <p class="text-gray-500 mt-1 max-w-xl">Kleine Rösterei mit hausgemachtem Kuchen und regionalen Zutaten – im Herzen der Innenstadt.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="../nachrichten/?c=cafe-nordwind"
+            class="inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            <span class="material-symbols-outlined" style="font-size: 18px">chat_bubble</span> Nachricht senden
+          </a>
+          <button
+            onclick="showDemoModal(event)"
+            class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-50 transition-colors"
+          >
+            <span class="material-symbols-outlined" style="font-size: 18px">favorite</span> Folgen
+          </button>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5">
+          <p class="text-2xl font-bold text-gray-900">1.284</p>
+          <p class="text-sm text-gray-500">Stammkund:innen</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5">
+          <p class="text-2xl font-bold text-gray-900">48.7k</p>
+          <p class="text-sm text-gray-500">Ausgegebene Punkte</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5">
+          <p class="text-2xl font-bold text-gray-900">€ 3.480</p>
+          <p class="text-sm text-gray-500">Verteilt an Vereine</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5">
+          <p class="text-2xl font-bold text-gray-900">184</p>
+          <p class="text-sm text-gray-500">Bestellungen / Woche</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_320px] gap-6">
+        <!-- LEFT -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-white rounded-2xl p-6">
+            <div class="flex items-start justify-between mb-1">
+              <h2 class="font-bold text-lg text-gray-900">SOMOS Siegel</h2>
+              <div class="flex items-center gap-3 text-xs text-gray-500 shrink-0">
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Voll</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Teilweise</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mb-5">Was dieses Geschäft besonders macht – von SOMOS geprüft.</p>
+
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl border border-amber-100 bg-amber-50 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-amber-600">eco</span>
+                  <span class="text-[10px] font-bold uppercase text-white bg-amber-500 rounded-full px-2 py-0.5">Teilweise</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm">Vegan</p>
+                <p class="text-xs text-amber-700 mt-1">Vegane Kuchen & Milchalternativen verfügbar</p>
+              </div>
+
+              <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-green-600">recycling</span>
+                  <span class="text-[10px] font-bold uppercase text-white bg-green-600 rounded-full px-2 py-0.5">Voll</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm">Plastikfrei</p>
+                <p class="text-xs text-green-700 mt-1">Nur Mehrweg und kompostierbare Verpackungen</p>
+              </div>
+
+              <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-green-600">location_on</span>
+                  <span class="text-[10px] font-bold uppercase text-white bg-green-600 rounded-full px-2 py-0.5">Voll</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm">Regionale Produkte</p>
+                <p class="text-xs text-green-700 mt-1">Alle Zutaten aus Brandenburg</p>
+              </div>
+
+              <div class="rounded-xl border border-amber-100 bg-amber-50 p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-amber-600">favorite</span>
+                  <span class="text-[10px] font-bold uppercase text-white bg-amber-500 rounded-full px-2 py-0.5">Teilweise</span>
+                </div>
+                <p class="font-semibold text-gray-900 text-sm">Fair Trade</p>
+                <p class="text-xs text-amber-700 mt-1">Kaffeebohnen zertifiziert, Kakao noch nicht</p>
+              </div>
+            </div>
+
+            <p class="text-xs text-gray-400 mt-4 flex items-center gap-1.5">
+              <span class="material-symbols-outlined" style="font-size: 14px">info</span> Zuletzt geprüft am 12. Juli 2026 durch das SOMOS-Team.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6">
+            <h2 class="font-bold text-lg text-gray-900 mb-3">Über uns</h2>
+            <p class="text-gray-600 leading-relaxed">
+              Das Café Nordwind ist seit 2018 ein Treffpunkt in der Potsdamer Innenstadt. Wir rösten unseren Kaffee selbst, backen jeden Morgen frisch
+              und arbeiten so weit wie möglich mit Produzent:innen aus der Region. Bei uns bekommst du SOMOS-Punkte auf jeden Einkauf – ganz automatisch,
+              ohne extra Karte.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6">
+            <h2 class="font-bold text-lg text-gray-900 mb-4">Impressionen aus dem Café</h2>
+            <div class="grid grid-cols-3 gap-3">
+              <img
+                class="rounded-xl aspect-square object-cover w-full"
+                src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80"
+                alt="Kaffeetheke"
+              />
+              <img
+                class="rounded-xl aspect-square object-cover w-full"
+                src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80"
+                alt="Café-Innenraum"
+              />
+              <img
+                class="rounded-xl aspect-square object-cover w-full"
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80"
+                alt="Hausgemachter Kuchen"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-[#F3EEDF] rounded-2xl p-6">
+            <h2 class="font-bold text-gray-900 mb-4">Kontakt & Details</h2>
+            <ul class="flex flex-col gap-3 text-sm text-gray-700">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-gray-500" style="font-size: 18px">location_on</span> Hebbelstraße 24, Potsdam
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-gray-500" style="font-size: 18px">schedule</span> Mo–Sa 8–18 Uhr · So 10–16 Uhr
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-gray-500" style="font-size: 18px">mail</span> hallo@cafe-nordwind.de
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-gray-500" style="font-size: 18px">language</span> cafe-nordwind.de
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-primary rounded-2xl p-6 text-white">
+            <h2 class="font-bold mb-2">Werde Stammkund:in</h2>
+            <p class="text-sm text-white/80 mb-5">
+              Sammle bei jedem Besuch Punkte und unterstütze automatisch deinen Lieblingsverein in Potsdam.
+            </p>
+            <button
+              onclick="showDemoModal(event)"
+              class="w-full bg-white text-primary font-semibold text-sm py-2.5 rounded-full hover:opacity-90 transition-opacity"
+            >
+              Bei SOMOS anmelden
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Demo restriction modal -->
+    <div id="demo-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" onclick="hideDemoModal(event)">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="relative bg-white rounded-3xl shadow-2xl p-10 max-w-sm w-full mx-4 text-center" onclick="event.stopPropagation()">
+        <div class="text-5xl mb-4">🚧</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Nur in der Demo</h3>
+        <p class="text-gray-500 mb-6">Dieser Bereich ist in der Demo-Version noch nicht verfügbar.</p>
+        <button onclick="hideDemoModal()" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function showDemoModal(e) {
+        e.preventDefault();
+        document.getElementById("demo-modal").classList.remove("hidden");
+      }
+      function hideDemoModal(e) {
+        document.getElementById("demo-modal").classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>SOMOS – Nachrichten</title>
+    <meta name="description" content="Nachrichten bei SOMOS Potsdam – chatte mit deinem Verein, deinen Geschäften und Initiativen." />
+    <meta name="robots" content="noindex,follow" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27",
+              "background-light": "#F9F4E8",
+              accent: "#E9AC57",
+            },
+            fontFamily: {
+              display: ["Crimson Pro", "serif"],
+              body: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+        font-size: 20px;
+        line-height: 1;
+      }
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* Mobile sidebar drawer */
+      #sidebar-toggle {
+        display: none;
+      }
+      #sidebar-backdrop {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      #sidebar-toggle:checked ~ #sidebar-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #chat-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      #sidebar-toggle:checked ~ #chat-sidebar {
+        transform: translateX(0);
+      }
+      @media (min-width: 1024px) {
+        #chat-sidebar {
+          position: static;
+          transform: none;
+        }
+        #sidebar-backdrop {
+          display: none !important;
+        }
+      }
+
+      @keyframes typing-bounce {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+        30% { transform: translateY(-4px); opacity: 1; }
+      }
+      .typing-dot {
+        animation: typing-bounce 1.2s infinite;
+      }
+      .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+      .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+  </head>
+
+  <body class="font-body bg-background-light text-gray-900 h-screen overflow-hidden flex flex-col">
+    <input type="checkbox" id="sidebar-toggle" />
+
+    <!-- HEADER -->
+    <header class="shrink-0 bg-background-light/95 backdrop-blur-md border-b border-gray-200 z-20">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <label for="sidebar-toggle" class="lg:hidden cursor-pointer p-1.5 -ml-1.5 text-gray-500" aria-label="Konversationen anzeigen">
+            <span class="material-symbols-outlined">menu</span>
+          </label>
+          <a href="../" class="flex items-center shrink-0" aria-label="SOMOS Entdecken">
+            <img src="../../../logo.png" alt="SOMOS" class="h-9 object-contain" />
+          </a>
+          <h1 class="font-display text-xl font-bold text-gray-900 truncate">Nachrichten</h1>
+        </div>
+
+        <details class="relative shrink-0">
+          <summary
+            class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full border border-gray-200 bg-white cursor-pointer hover:border-primary/30 transition-colors"
+          >
+            <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">LV</span>
+            <span class="text-sm font-semibold text-gray-800 hidden sm:inline">Lena Vogel</span>
+            <span class="material-symbols-outlined text-gray-400" style="font-size: 18px">expand_more</span>
+          </summary>
+          <div class="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 text-sm">
+            <a href="../../profil/" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Profil wechseln</a>
+            <a href="#" onclick="showDemoModal(event)" class="block px-4 py-2.5 text-gray-700 hover:bg-gray-50">Einstellungen</a>
+            <div class="my-1 border-t border-gray-100"></div>
+            <a href="../../" class="block px-4 py-2.5 text-red-600 hover:bg-red-50">Abmelden</a>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="flex-1 flex min-h-0 relative max-w-[1400px] w-full mx-auto lg:border-x border-gray-200 bg-background-light">
+      <label id="sidebar-backdrop" for="sidebar-toggle" class="fixed inset-0 bg-black/40 z-30 lg:hidden" aria-label="Schließen"></label>
+
+      <!-- SIDEBAR -->
+      <aside id="chat-sidebar" class="fixed lg:static inset-y-0 left-0 top-16 lg:top-0 w-80 max-w-[85%] bg-white z-30 flex flex-col border-r border-gray-200 overflow-y-auto">
+        <div class="p-4 border-b border-gray-100">
+          <div class="flex items-center gap-2 bg-background-light rounded-full px-4 py-2.5">
+            <span class="material-symbols-outlined text-gray-400" style="font-size: 18px">search</span>
+            <input
+              id="conv-search"
+              type="text"
+              placeholder="Buscar en conexiones"
+              class="flex-1 bg-transparent border-0 focus:ring-0 text-sm placeholder-gray-400 p-0"
+              oninput="filterConversations(this.value)"
+            />
+          </div>
+        </div>
+
+        <div class="flex-1 py-3 px-3">
+          <p class="text-[11px] font-bold uppercase tracking-wide text-gray-400 px-2 mb-2">Mein Verein</p>
+          <button type="button" class="conv-item w-full" data-id="repair-cafe" data-name="Repair Café Potsdam" onclick="openConversation('repair-cafe')">
+            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 font-bold text-sm flex items-center justify-center shrink-0">RC</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">Repair Café Potsdam</span>
+              <span class="conv-item-sub block text-xs truncate">Dein gewählter Verein</span>
+            </span>
+            <span class="conv-badge">2</span>
+          </button>
+
+          <p class="text-[11px] font-bold uppercase tracking-wide text-gray-400 px-2 mb-2 mt-5">Meine Geschäfte</p>
+          <button type="button" class="conv-item w-full" data-id="cafe-nordwind" data-name="Café Nordwind" onclick="openConversation('cafe-nordwind')">
+            <span class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-bold text-sm flex items-center justify-center shrink-0">CN</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">Café Nordwind</span>
+              <span class="conv-item-sub block text-xs truncate">184 Pkt.</span>
+            </span>
+          </button>
+          <button type="button" class="conv-item w-full" data-id="baeckerei-pletz" data-name="Bäckerei Pletz" onclick="openConversation('baeckerei-pletz')">
+            <span class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-bold text-sm flex items-center justify-center shrink-0">BP</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">Bäckerei Pletz</span>
+              <span class="conv-item-sub block text-xs truncate">62 Pkt.</span>
+            </span>
+            <span class="conv-badge">1</span>
+          </button>
+
+          <p class="text-[11px] font-bold uppercase tracking-wide text-gray-400 px-2 mb-2 mt-5">Weitere Initiativen</p>
+          <button type="button" class="conv-item w-full" data-id="fsv-babelsberg" data-name="FSV Babelsberg 03" onclick="openConversation('fsv-babelsberg')">
+            <span class="w-10 h-10 rounded-xl bg-yellow-100 text-yellow-700 font-bold text-sm flex items-center justify-center shrink-0">FB</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">FSV Babelsberg 03</span>
+            </span>
+          </button>
+          <button type="button" class="conv-item w-full" data-id="foodsharing" data-name="Foodsharing Potsdam" onclick="openConversation('foodsharing')">
+            <span class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-bold text-sm flex items-center justify-center shrink-0">FS</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">Foodsharing Potsdam</span>
+            </span>
+          </button>
+          <button type="button" class="conv-item w-full" data-id="stadtgarten" data-name="Stadtgarten Drewitz" onclick="openConversation('stadtgarten')">
+            <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold text-sm flex items-center justify-center shrink-0">SD</span>
+            <span class="flex-1 min-w-0 text-left">
+              <span class="conv-item-name block font-semibold text-sm truncate">Stadtgarten Drewitz</span>
+            </span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- CHAT -->
+      <main class="flex-1 flex flex-col min-w-0 bg-background-light">
+        <!-- Chat header -->
+        <div class="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 h-[72px] border-b border-gray-200 bg-white/60">
+          <div class="flex items-center gap-3 min-w-0">
+            <span id="chat-avatar" class="w-11 h-11 rounded-xl bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0">RC</span>
+            <div class="min-w-0">
+              <h2 id="chat-name" class="font-bold text-gray-900 truncate">Repair Café Potsdam</h2>
+              <p id="chat-subtitle" class="text-xs text-gray-500 truncate">Antwortet meist in wenigen Stunden</p>
+            </div>
+            <span id="chat-tag-next" class="hidden sm:inline-flex items-center gap-1 text-xs text-gray-600 bg-[#F3EEDF] rounded-full px-3 py-1 shrink-0">
+              <span class="material-symbols-outlined" style="font-size: 14px">event</span>
+              <span id="chat-tag-next-text">Nächste: Sa 15. Aug</span>
+            </span>
+            <span id="chat-tag-type" class="hidden sm:inline-flex items-center gap-1 text-xs text-gray-600 bg-[#F3EEDF] rounded-full px-3 py-1 shrink-0">
+              <span class="material-symbols-outlined" style="font-size: 14px">info</span>
+              <span id="chat-tag-type-text">Initiative</span>
+            </span>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button type="button" onclick="showDemoModal(event)" class="p-2.5 rounded-full text-gray-500 hover:bg-gray-100 transition-colors" aria-label="Anrufen">
+              <span class="material-symbols-outlined">call</span>
+            </button>
+            <button type="button" onclick="showDemoModal(event)" class="p-2.5 rounded-full text-gray-500 hover:bg-gray-100 transition-colors" aria-label="Videoanruf">
+              <span class="material-symbols-outlined">videocam</span>
+            </button>
+            <button type="button" onclick="showDemoModal(event)" class="p-2.5 rounded-full text-gray-500 hover:bg-gray-100 transition-colors" aria-label="Mehr Optionen">
+              <span class="material-symbols-outlined">more_horiz</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="message-list" class="flex-1 overflow-y-auto px-4 sm:px-6 py-6 flex flex-col gap-4"></div>
+
+        <!-- Composer -->
+        <div class="shrink-0 border-t border-gray-200 bg-white/60 px-4 sm:px-6 py-3">
+          <div class="flex items-center gap-2 mb-2.5">
+            <button type="button" onclick="showDemoModal(event)" class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors">
+              <span class="material-symbols-outlined" style="font-size: 15px">event</span> Termine
+            </button>
+            <button type="button" onclick="showDemoModal(event)" class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors">
+              <span class="material-symbols-outlined" style="font-size: 15px">toll</span> Punkte
+            </button>
+            <button type="button" onclick="showDemoModal(event)" class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors">
+              <span class="material-symbols-outlined" style="font-size: 15px">map</span> Karte
+            </button>
+          </div>
+
+          <form onsubmit="sendMessage(event)" class="flex items-center gap-2 bg-white rounded-full border border-gray-200 pl-3 pr-1.5 py-1.5">
+            <button type="button" onclick="showDemoModal(event)" class="p-1.5 text-gray-400 hover:text-gray-600 transition-colors shrink-0" aria-label="Datei anhängen">
+              <span class="material-symbols-outlined" style="font-size: 20px">attach_file</span>
+            </button>
+            <input
+              id="message-input"
+              type="text"
+              placeholder="Schreib eine Nachricht…"
+              autocomplete="off"
+              class="flex-1 min-w-0 border-0 focus:ring-0 text-sm placeholder-gray-400 py-2"
+            />
+            <button type="button" onclick="showDemoModal(event)" class="p-1.5 text-gray-400 hover:text-gray-600 transition-colors shrink-0" aria-label="Emoji">
+              <span class="material-symbols-outlined" style="font-size: 20px">mood</span>
+            </button>
+            <button type="submit" class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-90 transition-opacity shrink-0" aria-label="Senden">
+              <span class="material-symbols-outlined" style="font-size: 18px">send</span>
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <!-- Generic "no functionality" modal -->
+    <div id="demo-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" onclick="hideDemoModal(event)">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="relative bg-white rounded-3xl shadow-2xl p-10 max-w-sm w-full mx-4 text-center" onclick="event.stopPropagation()">
+        <div class="text-5xl mb-4">🚧</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Nur in der Demo</h3>
+        <p class="text-gray-500 mb-6">Dieser Button hat in diesem Test keine Funktion.</p>
+        <button onclick="hideDemoModal()" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- Action feedback modal (simulates outcome without real backend) -->
+    <div id="action-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" onclick="hideActionModal(event)">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="relative bg-white rounded-3xl shadow-2xl p-10 max-w-sm w-full mx-4 text-center" onclick="event.stopPropagation()">
+        <div id="action-modal-icon" class="text-5xl mb-4">✅</div>
+        <h3 id="action-modal-title" class="text-2xl font-bold text-gray-900 mb-3">Erledigt</h3>
+        <p id="action-modal-text" class="text-gray-500 mb-6">—</p>
+        <button onclick="hideActionModal()" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <style>
+      .conv-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 0.5rem;
+        border-radius: 0.75rem;
+        margin-bottom: 0.375rem;
+        color: #1f2937;
+        transition: background-color 0.15s;
+      }
+      .conv-item:hover {
+        background-color: #f3f4f6;
+      }
+      .conv-item .conv-item-sub {
+        color: #6b7280;
+      }
+      .conv-item .conv-badge {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 9999px;
+        background: #16a34a;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .conv-item .conv-badge:not(:empty) {
+        display: inline-flex;
+      }
+      .conv-item.conv-active {
+        background-color: #2d5a27;
+        color: #fff;
+      }
+      .conv-item.conv-active .conv-item-sub {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .conv-item.conv-active .conv-badge {
+        background: #fff;
+        color: #2d5a27;
+      }
+    </style>
+
+    <script>
+      const conversations = {
+        "repair-cafe": {
+          name: "Repair Café Potsdam",
+          initials: "RC",
+          avatarBg: "bg-blue-100 text-blue-700",
+          subtitle: "Antwortet meist in wenigen Stunden",
+          nextTag: "Nächste: Sa 15. Aug",
+          typeTag: "Initiative",
+          replies: [
+            "Guter Punkt, wir schauen es uns an! 😊",
+            "Danke für deine Nachricht, wir melden uns dazu bald genauer.",
+            "Klingt gut, bis Samstag im Kulturhaus!",
+            "Alles klar, notiert!",
+          ],
+          replyIdx: 0,
+          messages: [
+            { type: "divider", text: "Heute, 14. August" },
+            {
+              type: "system-transfer",
+              title: "Dein Einkauf hat geholfen!",
+              text: "Deine 24 Punkte bei Café Nordwind wurden automatisch an das Repair Café weitergeleitet. Danke!",
+              pill: "+24 Punkte",
+              time: "Gestern",
+            },
+            {
+              type: "system-event",
+              title: "Neues Event veröffentlicht",
+              text: "Das Repair Café lädt ein: Reparatur-Nachmittag im Kulturhaus Babelsberg am Samstag, 15. August von 14–18 Uhr.",
+              time: "Heute, 9:00",
+            },
+            { type: "them", text: "Hallo Lena! Danke für deine Nachricht – wir freuen uns immer über neue Mitmacher:innen. 😊", time: "Heute, 14:12" },
+            { type: "them", text: "Bring gerne dein defektes Radio mit. Wir haben ein paar erfahrene Techniker:innen, die dir helfen können.", time: "Heute, 14:12" },
+            { type: "me", text: "Super, danke! Muss ich mich vorher anmelden oder kann ich einfach vorbeikommen?", time: "Heute, 14:24" },
+            { type: "them", text: "Klar, komm gern am Samstag vorbei! Zwischen 14 und 18 Uhr im Kulturhaus. Anmeldung ist nicht nötig – wir haben immer Kaffee und Kuchen dabei.", time: "Heute, 14:32" },
+          ],
+        },
+        "cafe-nordwind": {
+          name: "Café Nordwind",
+          initials: "CN",
+          avatarBg: "bg-orange-100 text-orange-700",
+          subtitle: "Antwortet meist in wenigen Stunden",
+          nextTag: null,
+          typeTag: "Geschäft",
+          replies: ["Danke dir! ☕", "Sehr gerne, wir freuen uns auf deinen nächsten Besuch.", "Guter Punkt, das geben wir gerne weiter."],
+          replyIdx: 0,
+          messages: [
+            { type: "them", text: "Hallo Lena! Danke für deine Treue – du hast diese Woche schon 3× bei uns bestellt. ☕", time: "Mo, 09:14" },
+            { type: "me", text: "Sehr gerne, euer Kaffee ist einfach zu gut!", time: "Mo, 09:20" },
+            { type: "them", text: "Das freut uns total. Kleiner Tipp: Ab 200 Punkten gibt's bei uns ein Gratis-Gebäck deiner Wahl.", time: "Mo, 09:22" },
+          ],
+        },
+        "baeckerei-pletz": {
+          name: "Bäckerei Pletz",
+          initials: "BP",
+          avatarBg: "bg-purple-100 text-purple-700",
+          subtitle: "Antwortet meist am selben Tag",
+          nextTag: null,
+          typeTag: "Geschäft",
+          replies: ["Danke für deine Nachricht!", "Bis später bei uns im Laden. 🥖"],
+          replyIdx: 0,
+          messages: [
+            { type: "them", text: "Guten Morgen! Unser Sauerteigbrot ist heute wieder frisch aus dem Ofen. 🥖", time: "Heute, 07:45" },
+            { type: "them", text: "Falls du vorbeikommst: bis 12 Uhr gibt's noch 2 SOMOS-Punkte extra pro Einkauf.", time: "Heute, 07:46" },
+          ],
+        },
+        "fsv-babelsberg": {
+          name: "FSV Babelsberg 03",
+          initials: "FB",
+          avatarBg: "bg-yellow-100 text-yellow-700",
+          subtitle: "Antwortet meist in wenigen Tagen",
+          nextTag: "Nächste: So Heimspiel",
+          typeTag: "Verein",
+          replies: ["Danke für dein Interesse!", "Wir sehen uns beim nächsten Spiel!"],
+          replyIdx: 0,
+          messages: [
+            { type: "them", text: "Hallo Lena, danke für deine Unterstützung als Mitglied! Unser nächstes Heimspiel ist am Sonntag.", time: "Fr, 18:02" },
+            { type: "me", text: "Cool, ich versuche vorbeizuschauen!", time: "Fr, 18:10" },
+          ],
+        },
+        foodsharing: {
+          name: "Foodsharing Potsdam",
+          initials: "FS",
+          avatarBg: "bg-pink-100 text-pink-700",
+          subtitle: "Antwortet meist in wenigen Stunden",
+          nextTag: null,
+          typeTag: "Initiative",
+          replies: ["Cool, bis später bei der Retter:innen-Runde!", "Danke fürs Mitmachen!"],
+          replyIdx: 0,
+          messages: [{ type: "them", text: "Hey! Heute Abend gibt's wieder eine Retter:innen-Runde am Nauener Tor, falls du Zeit hast.", time: "Mi, 16:30" }],
+        },
+        stadtgarten: {
+          name: "Stadtgarten Drewitz",
+          initials: "SD",
+          avatarBg: "bg-emerald-100 text-emerald-700",
+          subtitle: "Antwortet meist in wenigen Tagen",
+          nextTag: "Nächste: Sa Gemeinschaftstag",
+          typeTag: "Initiative",
+          replies: ["Schön, dass du dabei bist! 🌱", "Bis Samstag im Garten!"],
+          replyIdx: 0,
+          messages: [
+            { type: "them", text: "Willkommen in unserer Community! 🌱 Nächster Gemeinschaftstag ist Samstag ab 10 Uhr.", time: "Di, 12:00" },
+            { type: "me", text: "Danke, ich bin dabei!", time: "Di, 12:15" },
+          ],
+        },
+      };
+
+      let currentId = "repair-cafe";
+
+      function escapeHtml(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function bubbleHtml(msg) {
+        if (msg.type === "divider") {
+          return `<div class="flex justify-center"><span class="text-xs text-gray-500 bg-white/80 rounded-full px-3 py-1">${escapeHtml(msg.text)}</span></div>`;
+        }
+        if (msg.type === "me") {
+          return `<div class="flex justify-end">
+            <div class="max-w-[80%] sm:max-w-[60%]">
+              <div class="bg-primary text-white rounded-2xl rounded-br-sm px-4 py-2.5 text-sm leading-relaxed">${escapeHtml(msg.text)}</div>
+              <p class="text-[11px] text-gray-400 mt-1 text-right">${escapeHtml(msg.time)}</p>
+            </div>
+          </div>`;
+        }
+        if (msg.type === "them") {
+          return `<div class="flex justify-start">
+            <div class="max-w-[80%] sm:max-w-[60%]">
+              <div class="bg-white rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm leading-relaxed text-gray-800 shadow-sm">${escapeHtml(msg.text)}</div>
+              <p class="text-[11px] text-gray-400 mt-1">${escapeHtml(msg.time)}</p>
+            </div>
+          </div>`;
+        }
+        if (msg.type === "system-transfer") {
+          return `<div class="bg-white rounded-2xl p-4 flex items-start gap-3">
+            <span class="w-9 h-9 rounded-full bg-[#F3EEDF] text-amber-700 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined" style="font-size:18px">sync_alt</span>
+            </span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="font-semibold text-sm text-gray-900">${escapeHtml(msg.title)}</p>
+                <span class="text-xs text-gray-400 shrink-0">${escapeHtml(msg.time)}</span>
+              </div>
+              <p class="text-sm text-gray-600 mt-1">${escapeHtml(msg.text)}</p>
+              <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 rounded-full px-2.5 py-1 mt-2">${escapeHtml(msg.pill)}</span>
+            </div>
+          </div>`;
+        }
+        if (msg.type === "system-event") {
+          return `<div class="bg-white rounded-2xl p-4 border border-gray-200">
+            <div class="flex items-start gap-3">
+              <span class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined" style="font-size:18px">event</span>
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-3">
+                  <p class="font-semibold text-sm text-gray-900">${escapeHtml(msg.title)}</p>
+                  <span class="text-xs text-gray-400 shrink-0">${escapeHtml(msg.time)}</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1">${escapeHtml(msg.text)}</p>
+                <div class="flex flex-wrap items-center gap-2 mt-3">
+                  <button type="button" onclick="rememberEvent(event)" class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-semibold px-3.5 py-2 rounded-full hover:opacity-90 transition-opacity">
+                    <span class="material-symbols-outlined" style="font-size:14px">bookmark_add</span> Termin merken
+                  </button>
+                  <a href="../initiative/" class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs font-semibold px-3.5 py-2 rounded-full hover:bg-gray-50 transition-colors">
+                    Details ansehen
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }
+        return "";
+      }
+
+      function renderMessages() {
+        const c = conversations[currentId];
+        const list = document.getElementById("message-list");
+        list.innerHTML = c.messages.map(bubbleHtml).join("");
+        list.scrollTop = list.scrollHeight;
+      }
+
+      function openConversation(id) {
+        if (!conversations[id]) return;
+        currentId = id;
+        const c = conversations[id];
+
+        const avatar = document.getElementById("chat-avatar");
+        avatar.textContent = c.initials;
+        avatar.className = "w-11 h-11 rounded-xl font-bold flex items-center justify-center shrink-0 " + c.avatarBg;
+        document.getElementById("chat-name").textContent = c.name;
+        document.getElementById("chat-subtitle").textContent = c.subtitle;
+
+        const nextTag = document.getElementById("chat-tag-next");
+        if (c.nextTag) {
+          nextTag.classList.remove("hidden");
+          nextTag.classList.add("sm:inline-flex");
+          document.getElementById("chat-tag-next-text").textContent = c.nextTag;
+        } else {
+          nextTag.classList.add("hidden");
+        }
+        document.getElementById("chat-tag-type-text").textContent = c.typeTag;
+
+        document.querySelectorAll(".conv-item").forEach((el) => {
+          el.classList.toggle("conv-active", el.dataset.id === id);
+        });
+
+        renderMessages();
+
+        const toggle = document.getElementById("sidebar-toggle");
+        if (toggle) toggle.checked = false;
+      }
+
+      function nowLabel() {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mm = String(d.getMinutes()).padStart(2, "0");
+        return "Heute, " + hh + ":" + mm;
+      }
+
+      function showTyping() {
+        const list = document.getElementById("message-list");
+        const el = document.createElement("div");
+        el.id = "typing-indicator";
+        el.className = "flex justify-start";
+        el.innerHTML = `<div class="bg-white rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-gray-400 typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-gray-400 typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-gray-400 typing-dot"></span>
+        </div>`;
+        list.appendChild(el);
+        list.scrollTop = list.scrollHeight;
+      }
+
+      function hideTyping() {
+        const el = document.getElementById("typing-indicator");
+        if (el) el.remove();
+      }
+
+      function sendMessage(e) {
+        e.preventDefault();
+        const input = document.getElementById("message-input");
+        const text = input.value.trim();
+        if (!text) return;
+
+        const c = conversations[currentId];
+        const sentTo = currentId;
+        c.messages.push({ type: "me", text, time: nowLabel() });
+        renderMessages();
+        input.value = "";
+        input.focus();
+
+        showTyping();
+        window.setTimeout(() => {
+          if (sentTo !== currentId) return;
+          hideTyping();
+          const reply = c.replies[c.replyIdx % c.replies.length];
+          c.replyIdx += 1;
+          c.messages.push({ type: "them", text: reply, time: nowLabel() });
+          renderMessages();
+        }, 1100 + Math.random() * 700);
+      }
+
+      function filterConversations(query) {
+        const q = query.trim().toLowerCase();
+        document.querySelectorAll(".conv-item").forEach((el) => {
+          const name = (el.dataset.name || "").toLowerCase();
+          el.style.display = !q || name.includes(q) ? "flex" : "none";
+        });
+      }
+
+      function showDemoModal(e) {
+        if (e) e.preventDefault();
+        document.getElementById("demo-modal").classList.remove("hidden");
+      }
+      function hideDemoModal() {
+        document.getElementById("demo-modal").classList.add("hidden");
+      }
+
+      function showActionModal(title, text, icon) {
+        document.getElementById("action-modal-title").textContent = title;
+        document.getElementById("action-modal-text").textContent = text;
+        document.getElementById("action-modal-icon").textContent = icon || "✅";
+        document.getElementById("action-modal").classList.remove("hidden");
+      }
+      function hideActionModal() {
+        document.getElementById("action-modal").classList.add("hidden");
+      }
+
+      function rememberEvent(e) {
+        e.preventDefault();
+        showActionModal(
+          "Termin gemerkt",
+          "Reparatur-Nachmittag – Samstag, 15. August, 14–18 Uhr wurde deinem SOMOS-Kalender hinzugefügt. (Nur Demo-Anzeige)",
+          "📅"
+        );
+      }
+
+      // Init
+      const params = new URLSearchParams(window.location.search);
+      const initial = params.get("c");
+      openConversation(conversations[initial] ? initial : "repair-cafe");
+    </script>
+  </body>
+</html>
